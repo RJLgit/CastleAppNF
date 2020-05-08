@@ -19,6 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         CastleAdapter castleAdapter = new CastleAdapter(this, DummyData.generateAndReturnData(this));
         recyclerView.setAdapter(castleAdapter);
-        
+
     }
 }

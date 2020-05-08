@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/details_root_layout"
+        >
+
+
+        <TextView
+            android:id="@+id/site_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Site name"
+            />
+
+        <LinearLayout
+            android:id="@+id/opening_times_layout"
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:elevation="1dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/site_name_text_view"
+            >
+
+            <TextView
+                android:id="@+id/status_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/status_details_title"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/opening_times_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                tools:text="@string/opening_times_title"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:id="@+id/operated_by_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/operated_by_title"
+                android:textAlignment="center"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/photos_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            android:elevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/site_name_text_view"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            />
+
+        <TextView
+            android:id="@+id/details_history_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="@string/history_title"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photos_image_view"
+            />
+
+        <TextView
+            android:id="@+id/history_details_text_view"
+            android:layout_width="0dp"
+            android:layout_height="201dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            tools:text="Click castle to see details here"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_history_title_text_view"
+            />
+
+        <TextView
+            android:id="@+id/address_details_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            tools:text="@string/address_title"
+            android:textAlignment="center"
+            android:textSize="16sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <MediaController
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/my_media_controller"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/history_details_text_view"
+
+            />
+
+
+
+        <TextView
+            android:id="@+id/site_rating_title"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            tools:text="@string/details_rating_title"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_media_controller"
+            />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="231dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="8dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.1"
+            app:layout_constraintStart_toEndOf="@+id/site_rating_title"
+            app:layout_constraintTop_toBottomOf="@+id/my_media_controller"
+            app:layout_constraintVertical_bias="0.195"
+            android:visibility="invisible"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
