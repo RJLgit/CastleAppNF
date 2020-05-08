@@ -15,15 +15,16 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     private Context mContext;
     private ArrayList<Castles> castles;
-
+    private OnRecyclerItemClickListener mListener;
 
 
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener) {
         this.mContext = mContext;
         this.castles = castles;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -31,7 +32,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public CastleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.list_item_layout, parent, false);
-        return new CastleViewHolder(view);
+        return new CastleViewHolder(view, mListener);
 
     }
 
@@ -45,13 +46,15 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         return castles.size();
     }
 
-    public class CastleViewHolder extends RecyclerView.ViewHolder {
+    public class CastleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView nameTextView;
-
-        public CastleViewHolder(@NonNull View v) {
+        OnRecyclerItemClickListener onRecyclerItemClickListener;
+        public CastleViewHolder(@NonNull View v, OnRecyclerItemClickListener listener) {
             super(v);
             nameTextView = v.findViewById(R.id.castleNameTextView);
+            onRecyclerItemClickListener = listener;
+            v.setOnClickListener(this);
 
         }
 
@@ -59,5 +62,12 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             nameTextView.setText(x);
         }
 
+        @Override
+        public void onClick(View view) {
+            onRecyclerItemClickListener.onMyItemClicked(getAdapterPosition());
+        }
+    }
+    public interface OnRecyclerItemClickListener{
+        void onMyItemClicked(int i);
     }
 }

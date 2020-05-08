@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CastleAdapter.OnRecyclerItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +18,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        CastleAdapter castleAdapter = new CastleAdapter(this, DummyData.generateAndReturnData(this));
+        CastleAdapter castleAdapter = new CastleAdapter(this, DummyData.generateAndReturnData(this), this);
         recyclerView.setAdapter(castleAdapter);
 
+    }
+
+    @Override
+    public void onMyItemClicked(int i) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        startActivity(intent);
     }
 }
