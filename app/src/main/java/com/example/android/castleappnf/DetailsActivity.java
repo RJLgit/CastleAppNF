@@ -2,6 +2,9 @@ package com.example.android.castleappnf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,8 +13,14 @@ import android.widget.TextView;
 
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -27,6 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
     RatingBar myRatingBarWidget;
     PlayerView mPlayerView;
     private SimpleExoPlayer player;
+    int resourceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +72,40 @@ public class DetailsActivity extends AppCompatActivity {
         historyDetailsTextView.setText("This is the history");
         operatedByTextView.setText(getString(R.string.operated_by_title) + "operator");
         myRatingBarWidget.setRating(4);
+        resourceId = R.raw.canon_in_d;
 
         initializePlayer();
+
     }
     private void initializePlayer() {
         player = ExoPlayerFactory.newSimpleInstance(this);
         mPlayerView.setPlayer(player);
+
+        /*Resources resources = this.getResources();
+        Uri uri = new Uri.Builder()
+                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(resources.getResourcePackageName(resourceId))
+                .appendPath(resources.getResourceTypeName(resourceId))
+                .appendPath(resources.getResourceEntryName(resourceId))
+                .build();
+        MediaSource mediaSource = buildMediaSource(uri);*/
+        player.prepare(buildMediaSource(R.raw.canon_in_d));
+    }
+
+
+
+    private MediaSource buildMediaSource(int ra) {
+        DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(ra));
+        final RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(this);
+        try {
+            rawResourceDataSource.open(dataSpec);
+        } catch (RawResourceDataSource.RawResourceDataSourceException e) {
+            e.printStackTrace();
+        }
+
+        DataSource.Factory dataSourceFactory =
+                new DefaultDataSourceFactory(this, "my-app");
+        return new ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(rawResourceDataSource.getUri());
     }
 }
