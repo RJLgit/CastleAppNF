@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
@@ -25,6 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
     TextView ratingTitleTextView;
     RatingBar myRatingBarWidget;
     PlayerView mPlayerView;
+    private SimpleExoPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,5 +62,11 @@ public class DetailsActivity extends AppCompatActivity {
         historyDetailsTextView.setText("This is the history");
         operatedByTextView.setText(getString(R.string.operated_by_title) + "operator");
         myRatingBarWidget.setRating(4);
+
+        initializePlayer();
+    }
+    private void initializePlayer() {
+        player = ExoPlayerFactory.newSimpleInstance(this);
+        mPlayerView.setPlayer(player);
     }
 }
