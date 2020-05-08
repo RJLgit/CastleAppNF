@@ -8,6 +8,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+
+
 public class DetailsActivity extends AppCompatActivity {
     TextView titleTextView;
     TextView statusTextView;
@@ -19,6 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
     TextView addressTextView;
     TextView ratingTitleTextView;
     RatingBar myRatingBarWidget;
+    PlayerView mPlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class DetailsActivity extends AppCompatActivity {
         addressTextView = findViewById(R.id.address_details_text_view);;
         ratingTitleTextView = findViewById(R.id.site_rating_title);;
         myRatingBarWidget = findViewById(R.id.ratingBar);
+        mPlayerView = findViewById(R.id.playerView);
 
         //Sets up data in details view - change to use data sent from intent
 
