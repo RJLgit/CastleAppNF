@@ -1,6 +1,7 @@
 package com.example.android.castleappnf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -38,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
     RatingBar myRatingBarWidget;
     PlayerView mPlayerView;
     private SimpleExoPlayer player;
+    Toolbar toolbar;
     int resourceId;
     private boolean playWhenReady = true;
     private int currentWindow = 0;
@@ -84,6 +86,13 @@ public class DetailsActivity extends AppCompatActivity {
         operatedByTextView.setText(getString(R.string.operated_by_title) + "operator");
         myRatingBarWidget.setRating(4);
         resourceId = R.raw.canon_in_d;
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Details of the castle");
+        toolbar.setSubtitle("Here are the details");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
 
@@ -164,5 +173,11 @@ public class DetailsActivity extends AppCompatActivity {
             player.release();
             player = null;
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
