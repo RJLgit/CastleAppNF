@@ -9,6 +9,9 @@
         android:id="@+id/details_root_layout"
         >
 
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar"/>
+
 
         <TextView
             android:id="@+id/site_name_text_view"

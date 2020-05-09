@@ -85,7 +85,7 @@ public class DetailsActivity extends AppCompatActivity {
         myRatingBarWidget.setRating(4);
         resourceId = R.raw.canon_in_d;
 
-     
+
 
     }
 
