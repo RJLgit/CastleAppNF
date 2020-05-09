@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     }
 
     @Override
-    public void onMyItemClicked(int i) {
+    public void onMyItemClicked(Castles c) {
         Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("Castle", c);
         startActivity(intent);
     }
 }

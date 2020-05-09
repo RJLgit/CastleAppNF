@@ -1,6 +1,10 @@
 package com.example.android.castleappnf;
 
-public class Castles {
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Castles implements Serializable {
     private String name;
     private String operator;
     //Need to add time and geolocation in future
@@ -65,4 +69,6 @@ public class Castles {
     public void setAudio(int audio) {
         this.audio = audio;
     }
+
+
 }

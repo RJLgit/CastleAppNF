@@ -64,10 +64,10 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
         @Override
         public void onClick(View view) {
-            onRecyclerItemClickListener.onMyItemClicked(getAdapterPosition());
+            onRecyclerItemClickListener.onMyItemClicked(castles.get(getAdapterPosition()));
         }
     }
     public interface OnRecyclerItemClickListener{
-        void onMyItemClicked(int i);
+        void onMyItemClicked(Castles c);
     }
 }
