@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,20 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        Intent intent = getIntent();
+        Castles myCastle = (Castles) intent.getSerializableExtra("Castle");
+
+        String name = myCastle.getName();
+        String operator = myCastle.getOperator();
+        String history = myCastle.getHistory();
+        int rating = myCastle.getRating();
+        int image = myCastle.getImage();
+        int audio = myCastle.getAudio();
+        
+        resourceId = audio;
+
+
         titleTextView = findViewById(R.id.site_name_text_view);
         statusTextView = findViewById(R.id.status_text_view);
         openTimesTextView = findViewById(R.id.opening_times_text_view);
@@ -70,24 +85,24 @@ public class DetailsActivity extends AppCompatActivity {
 
         //Sets up data in details view - change to use data sent from intent
 
-        titleTextView.setText("test title");
-        castleImageView.setImageDrawable(getResources().getDrawable(R.drawable.castle));
+        titleTextView.setText(name);
+        castleImageView.setImageDrawable(getResources().getDrawable(image));
         statusTextView.setText(getString(R.string.status_details_title));
         openTimesTextView.setText(getString(R.string.opening_times_title));
 
-        historyTitleTextView.setText(getString(R.string.history_title));
+        historyTitleTextView.setText(history);
 
 
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
         addressTextView.setText(getString(R.string.address_title));
 
         myRatingBarWidget.setVisibility(View.VISIBLE);
-        historyDetailsTextView.setText("This is the history");
-        operatedByTextView.setText(getString(R.string.operated_by_title) + "operator");
-        myRatingBarWidget.setRating(4);
-        resourceId = R.raw.canon_in_d;
+        historyDetailsTextView.setText("Operator:");
+        operatedByTextView.setText(getString(R.string.operated_by_title) + operator);
+        myRatingBarWidget.setRating(rating);
+
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Details of the castle");
+        toolbar.setTitle(name);
         toolbar.setSubtitle("Here are the details");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -112,7 +127,7 @@ public class DetailsActivity extends AppCompatActivity {
                 .appendPath(resources.getResourceEntryName(resourceId))
                 .build();
         MediaSource mediaSource = buildMediaSource(uri);*/
-        player.prepare(buildMediaSource(R.raw.canon_in_d));
+        player.prepare(buildMediaSource(resourceId));
     }
 
 
