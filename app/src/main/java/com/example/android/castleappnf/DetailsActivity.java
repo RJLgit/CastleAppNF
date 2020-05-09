@@ -2,6 +2,7 @@ package com.example.android.castleappnf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
+import com.google.android.exoplayer2.util.Util;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -37,6 +39,9 @@ public class DetailsActivity extends AppCompatActivity {
     PlayerView mPlayerView;
     private SimpleExoPlayer player;
     int resourceId;
+    private boolean playWhenReady = true;
+    private int currentWindow = 0;
+    private long playbackPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +49,20 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         titleTextView = findViewById(R.id.site_name_text_view);
         statusTextView = findViewById(R.id.status_text_view);
-        openTimesTextView = findViewById(R.id.opening_times_text_view);;
-        operatedByTextView = findViewById(R.id.operated_by_text_view);;
+        openTimesTextView = findViewById(R.id.opening_times_text_view);
+        ;
+        operatedByTextView = findViewById(R.id.operated_by_text_view);
+        ;
         castleImageView = findViewById(R.id.photos_image_view);
 
-        historyTitleTextView = findViewById(R.id.details_history_title_text_view);;
-        historyDetailsTextView = findViewById(R.id.history_details_text_view);;
-        addressTextView = findViewById(R.id.address_details_text_view);;
-        ratingTitleTextView = findViewById(R.id.site_rating_title);;
+        historyTitleTextView = findViewById(R.id.details_history_title_text_view);
+        ;
+        historyDetailsTextView = findViewById(R.id.history_details_text_view);
+        ;
+        addressTextView = findViewById(R.id.address_details_text_view);
+        ;
+        ratingTitleTextView = findViewById(R.id.site_rating_title);
+        ;
         myRatingBarWidget = findViewById(R.id.ratingBar);
         mPlayerView = findViewById(R.id.playerView);
 
@@ -74,12 +85,15 @@ public class DetailsActivity extends AppCompatActivity {
         myRatingBarWidget.setRating(4);
         resourceId = R.raw.canon_in_d;
 
-        initializePlayer();
+     
 
     }
+
     private void initializePlayer() {
         player = ExoPlayerFactory.newSimpleInstance(this);
         mPlayerView.setPlayer(player);
+        player.setPlayWhenReady(playWhenReady);
+        player.seekTo(currentWindow, playbackPosition);
 
         /*Resources resources = this.getResources();
         Uri uri = new Uri.Builder()
@@ -91,7 +105,6 @@ public class DetailsActivity extends AppCompatActivity {
         MediaSource mediaSource = buildMediaSource(uri);*/
         player.prepare(buildMediaSource(R.raw.canon_in_d));
     }
-
 
 
     private MediaSource buildMediaSource(int ra) {
@@ -107,5 +120,49 @@ public class DetailsActivity extends AppCompatActivity {
                 new DefaultDataSourceFactory(this, "my-app");
         return new ProgressiveMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(rawResourceDataSource.getUri());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (Util.SDK_INT >= 24) {
+            initializePlayer();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (Util.SDK_INT >= 24) {
+            releasePlayer();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if ((Util.SDK_INT < 24 || player == null)) {
+            initializePlayer();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (Util.SDK_INT < 24) {
+            releasePlayer();
+        }
+    }
+
+
+
+    private void releasePlayer() {
+        if (player != null) {
+            playWhenReady = player.getPlayWhenReady();
+            playbackPosition = player.getCurrentPosition();
+            currentWindow = player.getCurrentWindowIndex();
+            player.release();
+            player = null;
+        }
     }
 }
