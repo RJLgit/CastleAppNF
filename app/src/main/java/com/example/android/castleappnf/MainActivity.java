@@ -126,6 +126,18 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true;
                     permissionsAndGpsGranted();
+                } else {
+                    final AlertDialog.Builder pBuilder = new AlertDialog.Builder(this);
+                    pBuilder.setMessage("Please enable location permissions to use this app")
+                            .setCancelable(false)
+                            .setNeutralButton("Close App", new DialogInterface.OnClickListener() {
+                                public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                                    finishAffinity();
+                                    System.exit(0);
+                                }
+                            });
+                    final AlertDialog pAlert = pBuilder.create();
+                    pAlert.show();
                 }
             }
         }
