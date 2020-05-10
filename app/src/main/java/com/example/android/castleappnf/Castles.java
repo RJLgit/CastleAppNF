@@ -12,6 +12,8 @@ public class Castles implements Serializable {
     private String history;
     private int image;
     private int audio;
+    //Hard coded until calculated from location data and phone location
+    private int distance;
 
     public Castles(String name, String operator, int rating, String history, int image, int audio) {
         this.name = name;
@@ -20,6 +22,7 @@ public class Castles implements Serializable {
         this.history = history;
         this.image = image;
         this.audio = audio;
+        this.distance = 45;
     }
 
     public String getName() {
@@ -70,5 +73,11 @@ public class Castles implements Serializable {
         this.audio = audio;
     }
 
+    public int getDistance() {
+        return distance;
+    }
 
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     @Override
     public void onBindViewHolder(@NonNull CastleViewHolder holder, int position) {
-        holder.bind(castles.get(position).getName());
+        holder.bind(castles.get(position).getName(), castles.get(position).getImage(), castles.get(position).getDistance());
     }
 
     @Override
@@ -49,17 +50,23 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public class CastleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView nameTextView;
+        TextView distanceTextView;
+        ImageView imgView;
         OnRecyclerItemClickListener onRecyclerItemClickListener;
         public CastleViewHolder(@NonNull View v, OnRecyclerItemClickListener listener) {
             super(v);
             nameTextView = v.findViewById(R.id.castleNameTextView);
+            distanceTextView = v.findViewById(R.id.distanceValueTextView);
+            imgView = v.findViewById(R.id.castleRvImageView);
             onRecyclerItemClickListener = listener;
             v.setOnClickListener(this);
 
         }
 
-        public void bind(String x) {
+        public void bind(String x, int y, int z) {
             nameTextView.setText(x);
+            distanceTextView.setText(String.valueOf(z));
+            imgView.setImageResource(y);
         }
 
         @Override
