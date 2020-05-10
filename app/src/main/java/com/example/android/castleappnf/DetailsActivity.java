@@ -60,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
         int rating = myCastle.getRating();
         int image = myCastle.getImage();
         int audio = myCastle.getAudio();
-        
+
         resourceId = audio;
 
 

@@ -2,6 +2,7 @@ package com.example.android.castleappnf;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         CastleAdapter castleAdapter = new CastleAdapter(this, DummyData.generateAndReturnData(this), this);
         recyclerView.setAdapter(castleAdapter);
