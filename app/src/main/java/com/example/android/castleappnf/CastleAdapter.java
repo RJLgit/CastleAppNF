@@ -1,11 +1,14 @@
 package com.example.android.castleappnf;
 
 import android.content.Context;
+import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 
@@ -17,16 +20,20 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private Context mContext;
     private ArrayList<Castles> castles;
     private OnRecyclerItemClickListener mListener;
+    private Location phoneLocation;
 
 
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location) {
         this.mContext = mContext;
         this.castles = castles;
         this.mListener = listener;
+        this.phoneLocation = location;
     }
+
+
 
     @NonNull
     @Override
@@ -39,7 +46,11 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     @Override
     public void onBindViewHolder(@NonNull CastleViewHolder holder, int position) {
-        holder.bind(castles.get(position).getName(), castles.get(position).getImage(), castles.get(position).getDistance());
+        float dist = 0;
+        if (phoneLocation != null) {
+            dist = phoneLocation.distanceTo(castles.get(position).getCastleLocation());
+        }
+        holder.bind(castles.get(position).getName(), castles.get(position).getImage(), dist);
     }
 
     @Override
@@ -53,6 +64,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         TextView distanceTextView;
         ImageView imgView;
         OnRecyclerItemClickListener onRecyclerItemClickListener;
+
         public CastleViewHolder(@NonNull View v, OnRecyclerItemClickListener listener) {
             super(v);
             nameTextView = v.findViewById(R.id.castleNameTextView);
@@ -63,9 +75,10 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
         }
 
-        public void bind(String x, int y, int z) {
+        public void bind(String x, int y, float z) {
             nameTextView.setText(x);
-            distanceTextView.setText(String.valueOf(z));
+            int inMiles = (int) z / 1609;
+            distanceTextView.setText(String.valueOf(inMiles));
             imgView.setImageResource(y);
         }
 

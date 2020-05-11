@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     }
 
     private void permissionsAndGpsGranted() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        CastleAdapter castleAdapter = new CastleAdapter(this, DummyData.generateAndReturnData(this), this);
-        recyclerView.setAdapter(castleAdapter);
+
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("UK Castles");
         toolbar.setSubtitle("Click Castle to see more info");
         setSupportActionBar(toolbar);
+        final Context context = this;
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         if (location != null) {
                             // Logic to handle location object
                             l = new Location(location);
+                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l);
+                            recyclerView.setAdapter(castleAdapter);
                             Log.d(TAG, "onSuccess: " + location);
                         }
                         Log.d(TAG, "onSuccess: " + location);

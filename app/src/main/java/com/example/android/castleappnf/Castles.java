@@ -1,5 +1,6 @@
 package com.example.android.castleappnf;
 
+import android.location.Location;
 import android.os.Parcelable;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class Castles implements Serializable {
     private int distance;
     private double longdi;
     private double lat;
+    private Location castleLocation;
 
     public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude) {
         this.name = name;
@@ -27,6 +29,17 @@ public class Castles implements Serializable {
         this.distance = 45;
         this.lat = latitude;
         this.longdi = longditude;
+        castleLocation = new Location("");
+        castleLocation.setLatitude(latitude);
+        castleLocation.setLongitude(longditude);
+    }
+
+    public Location getCastleLocation() {
+        return castleLocation;
+    }
+
+    public void setCastleLocation(Location castleLocation) {
+        this.castleLocation = castleLocation;
     }
 
     public String getName() {
