@@ -14,9 +14,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity implements CastleAdapter.OnRecyclerItemClickListener {
 
@@ -25,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 8;
     Toolbar toolbar;
     private boolean mLocationPermissionGranted = false;
+    private Location l;
+
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,20 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         toolbar.setTitle("UK Castles");
         toolbar.setSubtitle("Click Castle to see more info");
         setSupportActionBar(toolbar);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            l = new Location(location);
+                            Log.d(TAG, "onSuccess: " + location);
+                        }
+                        Log.d(TAG, "onSuccess: " + location);
+                    }
+                });
     }
 
     private void buildAlertMessageNoGps() {
