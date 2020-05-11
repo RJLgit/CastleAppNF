@@ -47,8 +47,11 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     @Override
     public void onBindViewHolder(@NonNull CastleViewHolder holder, int position) {
         float dist = 0;
+        Location castLocation = new Location("");
+        castLocation.setLongitude(castles.get(position).getLongdi());
+        castLocation.setLatitude(castles.get(position).getLat());
         if (phoneLocation != null) {
-            dist = phoneLocation.distanceTo(castles.get(position).getCastleLocation());
+            dist = phoneLocation.distanceTo(castLocation);
         }
         holder.bind(castles.get(position).getName(), castles.get(position).getImage(), dist);
     }
