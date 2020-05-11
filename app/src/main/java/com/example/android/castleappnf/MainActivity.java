@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         setContentView(R.layout.activity_main);
 
         if (isMapsEnabled()) {
+            
             getLocationPermission();
         }
 
@@ -71,11 +72,14 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
 
     public boolean isMapsEnabled(){
         final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
-
+        Log.d(TAG, "isMapsEnabled: ");
         if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            Log.d(TAG, "isMapsEnabled: false");
             buildAlertMessageNoGps();
+            
             return false;
         }
+        Log.d(TAG, "isMapsEnabled: true");
         return true;
     }
 
