@@ -17,10 +17,15 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity implements CastleAdapter.OnRecyclerItemClickListener {
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     Toolbar toolbar;
     private boolean mLocationPermissionGranted = false;
     private Location l;
+    LocationRequest locationRequest;
+    LocationCallback locationCallback;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -78,6 +85,39 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         Log.d(TAG, "onSuccess: " + location);
                     }
                 });
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                Log.d(TAG, "onLocationResult: ");
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    l = location;
+                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l);
+                    recyclerView.setAdapter(castleAdapter);
+                    Log.d(TAG, "onLocationResult: " + location);
+                }
+            }
+        };
+        createLocationRequest();
+        startLocationUpdates();
+
+    }
+
+    private void startLocationUpdates() {
+        fusedLocationClient.requestLocationUpdates(locationRequest,
+                locationCallback,
+                Looper.getMainLooper());
+        Log.d(TAG, "startLocationUpdates: ");
+    }
+
+    protected void createLocationRequest() {
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(5);
+        locationRequest.setFastestInterval(5);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        Log.d(TAG, "createLocationRequest: ");
     }
 
     private void buildAlertMessageNoGps() {
