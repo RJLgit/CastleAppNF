@@ -19,6 +19,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -234,5 +236,12 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("Castle", c);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
     }
 }
