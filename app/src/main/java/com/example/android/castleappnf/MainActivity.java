@@ -21,6 +21,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -243,5 +244,15 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.distance_settings) {
+            Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
