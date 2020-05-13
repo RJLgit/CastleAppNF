@@ -13,11 +13,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     private Location l;
     LocationRequest locationRequest;
     LocationCallback locationCallback;
+    SharedPreferences sharedPreferences;
+    String distanceUnit;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setUpSharedPreferences();
         if (isMapsEnabled()) {
             
             getLocationPermission();
@@ -56,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
 
 
     }
+
+    private void setUpSharedPreferences() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
+    }
+
 
     private void permissionsAndGpsGranted() {
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
