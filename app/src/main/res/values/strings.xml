@@ -20,4 +20,11 @@
     <string name="history_title">Brief history of the site</string>
     <string name="audio_title">Detailed history of the site</string>
     <string name="details_rating_title">Site rating</string>
+
+    <string-array name="distance_array">
+        <item>Km</item>
+        <item>Miles</item>
+
+
+    </string-array>
 </resources>
