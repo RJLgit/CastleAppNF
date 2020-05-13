@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         if (location != null) {
                             // Logic to handle location object
                             l = new Location(location);
-                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l);
+                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit);
                             recyclerView.setAdapter(castleAdapter);
                             Log.d(TAG, "onSuccess: " + location);
                         }
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                 }
                 for (Location location : locationResult.getLocations()) {
                     l = location;
-                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l);
+                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit);
                     recyclerView.setAdapter(castleAdapter);
                     Log.d(TAG, "onLocationResult: " + location);
                 }

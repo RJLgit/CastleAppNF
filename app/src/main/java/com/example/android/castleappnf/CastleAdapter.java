@@ -21,16 +21,18 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private ArrayList<Castles> castles;
     private OnRecyclerItemClickListener mListener;
     private Location phoneLocation;
+    private String distanceUnit;
 
 
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance) {
         this.mContext = mContext;
         this.castles = castles;
         this.mListener = listener;
         this.phoneLocation = location;
+        this.distanceUnit = distance;
     }
 
 
@@ -53,7 +55,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         if (phoneLocation != null) {
             dist = phoneLocation.distanceTo(castLocation);
         }
-        holder.bind(castles.get(position).getName(), castles.get(position).getImage(), dist);
+        holder.bind(castles.get(position).getName(), castles.get(position).getImage(), dist, distanceUnit);
     }
 
     @Override
@@ -78,10 +80,15 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
         }
 
-        public void bind(String x, int y, float z) {
+        public void bind(String x, int y, float z, String distUnit) {
             nameTextView.setText(x);
-            int inMiles = (int) z / 1609;
-            distanceTextView.setText(String.valueOf(inMiles));
+            if (distUnit.equals("Km")) {
+                int myDist = (int) z / 1000;
+                distanceTextView.setText(String.valueOf(myDist) + "KM");
+            } else {
+                int myDist = (int) z / 1609;
+                distanceTextView.setText(String.valueOf(myDist) + "Miles");
+            }
             imgView.setImageResource(y);
         }
 
