@@ -33,7 +33,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-public class MainActivity extends AppCompatActivity implements CastleAdapter.OnRecyclerItemClickListener {
+public class MainActivity extends AppCompatActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 5;
     private static final String TAG = "MainActivity";
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     LocationCallback locationCallback;
     SharedPreferences sharedPreferences;
     String distanceUnit;
+    RecyclerView recyclerView;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -65,11 +66,12 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     private void setUpSharedPreferences() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
 
     private void permissionsAndGpsGranted() {
-        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -267,4 +269,21 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (s.equals("distance_preference")) {
+            distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
+            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), this, l, distanceUnit);
+            recyclerView.setAdapter(castleAdapter);
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
 }
