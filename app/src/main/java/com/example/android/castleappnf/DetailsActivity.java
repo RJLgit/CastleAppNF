@@ -60,6 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
         int rating = myCastle.getRating();
         int image = myCastle.getImage();
         int audio = myCastle.getAudio();
+        final String webPage = myCastle.getWebsite();
 
         resourceId = audio;
 
@@ -106,6 +107,14 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        operatedByTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
+                startActivity(browserIntent);
+            }
+        });
 
 
 

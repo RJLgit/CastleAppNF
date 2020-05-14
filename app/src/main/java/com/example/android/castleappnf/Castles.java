@@ -18,10 +18,10 @@ public class Castles implements Serializable {
     private int distance;
     private double longdi;
     private double lat;
-    private URL website;
+    private String website;
     //private Location castleLocation;
 
-    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude, URL web) {
+    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude, String web) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
@@ -117,11 +117,11 @@ public class Castles implements Serializable {
         this.lat = lat;
     }
 
-    public URL getWebsite() {
+    public String getWebsite() {
         return website;
     }
 
-    public void setWebsite(URL website) {
+    public void setWebsite(String website) {
         this.website = website;
     }
 }
