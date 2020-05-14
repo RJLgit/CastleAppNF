@@ -61,6 +61,7 @@ public class DetailsActivity extends AppCompatActivity {
         int image = myCastle.getImage();
         int audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
+        final String openTimesWeb = myCastle.getOpeningTimes();
 
         resourceId = audio;
 
@@ -116,7 +117,13 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-
+        openTimesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
+                startActivity(browserIntent);
+            }
+        });
 
 
     }

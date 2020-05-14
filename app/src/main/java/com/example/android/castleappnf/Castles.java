@@ -19,9 +19,10 @@ public class Castles implements Serializable {
     private double longdi;
     private double lat;
     private String website;
+    private String openingTimes;
     //private Location castleLocation;
 
-    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude, String web) {
+    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude, String web, String openingTimes) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
@@ -32,6 +33,7 @@ public class Castles implements Serializable {
         this.lat = latitude;
         this.longdi = longditude;
         this.website = web;
+        this.openingTimes = openingTimes;
         //castleLocation = new Location("");
         //castleLocation.setLatitude(latitude);
         //castleLocation.setLongitude(longditude);
@@ -123,5 +125,13 @@ public class Castles implements Serializable {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getOpeningTimes() {
+        return openingTimes;
+    }
+
+    public void setOpeningTimes(String openingTimes) {
+        this.openingTimes = openingTimes;
     }
 }
