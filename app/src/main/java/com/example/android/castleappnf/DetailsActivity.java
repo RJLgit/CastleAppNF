@@ -28,8 +28,8 @@ import com.google.android.exoplayer2.util.Util;
 
 
 public class DetailsActivity extends AppCompatActivity {
-    TextView titleTextView;
-    TextView statusTextView;
+
+   
     TextView openTimesTextView;
     TextView operatedByTextView;
     ImageView castleImageView;
@@ -64,41 +64,40 @@ public class DetailsActivity extends AppCompatActivity {
         resourceId = audio;
 
 
-        titleTextView = findViewById(R.id.site_name_text_view);
-        statusTextView = findViewById(R.id.status_text_view);
+
         openTimesTextView = findViewById(R.id.opening_times_text_view);
-        ;
+
         operatedByTextView = findViewById(R.id.operated_by_text_view);
-        ;
+
         castleImageView = findViewById(R.id.photos_image_view);
 
         historyTitleTextView = findViewById(R.id.details_history_title_text_view);
-        ;
+
         historyDetailsTextView = findViewById(R.id.history_details_text_view);
-        ;
+
         addressTextView = findViewById(R.id.address_details_text_view);
-        ;
+
         ratingTitleTextView = findViewById(R.id.site_rating_title);
-        ;
+
         myRatingBarWidget = findViewById(R.id.ratingBar);
         mPlayerView = findViewById(R.id.playerView);
 
         //Sets up data in details view - change to use data sent from intent
 
-        titleTextView.setText(name);
-        castleImageView.setImageDrawable(getResources().getDrawable(image));
-        statusTextView.setText(getString(R.string.status_details_title));
-        openTimesTextView.setText(getString(R.string.opening_times_title));
 
-        historyTitleTextView.setText(history);
+        castleImageView.setImageDrawable(getResources().getDrawable(image));
+
+        openTimesTextView.setText("Opening times: 9-5 Every day");
+
+        historyTitleTextView.setText("Brief history of the site");
 
 
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
         addressTextView.setText(getString(R.string.address_title));
 
         myRatingBarWidget.setVisibility(View.VISIBLE);
-        historyDetailsTextView.setText("Operator:");
-        operatedByTextView.setText(getString(R.string.operated_by_title) + operator);
+        historyDetailsTextView.setText(history);
+        operatedByTextView.setText("Operated by: " + operator);
         myRatingBarWidget.setRating(rating);
 
         toolbar = findViewById(R.id.toolbar);

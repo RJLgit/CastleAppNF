@@ -1,69 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent" android:layout_width="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent" android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/details_root_layout"
         >
 
-        <include layout="@layout/toolbar"
-            android:id="@+id/toolbar"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
 
 
         <TextView
-            android:id="@+id/site_name_text_view"
+            android:id="@+id/operated_by_text_view"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:textAlignment="center"
-            android:textSize="40sp"
-            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Site name"
-            />
+            tools:layout_editor_absoluteX="0dp"
+            tools:text="@string/operated_by_title" />
 
-        <LinearLayout
-            android:id="@+id/opening_times_layout"
-            android:layout_width="match_parent"
-            android:layout_height="127dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:elevation="1dp"
-            android:orientation="vertical"
+
+        <TextView
+            android:id="@+id/opening_times_text_view"
+            android:layout_width="405dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/site_name_text_view"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/operated_by_text_view"
 
-            <TextView
-                android:id="@+id/status_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="@string/status_details_title"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/opening_times_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                tools:text="@string/opening_times_title"
-                android:textAlignment="center"
-                />
-
-            <TextView
-                android:id="@+id/operated_by_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="@string/operated_by_title"
-                android:textAlignment="center"
-                />
-
-        </LinearLayout>
+            tools:text="@string/opening_times_title" />
 
         <ImageView
             android:id="@+id/photos_image_view"
@@ -75,7 +50,7 @@
             android:elevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/site_name_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/opening_times_text_view"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             />
 
