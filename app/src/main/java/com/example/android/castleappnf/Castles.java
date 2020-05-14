@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.net.URL;
 
 public class Castles implements Serializable {
     private String name;
@@ -17,9 +18,10 @@ public class Castles implements Serializable {
     private int distance;
     private double longdi;
     private double lat;
+    private URL website;
     //private Location castleLocation;
 
-    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude) {
+    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude, URL web) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
@@ -29,6 +31,7 @@ public class Castles implements Serializable {
         this.distance = 45;
         this.lat = latitude;
         this.longdi = longditude;
+        this.website = web;
         //castleLocation = new Location("");
         //castleLocation.setLatitude(latitude);
         //castleLocation.setLongitude(longditude);
@@ -112,5 +115,13 @@ public class Castles implements Serializable {
 
     public void setLat(double lat) {
         this.lat = lat;
+    }
+
+    public URL getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(URL website) {
+        this.website = website;
     }
 }
