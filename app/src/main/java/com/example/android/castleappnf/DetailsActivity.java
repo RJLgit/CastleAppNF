@@ -29,7 +29,7 @@ import com.google.android.exoplayer2.util.Util;
 
 public class DetailsActivity extends AppCompatActivity {
 
-   
+
     TextView openTimesTextView;
     TextView operatedByTextView;
     ImageView castleImageView;
