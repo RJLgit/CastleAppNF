@@ -130,7 +130,7 @@ public class DetailsActivity extends AppCompatActivity {
         addressTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(Castle)");
+                Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
                 Log.d(TAG, "onClick: " + locUri);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
