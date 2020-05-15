@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -45,6 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
     private boolean playWhenReady = true;
     private int currentWindow = 0;
     private long playbackPosition = 0;
+    private static final String TAG = "DetailsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         Intent intent = getIntent();
-        Castles myCastle = (Castles) intent.getSerializableExtra("Castle");
+        final Castles myCastle = (Castles) intent.getSerializableExtra("Castle");
 
         String name = myCastle.getName();
         String operator = myCastle.getOperator();
@@ -125,7 +127,18 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-
+        addressTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(Castle)");
+                Log.d(TAG, "onClick: " + locUri);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
     }
 
     private void initializePlayer() {

@@ -22,7 +22,7 @@ public class Castles implements Serializable {
     private String openingTimes;
     //private Location castleLocation;
 
-    public Castles(String name, String operator, int rating, String history, int image, int audio, double latitude, double longditude, String web, String openingTimes) {
+    public Castles(String name, String operator, int rating, String history, int image, int audio, double longditude, double latitude, String web, String openingTimes) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
