@@ -16,7 +16,7 @@
     <string name="opening_times_title">Opening times:</string>
     <string name="operated_by_title">Operated by:</string>
     <string name="status_details_title">Current status:</string>
-    <string name="address_title">Address - Click to get me there</string>
+    <string name="address_title">See location on a map</string>
     <string name="history_title">Brief history of the site</string>
     <string name="audio_title">Detailed history of the site</string>
     <string name="details_rating_title">Site rating</string>

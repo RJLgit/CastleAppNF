@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
     ImageView castleImageView;
     TextView historyTitleTextView;
     TextView historyDetailsTextView;
-    TextView addressTextView;
+    Button addressButton;
     TextView ratingTitleTextView;
     RatingBar myRatingBarWidget;
     PlayerView mPlayerView;
@@ -79,7 +80,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         historyDetailsTextView = findViewById(R.id.history_details_text_view);
 
-        addressTextView = findViewById(R.id.address_details_text_view);
+        addressButton = findViewById(R.id.address_details_text_view);
 
         ratingTitleTextView = findViewById(R.id.site_rating_title);
 
@@ -97,7 +98,6 @@ public class DetailsActivity extends AppCompatActivity {
 
 
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
-        addressTextView.setText(getString(R.string.address_title));
 
         myRatingBarWidget.setVisibility(View.VISIBLE);
         historyDetailsTextView.setText(history);
@@ -127,7 +127,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        addressTextView.setOnClickListener(new View.OnClickListener() {
+        addressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
