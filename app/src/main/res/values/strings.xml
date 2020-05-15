@@ -27,4 +27,11 @@
 
 
     </string-array>
+
+    <string-array name="sort_array">
+        <item>A-Z</item>
+        <item>Distance</item>
+
+
+    </string-array>
 </resources>

@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.distance_settings) {
+        if (id == R.id.my_settings) {
             Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
             startActivity(startSettingsActivity);
             return true;
