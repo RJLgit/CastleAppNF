@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     LocationCallback locationCallback;
     SharedPreferences sharedPreferences;
     String distanceUnit;
+    String sortBy;
     RecyclerView recyclerView;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     private void setUpSharedPreferences() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
+        sortBy = sharedPreferences.getString("sort_preference", "A-Z");
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         if (location != null) {
                             // Logic to handle location object
                             l = new Location(location);
-                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit);
+                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy);
                             recyclerView.setAdapter(castleAdapter);
                             Log.d(TAG, "onSuccess: " + location);
                         }
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                 }
                 for (Location location : locationResult.getLocations()) {
                     l = location;
-                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit);
+                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy);
                     recyclerView.setAdapter(castleAdapter);
                     Log.d(TAG, "onLocationResult: " + location);
                 }
@@ -274,8 +276,15 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("distance_preference")) {
             distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
-            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnData(getApplicationContext()), this, l, distanceUnit);
+            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy);
             recyclerView.setAdapter(castleAdapter);
+        }
+        if (s.equals("sort_preference")) {
+            sortBy = sharedPreferences.getString("sort_preference", "A-Z");
+            if (sortBy.equals("Distance")) {
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy);
+                recyclerView.setAdapter(castleAdapter);
+            }
         }
     }
     @Override

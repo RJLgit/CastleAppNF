@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 public class DummyData {
-    public static ArrayList<Castles> generateAndReturnData(Context context) {
+    public static ArrayList<Castles> generateAndReturnDataAZ(Context context) {
         ArrayList<Castles> result = new ArrayList<>();
         Castles warkworth;
         Castles dunstan;
@@ -28,18 +28,23 @@ public class DummyData {
         dover = new Castles("Dover", "Dover castle", 4, context.getString(R.string.dover_History), R.drawable.dover_castle, R.raw.canon_in_d, 1.3234, 51.1288, "https://www.english-heritage.org.uk/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         raby = new Castles("Raby", "English Heritage", 2, context.getString(R.string.raby_History), R.drawable.raby_castle, R.raw.canon_in_d, -1.8020, 54.5916, "https://www.english-heritage.org.uk/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         caenarven = new Castles("Caenarven", "English Heritage", 5, context.getString(R.string.caen_History), R.drawable.caenarven_castle, R.raw.canon_in_d, -4.2769, 53.1391, "https://www.english-heritage.org.uk/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
-
-        result.add(warkworth);
-        result.add(dunstan);
-        result.add(rising);
-        result.add(berkhamsted);
-        result.add(warwick);
-        result.add(banbury);
         result.add(alnwick);
-        result.add(dover);
-        result.add(raby);
+        result.add(banbury);
+        result.add(berkhamsted);
         result.add(caenarven);
+        result.add(dover);
+        result.add(dunstan);
+        result.add(raby);
+        result.add(rising);
+        result.add(warkworth);
+        result.add(warwick);
+
+
+
+
+
 
         return result;
     }
+
 }

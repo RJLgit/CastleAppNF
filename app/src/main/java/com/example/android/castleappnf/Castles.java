@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.net.URL;
 
-public class Castles implements Serializable {
+public class Castles implements Serializable, Comparable<Castles> {
     private String name;
     private String operator;
     //Need to add time and geolocation in future
@@ -15,7 +15,7 @@ public class Castles implements Serializable {
     private int image;
     private int audio;
     //Hard coded until calculated from location data and phone location
-    private int distance;
+    private float distance;
     private double longdi;
     private double lat;
     private String website;
@@ -95,11 +95,11 @@ public class Castles implements Serializable {
         this.audio = audio;
     }
 
-    public int getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
@@ -134,4 +134,15 @@ public class Castles implements Serializable {
     public void setOpeningTimes(String openingTimes) {
         this.openingTimes = openingTimes;
     }
+
+    @Override
+    public int compareTo(Castles castles) {
+        if(distance==castles.distance)
+            return 0;
+        else if(distance>castles.distance)
+            return 1;
+        else
+            return -1;
+    }
+
 }

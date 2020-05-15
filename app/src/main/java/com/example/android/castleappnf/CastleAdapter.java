@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,17 +23,19 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private OnRecyclerItemClickListener mListener;
     private Location phoneLocation;
     private String distanceUnit;
+    private String sortBy;
 
 
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance, String sort) {
         this.mContext = mContext;
         this.castles = castles;
         this.mListener = listener;
         this.phoneLocation = location;
         this.distanceUnit = distance;
+        this.sortBy = sort;
     }
 
 
@@ -42,9 +45,26 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public CastleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.list_item_layout, parent, false);
+        if (phoneLocation != null && sortBy.equals("Distance")) {
+            sortCastlesByDistance();
+        }
         return new CastleViewHolder(view, mListener);
 
     }
+
+    private void sortCastlesByDistance() {
+        for (Castles c : castles) {
+            float dist = 0;
+            Location castLocation = new Location("");
+            castLocation.setLongitude(c.getLongdi());
+            castLocation.setLatitude(c.getLat());
+            dist = phoneLocation.distanceTo(castLocation);
+            c.setDistance(dist);
+
+        }
+        Collections.sort(castles);
+    }
+
 
     @Override
     public void onBindViewHolder(@NonNull CastleViewHolder holder, int position) {
@@ -55,6 +75,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         if (phoneLocation != null) {
             dist = phoneLocation.distanceTo(castLocation);
         }
+
         holder.bind(castles.get(position).getName(), castles.get(position).getImage(), dist, distanceUnit);
     }
 
