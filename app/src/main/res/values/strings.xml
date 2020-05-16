@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CastleAppNF</string>
     <!--History strings-->
-    <string name="warkworth_History">Wark was built in this year. \n This is the second line of the history. \n This is the third line of the history.</string>
+    <string name="warkworth_History">Warkworth castle was built in the mid-twelfth century originally as a timber castle. \n In the early 14th century the castle was upgraded by Edward II to protect against Scottish invasion. The castle successfully resisted Scottish invasion during the wars with Scotland. \n The Percy family took control of the caslte in 1345 and controlled it for the rest of its active life.</string>
     <string name="dunstan_History">Dunstan was built in this year. \n This is the second line of the history. \n This is the third line of the history.</string>
     <string name="rising_History">Rising was built in this year. \n This is the second line of the history. \n This is the third line of the history.</string>
     <string name="berk_History">Berk was built in this year. \n This is the second line of the history. \n This is the third line of the history.</string>
