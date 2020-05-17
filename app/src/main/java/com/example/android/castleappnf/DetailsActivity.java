@@ -32,8 +32,8 @@ import com.google.android.exoplayer2.util.Util;
 public class DetailsActivity extends AppCompatActivity {
 
 
-    TextView openTimesTextView;
-    TextView operatedByTextView;
+    Button openTimesTextView;
+    Button operatedByTextView;
     ImageView castleImageView;
     TextView historyTitleTextView;
     TextView historyDetailsTextView;
@@ -71,37 +71,24 @@ public class DetailsActivity extends AppCompatActivity {
 
 
         openTimesTextView = findViewById(R.id.opening_times_text_view);
-
         operatedByTextView = findViewById(R.id.operated_by_text_view);
-
         castleImageView = findViewById(R.id.photos_image_view);
-
         historyTitleTextView = findViewById(R.id.details_history_title_text_view);
-
         historyDetailsTextView = findViewById(R.id.history_details_text_view);
-
         addressButton = findViewById(R.id.address_details_text_view);
-
         ratingTitleTextView = findViewById(R.id.site_rating_title);
-
         myRatingBarWidget = findViewById(R.id.ratingBar);
         mPlayerView = findViewById(R.id.playerView);
 
         //Sets up data in details view - change to use data sent from intent
 
-
         castleImageView.setImageDrawable(getResources().getDrawable(image));
-
-        openTimesTextView.setText("Opening times: 9-5 Every day");
-
+        openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
         historyTitleTextView.setText("Brief history of the site");
-
-
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
-
         myRatingBarWidget.setVisibility(View.VISIBLE);
         historyDetailsTextView.setText(history);
-        operatedByTextView.setText("Operated by: " + operator);
+        operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
         myRatingBarWidget.setRating(rating);
 
         toolbar = findViewById(R.id.toolbar);
