@@ -19,15 +19,15 @@ public class DummyData {
         Castles caenarven;
 
         int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
-        int[] walkPics = {R.drawable.walkworth_castle};
-        int[] warwickPics = {R.drawable.warwick_castle};
-        int[] dunstanPics = {R.drawable.dunstan_castle};
-        int[] rabyPics = {R.drawable.raby_castle};
-        int[] berkPics = {R.drawable.berk_castle};
-        int[] caenPics = {R.drawable.caenarven_castle};
-        int[] banPics = {R.drawable.banburgh_castle};
-        int[] risPics = {R.drawable.castle_rising};
-        int[] dovPics = {R.drawable.dover_castle};
+        int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
+        int[] warwickPics = {R.drawable.warwick_castle, R.drawable.warwickpictwo, R.drawable.warkpicthree};
+        int[] dunstanPics = {R.drawable.dunstan_castle, R.drawable.dunstanpictwo, R.drawable.dunstanpicthree};
+        int[] rabyPics = {R.drawable.raby_castle, R.drawable.rabypictwo, R.drawable.rabypicthree};
+        int[] berkPics = {R.drawable.berk_castle, R.drawable.berkpictwo, R.drawable.berkpicthree};
+        int[] caenPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
+        int[] banPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
+        int[] risPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
+        int[] dovPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getString(R.string.warkworth_History), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getString(R.string.dunstan_History), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
