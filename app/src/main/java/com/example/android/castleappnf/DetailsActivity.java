@@ -48,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
     private int currentWindow = 0;
     private long playbackPosition = 0;
     private static final String TAG = "DetailsActivity";
+    private int imgIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
         String operator = myCastle.getOperator();
         String history = myCastle.getHistory();
         int rating = myCastle.getRating();
-        int image = myCastle.getImage();
+        int image = myCastle.getImage()[imgIndex];
         int audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
         final String openTimesWeb = myCastle.getOpeningTimes();
@@ -124,6 +125,18 @@ public class DetailsActivity extends AppCompatActivity {
                 if (mapIntent.resolveActivity(getPackageManager()) != null) {
                     startActivity(mapIntent);
                 }
+            }
+        });
+
+        castleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imgIndex  >= myCastle.getImage().length - 1) {
+                    imgIndex = 0;
+                } else {
+                    imgIndex++;
+                }
+                castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
             }
         });
     }

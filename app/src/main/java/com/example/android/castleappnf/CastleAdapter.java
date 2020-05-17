@@ -76,7 +76,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             dist = phoneLocation.distanceTo(castLocation);
         }
 
-        holder.bind(castles.get(position).getName(), castles.get(position).getImage(), dist, distanceUnit);
+        holder.bind(castles.get(position).getName(), castles.get(position).getImage()[0], dist, distanceUnit);
     }
 
     @Override

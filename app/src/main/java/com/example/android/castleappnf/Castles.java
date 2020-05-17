@@ -12,7 +12,7 @@ public class Castles implements Serializable, Comparable<Castles> {
     //Need to add time and geolocation in future
     private int rating;
     private String history;
-    private int image;
+    private int[] image;
     private int audio;
     //Hard coded until calculated from location data and phone location
     private float distance;
@@ -22,12 +22,12 @@ public class Castles implements Serializable, Comparable<Castles> {
     private String openingTimes;
     //private Location castleLocation;
 
-    public Castles(String name, String operator, int rating, String history, int image, int audio, double longditude, double latitude, String web, String openingTimes) {
+    public Castles(String name, String operator, int rating, String history, int[] images, int audio, double longditude, double latitude, String web, String openingTimes) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
         this.history = history;
-        this.image = image;
+        this.image = images;
         this.audio = audio;
         this.distance = 45;
         this.lat = latitude;
@@ -79,11 +79,11 @@ public class Castles implements Serializable, Comparable<Castles> {
         this.history = history;
     }
 
-    public int getImage() {
+    public int[] getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(int[] image) {
         this.image = image;
     }
 
