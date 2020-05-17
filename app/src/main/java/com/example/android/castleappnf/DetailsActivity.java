@@ -49,6 +49,8 @@ public class DetailsActivity extends AppCompatActivity {
     private long playbackPosition = 0;
     private static final String TAG = "DetailsActivity";
     private int imgIndex = 0;
+    ImageView forwards;
+    ImageView backwards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,8 @@ public class DetailsActivity extends AppCompatActivity {
         ratingTitleTextView = findViewById(R.id.site_rating_title);
         myRatingBarWidget = findViewById(R.id.ratingBar);
         mPlayerView = findViewById(R.id.playerView);
+        forwards = findViewById(R.id.forwardImage);
+        backwards = findViewById(R.id.backwardsImage);
 
         //Sets up data in details view - change to use data sent from intent
 
@@ -135,6 +139,29 @@ public class DetailsActivity extends AppCompatActivity {
                     imgIndex = 0;
                 } else {
                     imgIndex++;
+                }
+                castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
+            }
+        });
+        forwards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imgIndex  >= myCastle.getImage().length - 1) {
+                    imgIndex = 0;
+                } else {
+                    imgIndex++;
+                }
+                castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
+            }
+        });
+
+        backwards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imgIndex  == 0) {
+                    imgIndex = myCastle.getImage().length - 1;
+                } else {
+                    imgIndex--;
                 }
                 castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
             }
