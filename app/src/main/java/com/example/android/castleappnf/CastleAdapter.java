@@ -77,7 +77,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             dist = phoneLocation.distanceTo(castLocation);
         }
 
-        holder.bind(castles.get(position).getName(), castles.get(position).getImage()[0], dist, distanceUnit);
+        holder.bind(castles.get(position).getName(), castles.get(position).getImage()[0], dist, distanceUnit, castles.get(position).getRating());
     }
 
     @Override
@@ -103,9 +103,9 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             mRatingBar = v.findViewById(R.id.myRatingBar);
         }
 
-        public void bind(String x, int y, float z, String distUnit) {
+        public void bind(String x, int y, float z, String distUnit, int rating) {
             nameTextView.setText(x);
-            mRatingBar.setRating(2);
+            mRatingBar.setRating(rating);
             if (distUnit.equals("Km")) {
                 int myDist = (int) z / 1000;
                 distanceTextView.setText(String.valueOf(myDist) + " KM");
