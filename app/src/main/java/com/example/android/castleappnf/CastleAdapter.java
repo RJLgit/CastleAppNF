@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -90,6 +91,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         TextView distanceTextView;
         ImageView imgView;
         OnRecyclerItemClickListener onRecyclerItemClickListener;
+        RatingBar mRatingBar;
 
         public CastleViewHolder(@NonNull View v, OnRecyclerItemClickListener listener) {
             super(v);
@@ -98,11 +100,12 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             imgView = v.findViewById(R.id.castleRvImageView);
             onRecyclerItemClickListener = listener;
             v.setOnClickListener(this);
-
+            mRatingBar = v.findViewById(R.id.myRatingBar);
         }
 
         public void bind(String x, int y, float z, String distUnit) {
             nameTextView.setText(x);
+            mRatingBar.setRating(2);
             if (distUnit.equals("Km")) {
                 int myDist = (int) z / 1000;
                 distanceTextView.setText(String.valueOf(myDist) + " KM");
