@@ -9,10 +9,13 @@
     <TextView
         android:id="@+id/castleNameTextView"
         android:layout_width="166dp"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:text="Castle name 1"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +24,6 @@
         android:layout_width="106dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="Distance away:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/castleNameTextView" />
@@ -31,7 +33,6 @@
         android:layout_width="63dp"
         android:layout_height="29dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
         android:text="40"
         app:layout_constraintStart_toEndOf="@+id/distanceLabelTextView"
         app:layout_constraintTop_toBottomOf="@+id/castleNameTextView" />
@@ -42,6 +43,8 @@
         android:layout_height="131dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/castleNameTextView"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/warwick_castle" />

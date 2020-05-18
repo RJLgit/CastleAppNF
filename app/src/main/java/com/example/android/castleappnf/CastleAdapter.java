@@ -105,10 +105,10 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             nameTextView.setText(x);
             if (distUnit.equals("Km")) {
                 int myDist = (int) z / 1000;
-                distanceTextView.setText(String.valueOf(myDist) + "KM");
+                distanceTextView.setText(String.valueOf(myDist) + " KM");
             } else {
                 int myDist = (int) z / 1609;
-                distanceTextView.setText(String.valueOf(myDist) + "Miles");
+                distanceTextView.setText(String.valueOf(myDist) + " Miles");
             }
             imgView.setImageResource(y);
         }
