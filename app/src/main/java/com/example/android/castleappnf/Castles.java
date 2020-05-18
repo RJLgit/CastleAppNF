@@ -171,9 +171,9 @@ public class Castles implements Serializable {
             if(t1.getRating()==castles.getRating())
                 return 0;
             else if(castles.getRating()>t1.getRating())
-                return 1;
-            else
                 return -1;
+            else
+                return 1;
         }
     }
 

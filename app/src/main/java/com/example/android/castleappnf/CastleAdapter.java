@@ -50,9 +50,15 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             sortCastlesByDistance();
         } else if (sortBy.equals("A-Z")) {
             sortCastlesByAZ();
+        } else if (sortBy.equals("Rating")) {
+            sortCastlesByRating();
         }
         return new CastleViewHolder(view, mListener);
 
+    }
+
+    private void sortCastlesByRating() {
+        Collections.sort(castles, new Castles.RatingComparator());
     }
 
     private void sortCastlesByDistance() {

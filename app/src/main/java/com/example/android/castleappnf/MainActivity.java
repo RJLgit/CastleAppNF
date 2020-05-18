@@ -287,6 +287,9 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
             } else if (sortBy.equals("A-Z")) {
                 CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy);
                 recyclerView.setAdapter(castleAdapter);
+            } else if (sortBy.equals("Rating")) {
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy);
+                recyclerView.setAdapter(castleAdapter);
             }
         }
     }
