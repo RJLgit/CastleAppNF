@@ -48,6 +48,8 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         View view = inflater.inflate(R.layout.list_item_layout, parent, false);
         if (phoneLocation != null && sortBy.equals("Distance")) {
             sortCastlesByDistance();
+        } else if (sortBy.equals("A-Z")) {
+            sortCastlesByAZ();
         }
         return new CastleViewHolder(view, mListener);
 
@@ -63,7 +65,12 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             c.setDistance(dist);
 
         }
-        Collections.sort(castles);
+        Collections.sort(castles, new Castles.DistanceComparator());
+    }
+
+    private void sortCastlesByAZ() {
+
+        Collections.sort(castles, new Castles.AZComparator());
     }
 
 

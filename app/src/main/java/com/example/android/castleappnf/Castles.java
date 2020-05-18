@@ -5,8 +5,9 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Comparator;
 
-public class Castles implements Serializable, Comparable<Castles> {
+public class Castles implements Serializable {
     private String name;
     private String operator;
     //Need to add time and geolocation in future
@@ -135,7 +136,7 @@ public class Castles implements Serializable, Comparable<Castles> {
         this.openingTimes = openingTimes;
     }
 
-    @Override
+    /*@Override
     public int compareTo(Castles castles) {
         if(distance==castles.distance)
             return 0;
@@ -143,6 +144,39 @@ public class Castles implements Serializable, Comparable<Castles> {
             return 1;
         else
             return -1;
+    }*/
+
+    static class AZComparator implements Comparator<Castles> {
+        @Override
+        public int compare(Castles castles, Castles t1) {
+           return castles.getName().compareTo(t1.getName());
+        }
     }
+
+    static class DistanceComparator implements Comparator<Castles> {
+        @Override
+        public int compare(Castles castles, Castles t1) {
+            if(t1.getDistance()==castles.getDistance())
+                return 0;
+            else if(castles.getDistance()>t1.getDistance())
+                return 1;
+            else
+                return -1;
+        }
+    }
+
+    static class RatingComparator implements Comparator<Castles> {
+        @Override
+        public int compare(Castles castles, Castles t1) {
+            if(t1.getRating()==castles.getRating())
+                return 0;
+            else if(castles.getRating()>t1.getRating())
+                return 1;
+            else
+                return -1;
+        }
+    }
+
+
 
 }
