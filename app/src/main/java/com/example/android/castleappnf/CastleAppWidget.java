@@ -1,8 +1,10 @@
 package com.example.android.castleappnf;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 /**
@@ -17,9 +19,13 @@ public class CastleAppWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.castle_app_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
+        Intent mainActIntent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, mainActIntent, 0);
 
+        views.setOnClickPendingIntent(R.id.widget_container, pendingIntent);
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
     }
 
     @Override
