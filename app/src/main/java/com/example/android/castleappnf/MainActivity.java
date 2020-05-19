@@ -130,13 +130,19 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     }
 
     private void stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback);
+        if (fusedLocationClient != null && locationCallback != null) {
+            fusedLocationClient.removeLocationUpdates(locationCallback);
+        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        startLocationUpdates();
+        if (mLocationPermissionGranted) {
+            startLocationUpdates();
+        }
+
 
     }
 
