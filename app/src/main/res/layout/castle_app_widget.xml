@@ -1,18 +1,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#09C"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
     android:padding="@dimen/widget_margin">
 
     <ImageView
         android:id="@+id/appwidget_image"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/castle_rising" />
+
+    <TextView
+        android:id="@+id/appwidget_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/appwidget_image"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:src="@drawable/alnwick_castle"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:text="Castle App"
+        android:textSize="8sp"
          />
 
 </RelativeLayout>
