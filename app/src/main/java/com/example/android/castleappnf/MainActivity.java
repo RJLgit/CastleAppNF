@@ -150,8 +150,9 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
 
     protected void createLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(5);
-        locationRequest.setFastestInterval(5);
+        locationRequest.setInterval(60);
+        locationRequest.setFastestInterval(60);
+        locationRequest.setSmallestDisplacement(100);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         Log.d(TAG, "createLocationRequest: ");
     }
