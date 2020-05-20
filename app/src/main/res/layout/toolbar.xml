@@ -6,6 +6,7 @@
     android:background="@color/colorPrimary"
     android:elevation="8dp"
     app:title="UK Castles"
+    app:logo="@drawable/ic_caslte_icon"
     android:theme="@style/ToolbarTheme"
     >
 

@@ -99,9 +99,11 @@ public class DetailsActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(name);
         toolbar.setSubtitle("Here are the details");
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         operatedByTextView.setOnClickListener(new View.OnClickListener() {
             @Override
