@@ -62,7 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         String name = myCastle.getName();
         String operator = myCastle.getOperator();
-        String history = myCastle.getHistory();
+        String[] history = myCastle.getHistory();
         int rating = myCastle.getRating();
         int image = myCastle.getImage()[imgIndex];
         int audio = myCastle.getAudio();
@@ -92,7 +92,11 @@ public class DetailsActivity extends AppCompatActivity {
         historyTitleTextView.setText("Brief history of the site");
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
         myRatingBarWidget.setVisibility(View.VISIBLE);
-        historyDetailsTextView.setText(history);
+        for (int i = 0; i < history.length; i++) {
+            historyDetailsTextView.append("\u25CF" + history[i]);
+            historyDetailsTextView.append("\n\n");
+        }
+        //historyDetailsTextView.setText(history);
         operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
         myRatingBarWidget.setRating(rating);
 

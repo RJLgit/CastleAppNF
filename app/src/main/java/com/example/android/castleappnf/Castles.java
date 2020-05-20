@@ -12,7 +12,7 @@ public class Castles implements Serializable {
     private String operator;
     //Need to add time and geolocation in future
     private int rating;
-    private String history;
+    private String[] history;
     private int[] image;
     private int audio;
     //Hard coded until calculated from location data and phone location
@@ -23,7 +23,7 @@ public class Castles implements Serializable {
     private String openingTimes;
     //private Location castleLocation;
 
-    public Castles(String name, String operator, int rating, String history, int[] images, int audio, double longditude, double latitude, String web, String openingTimes) {
+    public Castles(String name, String operator, int rating, String[] history, int[] images, int audio, double longditude, double latitude, String web, String openingTimes) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
@@ -72,11 +72,11 @@ public class Castles implements Serializable {
         this.rating = rating;
     }
 
-    public String getHistory() {
+    public String[] getHistory() {
         return history;
     }
 
-    public void setHistory(String history) {
+    public void setHistory(String[] history) {
         this.history = history;
     }
 

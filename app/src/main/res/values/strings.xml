@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CastleAppNF</string>
     <!--History strings-->
-    <string name="warkworth_History">\u25CF Warkworth castle was built in the mid-twelfth century originally as a timber castle. \n\n\u25CFIn the early 14th century the castle was upgraded by Edward II to protect against Scottish invasion. The castle successfully resisted Scottish invasion during the wars with Scotland. \n\n\u25CFThe Percy family took control of the caslte in 1345 and controlled it for the rest of its active life.</string>
+    <string name="warkworth_History">\u25CF Warkworth castle was built in the mid-twelfth century originally as a timber castle. \n\n\u25CF In the early 14th century the castle was upgraded by Edward II to protect against Scottish invasion. The castle successfully resisted Scottish invasion during the wars with Scotland. \n\n\u25CFThe Percy family took control of the caslte in 1345 and controlled it for the rest of its active life.</string>
     <string name="dunstan_History">Dunstanburgh Castle was built in the early 14th-century by Thomas of Lancaster, who was the leader of a rebellion against Edward II. The rebellion was ill-fated, and Thomas was captured in battle and executed for his treason. \n\nThe Duchy of Lancaster later took over the castle, with John of Gaunt expanding it greatly. The castle played a significant role in the War of the Roses and was captured and re-captured many times by Lancaster and Yorkish forces. \n\nThe castle took such damage during this sustained war of the roses, and was never fully repaired.</string>
     <string name="rising_History">Built during the age of Norman kings, this Caslte was sold to Queen Isabella who was the widow of Edward II. \n\nIsabella was of French nobility, and after the breakdown of her marriage with the King, she played a role in his removal from power when she allied with Roger Mortimer. \n\nIsabella and Mortimer ruled England for a short peroid after the removal of Edward II, but her son forced control of the country from here in 1330. Isabella was retired to Castle Rising to live out the rest of her days.</string>
     <string name="berk_History">A Norman motte-and-bailey castle built in Norman times, this castle was expanded in the 12th century by Thomas Becket. \n\nThe castle was besieged by King John during the rebellion of the Barons, with the Barons capturing the castle after a siege. \n\nBy the 14th century the castle was used to hold royal prisoners and threats to the crown. </string>
@@ -11,11 +11,7 @@
     <string name="dover_History">Dover Castle is one of the largest castles in England and due to its key location, it is probably the most militarily important castle in the country. \n\nDue to its critical location, a fortification likely existed on this site before the Roman conquest of Britain. It was significantly invested in by many kings, including Henry II who really started to turn the castle into what we can see today. \n\nDuring the English Civil war the castle was taken by the Parliamentarians without a single shot being fired due to its light defences. The castle was a useful and active military during the Napoleonic wars, and so was rebuilt during this peroid. It was also used during the Second World War.</string>
     <string name="raby_History">Raby Castle was built by the influential Neville family in the 14th century, with Cecily Neville, the mother of Yorkist kings Richard and Edward, being born here.  \n\nThe crown took control of the castle when Charles Neville joined forces with Mary, Queen of Scots, to try and put her onto the English throne. \n\nThe castle is now a lived-in country home that is in good condition.</string>
     <string name="caen_History">Caernarfon Castle was a Motte-and-bailey castle built during Norman times. However, when Edward I established English rule over Wales, it was the site of one of the many castles he built in the country. \n\nThe castle was the centre of English rule in Northern Wales. The castle was sacked during a Welsh revolt in the late 13th century, but Welsh rule over the castle only lasted until the next year when the English recaptured it. \n\nDue to their welsh roots, the Tudor dynasty in England saw a reduction in tension between England and Wales, making the castle less important as a military base. To this day, the Prince of Wales is traditionally annointed at this castle.</string>
-    <string name="leeds_history_one">Site of a castle since the early 12th century</string>
-    <string name="leeds_history_two">It was a favourite residence of Edward I, who acquired the castle in the 13th century</string>
-    <string name="leeds_history_three">Catherine of Aragorn lived here when married to Henry VIII</string>
-    <string name="leeds_history_four">Site of a castle since the early 12th century</string>
-    <string name="leeds_history_five">Site of a castle since the early 12th century</string>
+    <string name="leeds_history">\u25CF Site of a castle since the early 12th century \n\n\u25CF It was a favourite residence of Edward I, who acquired the castle in the 13th century \n\n\u25CF Catherine of Aragorn lived here when married to Henry VIII \n\n\u25CF Used as an arsenal and prison by parliament in the civil war</string>
     <string name="bodiam_history"></string>
     <string name="conway_history"></string>
     <string name="carlisle_history"></string>
@@ -53,6 +49,16 @@
 
 
     </string-array>
+
+    <string-array name="wark_history">
+        <item>Fact 1</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+
+
+    </string-array>
+
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
 </resources>

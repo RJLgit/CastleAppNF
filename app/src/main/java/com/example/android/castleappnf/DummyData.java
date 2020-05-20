@@ -29,8 +29,8 @@ public class DummyData {
         int[] risPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] dovPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
 
-        warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getString(R.string.warkworth_History), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
-        dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getString(R.string.dunstan_History), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
+        warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
+        /*dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getString(R.string.dunstan_History), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
         rising = new Castles("Castle Rising", "Castle rising", 4, context.getString(R.string.rising_History), risPics, R.raw.canon_in_d, 0.4704, 52.7981, "http://www.castlerising.co.uk/", "http://www.castlerising.co.uk/visit-us/");
         berkhamsted = new Castles("Berkhamsted Castle", "English Heritage", 2, context.getString(R.string.berk_History), berkPics, R.raw.four_seasons_spring, -0.5591, 51.7639, "https://www.english-heritage.org.uk/visit/places/berkhamsted-castle/", "https://www.english-heritage.org.uk/visit/places/berkhamsted-castle/");
         warwick = new Castles("Warwick Castle", "Warwick Castle", 5, context.getString(R.string.warwick_History), warwickPics, R.raw.canon_in_d, -1.5852, 52.2797, "https://www.warwick-castle.com/", "https://www.warwick-castle.com/tickets-passes/day-tickets/castle-tickets/");
@@ -46,9 +46,9 @@ public class DummyData {
         result.add(dover);
         result.add(dunstan);
         result.add(raby);
-        result.add(rising);
+        result.add(rising);*/
         result.add(warkworth);
-        result.add(warwick);
+        //result.add(warwick);
 
 
 
