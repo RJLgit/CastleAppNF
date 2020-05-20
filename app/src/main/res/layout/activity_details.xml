@@ -21,6 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/medievalsharp"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +36,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/medievalsharp"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
 
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/operated_by_text_view"
             tools:text="@string/opening_times_title" />
@@ -58,6 +60,7 @@
             android:id="@+id/details_history_title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/medievalsharp"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,29 +85,28 @@
             android:layout_height="76dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            tools:text="@string/address_title"
+            android:fontFamily="@font/medievalsharp"
+            android:text="@string/address_title"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:text="@string/address_title"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-            app:layout_constraintVertical_bias="0.0" />
+            tools:text="@string/address_title" />
 
         <TextView
             android:id="@+id/playerView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:fontFamily="@font/medievalsharp"
             android:text="Listen to audio about the castle"
+            android:textAlignment="center"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/history_details_text_view"
-            android:textSize="24sp"
-            />
+            app:layout_constraintTop_toBottomOf="@id/history_details_text_view" />
 
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/playerView"
@@ -117,21 +119,17 @@
             />
 
 
-
-
-
-
         <TextView
             android:id="@+id/site_rating_title"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            tools:text="@string/details_rating_title"
+            android:fontFamily="@font/medievalsharp"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playerView"
-            />
+            tools:text="@string/details_rating_title" />
 
         <RatingBar
             android:id="@+id/ratingBar"

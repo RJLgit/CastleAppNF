@@ -17,6 +17,7 @@
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:fontFamily">@font/medievalsharp</item>
+        <item name="android:fontFamily">@font/germania_one</item>
+
     </style>
 </resources>
