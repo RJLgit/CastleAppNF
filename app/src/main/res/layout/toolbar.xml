@@ -6,7 +6,7 @@
     android:background="@color/colorPrimary"
     android:elevation="8dp"
     app:title="UK Castles"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:theme="@style/ToolbarTheme"
     >
 
 </androidx.appcompat.widget.Toolbar>
