@@ -55,9 +55,73 @@
         <item>Fact 2</item>
         <item>Fact 3</item>
         <item>Fact 4</item>
-
-
     </string-array>
+
+    <string-array name="dunstan_history">
+        <item>Fact 1 duns</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="rising_history">
+        <item>Fact 1 rise</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="berk_history">
+        <item>Fact 1 berk</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="warwick_history">
+        <item>Fact 1 warwi</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="bamburgh_history">
+        <item>Fact 1 bam</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="alnwick_history">
+        <item>Fact 1</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="dover_history">
+        <item>Fact 1</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="raby_history">
+        <item>Fact 1</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+    <string-array name="caen_history">
+        <item>Fact 1</item>
+        <item>Fact 2</item>
+        <item>Fact 3</item>
+        <item>Fact 4</item>
+    </string-array>
+
+
+
 
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
