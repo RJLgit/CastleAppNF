@@ -87,7 +87,7 @@ public class DetailsActivity extends AppCompatActivity {
         backwards = findViewById(R.id.backwardsImage);
 
         //Sets up data in details view - change to use data sent from intent
-        Picasso.get().load(image).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
+        Picasso.get().load(image).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
         openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
         historyTitleTextView.setText("Brief history of the site");
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
@@ -146,7 +146,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     imgIndex++;
                 }
-                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
+                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
             }
         });
         forwards.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     imgIndex++;
                 }
-                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
+                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
             }
         });
 
@@ -169,7 +169,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     imgIndex--;
                 }
-                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
+                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
             }
         });
     }
