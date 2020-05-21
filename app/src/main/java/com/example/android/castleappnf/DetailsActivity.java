@@ -194,8 +194,10 @@ public class DetailsActivity extends AppCompatActivity {
                 Toast.makeText(this, "Selected share", Toast.LENGTH_SHORT).show();
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT, toolbar.getTitle());
-                shareIntent.putExtra(Intent.EXTRA_TEXT, historyDetailsTextView.getText());
+                shareIntent.putExtra(Intent.EXTRA_TITLE, "Some facts about " + toolbar.getTitle().toString());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, historyDetailsTextView.getText().toString());
+                String x = shareIntent.getStringExtra(Intent.EXTRA_TEXT);
+                Log.d(TAG, "onContextItemSelected: " + x);
                 startActivity(Intent.createChooser(shareIntent, "Share using"));
                 return true;
             default:
