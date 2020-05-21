@@ -176,7 +176,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        registerForContextMenu(castleImageView);
+        registerForContextMenu(historyDetailsTextView);
 
     }
 
@@ -192,6 +192,11 @@ public class DetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.share_item:
                 Toast.makeText(this, "Selected share", Toast.LENGTH_SHORT).show();
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, toolbar.getTitle());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, historyDetailsTextView.getText());
+                startActivity(Intent.createChooser(shareIntent, "Share using"));
                 return true;
             default:
                 return super.onContextItemSelected(item);
