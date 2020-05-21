@@ -6,7 +6,8 @@
     android:background="@color/colorPrimary"
     android:elevation="8dp"
     app:title="UK Castles"
-
+    app:titleTextColor="@color/colorAccent"
+    app:subtitleTextColor="@color/colorAccent"
     android:theme="@style/ToolbarTheme"
     >
 
