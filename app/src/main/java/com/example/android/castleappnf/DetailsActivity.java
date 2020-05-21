@@ -27,6 +27,7 @@ import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -86,8 +87,7 @@ public class DetailsActivity extends AppCompatActivity {
         backwards = findViewById(R.id.backwardsImage);
 
         //Sets up data in details view - change to use data sent from intent
-
-        castleImageView.setImageDrawable(getResources().getDrawable(image));
+        Picasso.get().load(image).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
         openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
         historyTitleTextView.setText("Brief history of the site");
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
@@ -146,7 +146,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     imgIndex++;
                 }
-                castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
+                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
             }
         });
         forwards.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     imgIndex++;
                 }
-                castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
+                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
             }
         });
 
@@ -169,7 +169,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     imgIndex--;
                 }
-                castleImageView.setImageDrawable(getResources().getDrawable(myCastle.getImage()[imgIndex]));
+                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(castleImageView);
             }
         });
     }
