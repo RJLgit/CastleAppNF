@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent" android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -60,6 +61,7 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:background="@drawable/imgview_backgrdound"
             android:backgroundTint="#000000"
+            android:layout_marginTop="5dp"
             />
 
         <TextView
