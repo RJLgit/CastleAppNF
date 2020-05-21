@@ -127,7 +127,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 int myDist = (int) z / 1609;
                 distanceTextView.setText(String.valueOf(myDist) + " Miles");
             }
-            Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(imgView);
+            Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
         }
 
         @Override
