@@ -20,22 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/distanceLabelTextView"
-        android:layout_width="106dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:text="Distance away:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/castleNameTextView" />
+
 
     <TextView
         android:id="@+id/distanceValueTextView"
-        android:layout_width="63dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="40"
-        app:layout_constraintStart_toEndOf="@+id/distanceLabelTextView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/castleNameTextView" />
 
     <ImageView
@@ -67,6 +60,6 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/distanceValueTextView"
         app:layout_constraintVertical_bias="0.2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -122,10 +122,10 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             mRatingBar.setRating(rating);
             if (distUnit.equals("Km")) {
                 int myDist = (int) z / 1000;
-                distanceTextView.setText(String.valueOf(myDist) + " KM");
+                distanceTextView.setText(String.valueOf(myDist) + " KMs away");
             } else {
                 int myDist = (int) z / 1609;
-                distanceTextView.setText(String.valueOf(myDist) + " Miles");
+                distanceTextView.setText(String.valueOf(myDist) + " Miles away");
             }
             Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
         }
