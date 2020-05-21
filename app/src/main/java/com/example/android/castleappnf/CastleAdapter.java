@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -126,7 +127,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 int myDist = (int) z / 1609;
                 distanceTextView.setText(String.valueOf(myDist) + " Miles");
             }
-            imgView.setImageResource(y);
+            Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).into(imgView);
         }
 
         @Override
