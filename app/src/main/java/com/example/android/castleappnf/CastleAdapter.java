@@ -5,6 +5,8 @@ import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleViewHolder> {
@@ -26,6 +29,8 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private Location phoneLocation;
     private String distanceUnit;
     private String sortBy;
+    private int lastPosition = -1;
+    private View myParent;
 
 
     public CastleAdapter() {
@@ -47,6 +52,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public CastleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.list_item_layout, parent, false);
+        myParent = view;
         if (phoneLocation != null && sortBy.equals("Distance")) {
             sortCastlesByDistance();
         } else if (sortBy.equals("A-Z")) {
@@ -54,6 +60,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         } else if (sortBy.equals("Rating")) {
             sortCastlesByRating();
         }
+
         return new CastleViewHolder(view, mListener);
 
     }
@@ -83,6 +90,19 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     @Override
     public void onBindViewHolder(@NonNull CastleViewHolder holder, int position) {
+        /*Animation animation = AnimationUtils.loadAnimation(mContext,
+                (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
+       myParent.startAnimation(animation);
+        lastPosition = position;*/
+
+        //loads correct animation for if scrolling up or down, passes this anim to view holder
+        int animToUse = R.anim.load_down_anim;
+
+        if (position > lastPosition) {
+            animToUse = R.anim.load_up_anim;
+        }
+        lastPosition = position;
+
         float dist = 0;
         Location castLocation = new Location("");
         castLocation.setLongitude(castles.get(position).getLongdi());
@@ -91,7 +111,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             dist = phoneLocation.distanceTo(castLocation);
         }
 
-        holder.bind(castles.get(position).getName(), castles.get(position).getImage()[0], dist, distanceUnit, castles.get(position).getRating());
+        holder.bind(castles.get(position).getName(), castles.get(position).getImage()[0], dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
     }
 
     @Override
@@ -106,6 +126,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         ImageView imgView;
         OnRecyclerItemClickListener onRecyclerItemClickListener;
         RatingBar mRatingBar;
+        ConstraintLayout mConstraint;
 
         public CastleViewHolder(@NonNull View v, OnRecyclerItemClickListener listener) {
             super(v);
@@ -115,9 +136,13 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             onRecyclerItemClickListener = listener;
             v.setOnClickListener(this);
             mRatingBar = v.findViewById(R.id.myRatingBar);
+            mConstraint = v.findViewById(R.id.itemview_parent);
         }
 
-        public void bind(String x, int y, float z, String distUnit, int rating) {
+        public void bind(String x, int y, float z, String distUnit, int rating, Context context, int theAnim) {
+            //applies the anim to the whole viewholder
+            mConstraint.setAnimation(AnimationUtils.loadAnimation(context, theAnim));
+
             nameTextView.setText(x);
             mRatingBar.setRating(rating);
             if (distUnit.equals("Km")) {
