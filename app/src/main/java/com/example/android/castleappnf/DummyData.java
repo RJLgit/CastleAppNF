@@ -17,6 +17,10 @@ public class DummyData {
         Castles dover;
         Castles raby;
         Castles caenarven;
+        Castles carlisle;
+        Castles bodiam;
+        Castles rochester;
+        Castles conway;
 
         int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
         int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
@@ -28,6 +32,10 @@ public class DummyData {
         int[] banPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
         int[] risPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] dovPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
+        int[] carPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
+        int[] bodPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
+        int[] rochPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
+        int[] conwayPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -39,6 +47,10 @@ public class DummyData {
         dover = new Castles("Dover Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.dover_history), dovPics, R.raw.canon_in_d, 1.3234, 51.1288, "https://www.english-heritage.org.uk/visit/places/dover-castle/", "https://www.english-heritage.org.uk/visit/places/dover-castle/prices-and-opening-times/");
         raby = new Castles("Raby Castle", "Raby Castle", 2, context.getResources().getStringArray(R.array.raby_history), rabyPics, R.raw.canon_in_d, -1.8020, 54.5916, "https://www.raby.co.uk/raby-castle/", "https://www.raby.co.uk/raby-castle/your-visit/plan-your-day/opening-times-prices/");
         caenarven = new Castles("Caernarfon Castle", "Cadw", 5, context.getResources().getStringArray(R.array.caen_history), caenPics, R.raw.canon_in_d, -4.2769, 53.1391, "https://cadw.gov.wales/visit/places-to-visit/caernarfon-castle", "https://cadw.gov.wales/visit/places-to-visit/caernarfon-castle#opening-times");
+        carlisle = new Castles("Carlisle Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.carlisle_history), carPics, R.raw.canon_in_d, -2.9418, 54.8970, "https://www.english-heritage.org.uk/visit/places/carlisle-castle/", "https://www.english-heritage.org.uk/visit/places/carlisle-castle/prices-and-opening-times/");
+        bodiam = new Castles("Bodiam Castle", "National Trust", 4, context.getResources().getStringArray(R.array.bodiam_history), bodPics, R.raw.canon_in_d, 0.5435, 51.0023, "https://www.nationaltrust.org.uk/bodiam-castle", "https://www.nationaltrust.org.uk/bodiam-castle#Opening%20times");
+        rochester = new Castles("Rochester Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.rochester_history), rochPics, R.raw.canon_in_d, 0.5015, 51.3898, "https://www.english-heritage.org.uk/visit/places/rochester-castle/", "https://www.english-heritage.org.uk/visit/places/rochester-castle/prices-and-opening-times/");
+        conway = new Castles("Conway Castle", "Cadw", 5, context.getResources().getStringArray(R.array.conway_history), conwayPics, R.raw.canon_in_d, -3.8256, 53.2801, "https://cadw.gov.wales/visit/places-to-visit/conwy-castle", "https://cadw.gov.wales/visit/places-to-visit/conwy-castle#opening-times");
         result.add(alnwick);
         result.add(banbury);
         result.add(berkhamsted);
@@ -49,6 +61,10 @@ public class DummyData {
         result.add(rising);
         result.add(warkworth);
         result.add(warwick);
+        result.add(carlisle);
+        result.add(bodiam);
+        result.add(rochester);
+        result.add(conway);
 
 
 
