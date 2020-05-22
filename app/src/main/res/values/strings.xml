@@ -120,6 +120,33 @@
         <item>Despite its poor condition, the royalist controlled castle was sieged several times during the English civil wars.</item>
     </string-array>
 
+    <string-array name="carlisle_history">
+        <item>This castle was built in Norman times and sits close to the ruins of Hadrian’s wall.</item>
+        <item>During Roman times, a fort was built on this same site.</item>
+        <item>The castle was captured by David, King of Scotland, in the early 12th century. Due to its strategic location on the Anglo-Scottish border it was sieged many times in the middle ages.</item>
+        <item>The castle was the site of a bloody siege during the Wars of the Roses, with the Lancastrians teaming up with the Scots to seize the castle from the Yorkists.</item>
+    </string-array>
+
+    <string-array name="conway_history">
+        <item>Built by Edward I in the late 13th century, it was one of many castles built in the North of Wales during this time.</item>
+        <item>It repelled many welsh sieges, including in 1294 when Madog ap Llywelyn failed to take the castle.</item>
+        <item>Richard II took refuge at the castle in 1399, as his power slipped away following defeat by the future King Henry IV. </item>
+        <item>The castle was dismantled significantly following the English civil wars as Parliament did not want it used in further revolts.</item>
+    </string-array>
+
+    <string-array name="bodiam_history">
+        <item>Built by one of Edward III’s knights in the late 14th century, it is unusual in that is has no keep.</item>
+        <item>It was originally constructed to provide protection against the French during the 100 years war.</item>
+        <item>The castle’s owner was a supporter of the House of Lancaster during the Wars of the Roses. However, it was taken by Yorkist forces during the wars and only returned to its owner when Henry VII took the crown, effectively ending the Wars of the Roses.</item>
+        <item>The castle was dismantled in the 17th century, but in the 19th century began a gradual restoration to its current state.</item>
+    </string-array>
+
+    <string-array name="rochester_history">
+        <item>This castle was founded just after the Norman conquest of Britain.</item>
+        <item>The castle was sieged by King John in 1215. He managed to bring down a corner of the keep and was later able to starve the defenders into surrender.</item>
+        <item>Following repair, the castle was again sieged in 1264 by Simon de Montfort, who was rebelling against the king. Their siege was unsuccessful as royal reinforcements forced off the attackers. However, the castle surrendered when the rebels crushed the king’s forces on the battlefield.</item>
+        <item>The castle never fully recovered from these two sieges, and gradually fell into a state of disrepair. </item>
+    </string-array>
 
 
 
