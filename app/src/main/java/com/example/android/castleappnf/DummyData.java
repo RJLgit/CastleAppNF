@@ -21,6 +21,10 @@ public class DummyData {
         Castles bodiam;
         Castles rochester;
         Castles conway;
+        Castles durham;
+        Castles edinburgh;
+        Castles stirling;
+        Castles conisbrough;
 
         int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
         int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
@@ -36,6 +40,10 @@ public class DummyData {
         int[] bodPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
         int[] rochPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] conwayPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
+        int[] edinPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
+        int[] stirPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
+        int[] durPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
+        int[] conisPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -51,6 +59,11 @@ public class DummyData {
         bodiam = new Castles("Bodiam Castle", "National Trust", 4, context.getResources().getStringArray(R.array.bodiam_history), bodPics, R.raw.canon_in_d, 0.5435, 51.0023, "https://www.nationaltrust.org.uk/bodiam-castle", "https://www.nationaltrust.org.uk/bodiam-castle#Opening%20times");
         rochester = new Castles("Rochester Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.rochester_history), rochPics, R.raw.canon_in_d, 0.5015, 51.3898, "https://www.english-heritage.org.uk/visit/places/rochester-castle/", "https://www.english-heritage.org.uk/visit/places/rochester-castle/prices-and-opening-times/");
         conway = new Castles("Conway Castle", "Cadw", 5, context.getResources().getStringArray(R.array.conway_history), conwayPics, R.raw.canon_in_d, -3.8256, 53.2801, "https://cadw.gov.wales/visit/places-to-visit/conwy-castle", "https://cadw.gov.wales/visit/places-to-visit/conwy-castle#opening-times");
+        durham = new Castles("Durham Castle", "Durham University", 2, context.getResources().getStringArray(R.array.durham_history), durPics, R.raw.canon_in_d, -1.3434, 54.4629, "https://www.dur.ac.uk/durham.castle/visit/", "https://www.dur.ac.uk/durham.castle/visit/");
+        edinburgh = new Castles("Edinburgh Castle", "Scottish Government", 5, context.getResources().getStringArray(R.array.edin_history), edinPics, R.raw.canon_in_d, -3.1203, 55.5655, "https://www.edinburghcastle.scot/", "https://www.edinburghcastle.scot/plan-your-visit/opening-times");
+        conisbrough = new Castles("Conisbrough Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.conis_history), conisPics, R.raw.canon_in_d, -1.1335, 53.2903, "https://www.english-heritage.org.uk/visit/places/conisbrough-castle/", "https://www.english-heritage.org.uk/visit/places/conisbrough-castle/prices-and-opening-times/");
+        stirling = new Castles("Stirling Castle", "Historic Environment Scotland", 2, context.getResources().getStringArray(R.array.stirling_history), stirPics, R.raw.canon_in_d, -3.9474, 56.1238, "https://www.stirlingcastle.scot/", "https://www.stirlingcastle.scot/visit/opening-times/");
+
         result.add(alnwick);
         result.add(banbury);
         result.add(berkhamsted);
@@ -65,6 +78,10 @@ public class DummyData {
         result.add(bodiam);
         result.add(rochester);
         result.add(conway);
+        result.add(durham);
+        result.add(edinburgh);
+        result.add(conisbrough);
+        result.add(stirling);
 
 
 

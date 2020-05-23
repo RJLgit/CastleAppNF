@@ -148,6 +148,34 @@
         <item>The castle never fully recovered from these two sieges, and gradually fell into a state of disrepair. </item>
     </string-array>
 
+    <string-array name="stirling_history">
+        <item>The castle is built on a large volcanic rock above the river Forth, and is on a very strategically important site.</item>
+        <item>Stirling castle was the site of much fighting during the Wars of Scottish independence, involving characters such as William Wallace, Robert the Bruce, Edward I and Edward II.</item>
+        <item>During these wars the battles of Stirling Bridge and Bannockburn took place. These were two of the greatest victories for the Scottish over the English.</item>
+        <item>James II infamously murdered Earl Douglas at Stirling castle.  </item>
+    </string-array>
+
+    <string-array name="edin_history">
+        <item>Built on a commanding rock, this site has been an important strategic location since at least Roman times.</item>
+        <item>This castle is the most besieged castle in Britain, due to its important strategic location and the constant fighting between the English and Scottish throughout the middle ages.</item>
+        <item>The castle formerly housed the Scottish royal treasury as it was seen as the safest place in the country to hold such valuable artifacts.</item>
+        <item>Bonnie Price Charlie was the last person to try and take the castle. He was unsuccessful, eventually giving up and marching into England to press his claim to the throne. </item>
+    </string-array>
+
+    <string-array name="durham_history">
+        <item>The castle was first built in 1072 by William the Conqueror.</item>
+        <item>The castle was besieged during one of the many northern rebellions against Norman rule in 1080. </item>
+        <item>The castle was put into the hands of Prince-Bishop’s for much of its early medieval history. The role of these bishops was to act as a buffer between England and Scotland. </item>
+        <item>The Bishop of Durham still maintains offices at the castle.</item>
+    </string-array>
+
+    <string-array name="conis_history">
+        <item>The estates of Conisbrough were in the hands of King Harold prior to his defeat by the Norman king William the Conqueror.</item>
+        <item>The Normans originally built a wooden castle here, but it was upgraded to stone in the late 12th century by Hamelin Plantagenet, the illegitamte half-brother of King Henry II.</item>
+        <item>Thomas, Early of Lancaster, controlled the castle in 1322 when he rebelled against King Edward II. He was defeated and executed, and the castle was seized personally by King Edward.</item>
+        <item>During the Wars of the Roses, the castle was the personal property of Richard of York, and later of his son King Edward Iv. </item>
+    </string-array>
+
 
 
     <string name="appwidget_text">EXAMPLE</string>
