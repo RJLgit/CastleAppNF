@@ -176,6 +176,34 @@
         <item>During the Wars of the Roses, the castle was the personal property of Richard of York, and later of his son King Edward Iv. </item>
     </string-array>
 
+    <string-array name="lancaster_history">
+        <item>The castle is part of the Duchy of Lancaster, which is owned by the Monarch of the UK.</item>
+        <item>The caslte was damaged by Scottish invasions in 1322 and 1389.</item>
+        <item>The parliamentarians captured the castle early in the English Civil War. In response, the king sent an army to retake the city of Lancaster, including the castle. They were unsuccessful and the castle and city remained under parliament control.</item>
+
+    </string-array>
+
+    <string-array name="york_history">
+        <item>Clifford's tower was originally a wooden castle built on the orders of William the Conqueror.</item>
+        <item>In 1069, the castle was captured an partially destroyed by an anglo-saxon and viking alliance rebelling against William I. The events at York led to the "Harrowing of the North" by William.</item>
+        <item>The castle was upgraded to stone in the middle of the 13th century by Henry III.</item>
+        <item>The caslte was an important military base during the Anglo-Scottish wars from 1298 to 1338.</item>
+    </string-array>
+
+    <string-array name="cardiff_history">
+        <item>The original Motte and Bailey castle was built on this site shortly after the Norman invasion of England.</item>
+        <item>The castle was rebuilt in stone in the 12th century.</item>
+        <item>The welsh prince Owain Glyndwr took the castle in 1404 during his rebellion against English control of Wales.</item>
+
+    </string-array>
+
+    <string-array name="pontefract_history">
+        <item>The castle was originally constructed by the Normans shortly after their conquest of England.</item>
+        <item>Thomas, Earl of Lancaster, was executed outside of the walls of the castle following his failed rebellion against King Edward II. Edward was dining in the great hall as the execution was carried out.</item>
+        <item>The castle was part of the house of Lancaster, and was seized by Richard II when he banished Henry Bolingbroke. Henry later returned, overthrew Richard and became Henry IV.</item>
+        <item>Richard II was held at the castle, and was likely starved to death whilst at the castle.</item>
+    </string-array>
+
 
 
     <string name="appwidget_text">EXAMPLE</string>

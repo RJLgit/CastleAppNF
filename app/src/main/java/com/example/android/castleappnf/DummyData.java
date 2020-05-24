@@ -25,6 +25,10 @@ public class DummyData {
         Castles edinburgh;
         Castles stirling;
         Castles conisbrough;
+        Castles york;
+        Castles lancaster;
+        Castles pontefract;
+        Castles cardiff;
 
         int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
         int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
@@ -37,6 +41,7 @@ public class DummyData {
         int[] risPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] dovPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
         int[] carPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
+        //Need to add photos
         int[] bodPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
         int[] rochPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] conwayPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
@@ -44,6 +49,10 @@ public class DummyData {
         int[] stirPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
         int[] durPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] conisPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
+        int[] yorkPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
+        int[] lancasterPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
+        int[] pontePics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
+        int[] cardiffPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -63,6 +72,11 @@ public class DummyData {
         edinburgh = new Castles("Edinburgh Castle", "Scottish Government", 5, context.getResources().getStringArray(R.array.edin_history), edinPics, R.raw.canon_in_d, -3.1203, 55.5655, "https://www.edinburghcastle.scot/", "https://www.edinburghcastle.scot/plan-your-visit/opening-times");
         conisbrough = new Castles("Conisbrough Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.conis_history), conisPics, R.raw.canon_in_d, -1.1335, 53.2903, "https://www.english-heritage.org.uk/visit/places/conisbrough-castle/", "https://www.english-heritage.org.uk/visit/places/conisbrough-castle/prices-and-opening-times/");
         stirling = new Castles("Stirling Castle", "Historic Environment Scotland", 2, context.getResources().getStringArray(R.array.stirling_history), stirPics, R.raw.canon_in_d, -3.9474, 56.1238, "https://www.stirlingcastle.scot/", "https://www.stirlingcastle.scot/visit/opening-times/");
+        york = new Castles("Clifford's Tower", "English Heritage", 2, context.getResources().getStringArray(R.array.york_history), yorkPics, R.raw.canon_in_d, -1.0799, 53.9558, "https://www.english-heritage.org.uk/visit/places/cliffords-tower-york/", "https://www.english-heritage.org.uk/visit/places/cliffords-tower-york/prices-and-opening-times/");
+        cardiff = new Castles("Cardiff Castle", "Cardiff Council", 5, context.getResources().getStringArray(R.array.cardiff_history), cardiffPics, R.raw.canon_in_d, -3.1812, 51.4822, "https://www.cardiffcastle.com/", "https://www.cardiffcastle.com/opening-times/");
+        pontefract = new Castles("Pontefract Castle", "Wakefield Museums and Castles", 4, context.getResources().getStringArray(R.array.pontefract_history), pontePics, R.raw.canon_in_d, -1.3041, 53.6950, "https://www.pontefractcastle.co.uk/", "https://www.pontefractcastle.co.uk/gettinghere.aspx");
+        lancaster = new Castles("Lancaster Castle", "Lancaster Castle", 4, context.getResources().getStringArray(R.array.lancaster_history), lancasterPics, R.raw.canon_in_d, -2.8049, 54.0498, "http://www.lancastercastle.com/", "http://www.lancastercastle.com/tours-visits/opening-times/");
+
 
         result.add(alnwick);
         result.add(banbury);
@@ -82,6 +96,10 @@ public class DummyData {
         result.add(edinburgh);
         result.add(conisbrough);
         result.add(stirling);
+        result.add(york);
+        result.add(cardiff);
+        result.add(pontefract);
+        result.add(lancaster);
 
 
 
