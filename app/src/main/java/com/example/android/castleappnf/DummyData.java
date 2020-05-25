@@ -29,6 +29,8 @@ public class DummyData {
         Castles lancaster;
         Castles pontefract;
         Castles cardiff;
+        Castles prudhoe;
+        Castles richmond;
 
         int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
         int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
@@ -53,6 +55,8 @@ public class DummyData {
         int[] lancasterPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
         int[] pontePics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
         int[] cardiffPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
+        int[] prudhoePics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
+        int[] richmondPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -76,6 +80,8 @@ public class DummyData {
         cardiff = new Castles("Cardiff Castle", "Cardiff Council", 5, context.getResources().getStringArray(R.array.cardiff_history), cardiffPics, R.raw.canon_in_d, -3.1812, 51.4822, "https://www.cardiffcastle.com/", "https://www.cardiffcastle.com/opening-times/");
         pontefract = new Castles("Pontefract Castle", "Wakefield Museums and Castles", 4, context.getResources().getStringArray(R.array.pontefract_history), pontePics, R.raw.canon_in_d, -1.3041, 53.6950, "https://www.pontefractcastle.co.uk/", "https://www.pontefractcastle.co.uk/gettinghere.aspx");
         lancaster = new Castles("Lancaster Castle", "Lancaster Castle", 4, context.getResources().getStringArray(R.array.lancaster_history), lancasterPics, R.raw.canon_in_d, -2.8049, 54.0498, "http://www.lancastercastle.com/", "http://www.lancastercastle.com/tours-visits/opening-times/");
+        richmond = new Castles("Richmond Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.richmond_history), richmondPics, R.raw.canon_in_d, -1.7376, 54.4017, "https://www.english-heritage.org.uk/visit/places/richmond-castle/", "https://www.english-heritage.org.uk/visit/places/richmond-castle/prices-and-opening-times/");
+        prudhoe = new Castles("Prudhoe Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.prudhoe_history), prudhoePics, R.raw.canon_in_d, -1.854, 54.964, "https://www.english-heritage.org.uk/visit/places/prudhoe-castle/", "https://www.english-heritage.org.uk/visit/places/prudhoe-castle/prices-and-opening-times/");
 
 
         result.add(alnwick);
@@ -100,6 +106,8 @@ public class DummyData {
         result.add(cardiff);
         result.add(pontefract);
         result.add(lancaster);
+        result.add(richmond);
+        result.add(prudhoe);
 
 
 

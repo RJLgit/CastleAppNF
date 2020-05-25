@@ -204,6 +204,21 @@
         <item>Richard II was held at the castle, and was likely starved to death whilst at the castle.</item>
     </string-array>
 
+    <string-array name="prudhoe_history">
+        <item>Built in the late eleventh century to defend against Scottish incursions into England.</item>
+        <item>The castle was sieged many times during Anglo-Scottish wars in the early middle ages. However, it was never taken by the Scottish, the only castle in Northumberland with that honour. </item>
+        <item>In 1381 the castle was purchased by the powerful Percy family, who descended from William de Percy, who was a Norman supporter of William the Conqueror. </item>
+        <item>In 1403-1405 the Percy family rebelled against King Henry IV, and so the castle was taken by the king and granted to his brother, the Duke of Lancaster. However, the Percy family were restored to their ownership of the castle by Henry VII in 1470.</item>
+
+    </string-array>
+
+    <string-array name="richmond_history">
+        <item>The original castle was constructed on this site by the Norman invaders after the harrying of the north, when William I divided the north Yorkshire lands among his loyal followers.</item>
+        <item>Henry II seized the castle in 1158 and completed the keep which can still be seen today.</item>
+        <item>The castle’s ownership frequently changed hands as the castle was owned by the Dukes of Brittany in France. Often when tensions with the French flared up, the castle confiscated by the English crown.</item>
+        <item>In 1372, ownership of the castle was fully passed to the English crown.</item>
+    </string-array>
+
 
 
     <string name="appwidget_text">EXAMPLE</string>
