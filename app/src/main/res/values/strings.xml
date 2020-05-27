@@ -219,6 +219,20 @@
         <item>In 1372, ownership of the castle was fully passed to the English crown.</item>
     </string-array>
 
+    <string-array name="lewes_history">
+        <item>Originally built after the Norman invasion to dominate the port of Lewes, which was an important port in Saxon England.</item>
+        <item>The battle of Lewes took part nearby, where the rebel Simon de Montfort defeated the royalist forces, and became de facto ruler of England.</item>
+        <item>The crown invested significantly in the castle in the early 14th century to protect against raids from the French, who England was currently fighting the 100 years’ war against. </item>
+        <item> During the Peasants’ Revolt in the late 14th century, the castle was attacked by rioters and looted.</item>
+    </string-array>
+
+    <string-array name="oxford_history">
+        <item>Built shortly after the Norman invasion, the first stone fortifications were built as early as 1073.</item>
+        <item>During the war of succession between King Stephen and the Empress Matilda, Matilda was surrounded by Stephen’s forces at the castle. However, she escaped by being lowered over the castle walls and creeping away through the snow whilst wearing a white nightdress.</item>
+        <item>During the Baron’s revolt against King John in 1216, the castle was besieged successfully by John.  </item>
+        <item>The castle was largely destroyed by the parliamentarians after the English civil war, as they did with many of the countries castles which they saw as Royalist symbols.</item>
+    </string-array>
+
 
 
     <string name="appwidget_text">EXAMPLE</string>
