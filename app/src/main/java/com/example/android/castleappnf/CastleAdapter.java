@@ -1,6 +1,7 @@
 package com.example.android.castleappnf;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,12 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public CastleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.list_item_layout, parent, false);
+        if (Resources.getSystem().getDisplayMetrics().widthPixels > 1000) {
+            view = inflater.inflate(R.layout.large_list_item_layout, parent, false);
+        }
+
+
+
         myParent = view;
         if (phoneLocation != null && sortBy.equals("Distance")) {
             sortCastlesByDistance();
