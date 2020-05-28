@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     RecyclerView recyclerView;
     private StorageReference mStorageRef;
     Uri image;
-    private FirebaseAuth mAuth;
+
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -66,17 +66,9 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInAnonymously:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            mStorageRef = FirebaseStorage.getInstance().getReference().child("images/1.PNG");
-                            mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("images/1.PNG");
+        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     image = uri;
@@ -89,14 +81,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                                 }
                             });
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInAnonymously:failure", task.getException());
 
-                        }
-
-                    }
-                });
 
 
 
