@@ -67,22 +67,26 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference().child("images/1.PNG");
-        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    image = uri;
-                                    Log.d(TAG, "onSuccess: " + uri);
-                                    setUpSharedPreferences();
-                                    if (isMapsEnabled()) {
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    image = uri;
+//                                    Log.d(TAG, "onSuccess: " + uri);
+//                                    setUpSharedPreferences();
+//                                    if (isMapsEnabled()) {
+//
+//                                        getLocationPermission();
+//                                    }
+//                                }
+//                            });
 
-                                        getLocationPermission();
-                                    }
-                                }
-                            });
 
+        setUpSharedPreferences();
+if (isMapsEnabled()) {
 
-
+    getLocationPermission();
+}
 
 
 
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         if (location != null) {
                             // Logic to handle location object
                             l = new Location(location);
-                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy, mStorageRef, image);
+                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy, mStorageRef);
                             recyclerView.setAdapter(castleAdapter);
                             Log.d(TAG, "onSuccess: " + location);
                         }
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                 }
                 for (Location location : locationResult.getLocations()) {
                     l = location;
-                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy, mStorageRef, image);
+                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy, mStorageRef);
                     recyclerView.setAdapter(castleAdapter);
                     Log.d(TAG, "onLocationResult: " + location);
                 }
@@ -310,19 +314,19 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("distance_preference")) {
             distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
-            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef, image);
+            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
             recyclerView.setAdapter(castleAdapter);
         }
         if (s.equals("sort_preference")) {
             sortBy = sharedPreferences.getString("sort_preference", "A-Z");
             if (sortBy.equals("Distance")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef, image);
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
                 recyclerView.setAdapter(castleAdapter);
             } else if (sortBy.equals("A-Z")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef, image);
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
                 recyclerView.setAdapter(castleAdapter);
             } else if (sortBy.equals("Rating")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef, image);
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
                 recyclerView.setAdapter(castleAdapter);
             }
         }

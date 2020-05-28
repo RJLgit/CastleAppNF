@@ -66,7 +66,7 @@ public class DummyData {
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), walkPics, R.raw.canon_in_d, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), dunstanPics, R.raw.four_seasons_spring, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
         rising = new Castles("Castle Rising", "Castle rising", 4, context.getResources().getStringArray(R.array.rising_history), risPics, R.raw.canon_in_d, 0.4704, 52.7981, "http://www.castlerising.co.uk/", "http://www.castlerising.co.uk/visit-us/");
-        berkhamsted = new Castles("Berkhamsted Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.berk_history), berkPics, R.raw.four_seasons_spring, -0.5591, 51.7639, "https://www.english-heritage.org.uk/visit/places/berkhamsted-castle/", "https://www.english-heritage.org.uk/visit/places/berkhamsted-castle/");
+        berkhamsted = new Castles("Berkhamstead Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.berk_history), berkPics, R.raw.four_seasons_spring, -0.5591, 51.7639, "https://www.english-heritage.org.uk/visit/places/berkhamsted-castle/", "https://www.english-heritage.org.uk/visit/places/berkhamsted-castle/");
         warwick = new Castles("Warwick Castle", "Warwick Castle", 5, context.getResources().getStringArray(R.array.warwick_history), warwickPics, R.raw.canon_in_d, -1.5852, 52.2797, "https://www.warwick-castle.com/", "https://www.warwick-castle.com/tickets-passes/day-tickets/castle-tickets/");
         banbury = new Castles("Bamburgh Castle", "Bamburgh Castle", 1, context.getResources().getStringArray(R.array.bamburgh_history), banPics, R.raw.four_seasons_spring, -1.7099, 55.6090, "https://www.bamburghcastle.com/", "https://www.bamburghcastle.com/visit-us/");
         alnwick = new Castles("Alnwick Castle", "Alnwick Castle", 3, context.getResources().getStringArray(R.array.alnwick_history), alnPics, R.raw.canon_in_d, -1.7059, 55.4156, "https://www.alnwickcastle.com/", "https://www.alnwickcastle.com/opening-times-and-ticket-prices");
@@ -91,7 +91,7 @@ public class DummyData {
         lewes = new Castles("Lewes Castle", "Sussex Archaeological Society", 3, context.getResources().getStringArray(R.array.lewes_history), lewesPics, R.raw.canon_in_d, 0.0078, 50.8729, "https://sussexpast.co.uk/properties-to-discover/lewes-castle", "https://sussexpast.co.uk/properties-to-discover/lewes-castle");
 
 
-        result.add(alnwick);
+        /*result.add(alnwick);
         result.add(banbury);
         result.add(berkhamsted);
         result.add(caenarven);
@@ -116,8 +116,12 @@ public class DummyData {
         result.add(richmond);
         result.add(prudhoe);
         result.add(oxford);
-        result.add(lewes);
+        result.add(lewes);*/
 
+        result.add(warwick);
+        result.add(dover);
+        result.add(berkhamsted);
+        result.add(banbury);
 
 
 

@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -44,7 +45,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance, String sort, StorageReference ref, Uri img) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance, String sort, StorageReference ref) {
         this.mContext = mContext;
         this.castles = castles;
         this.mListener = listener;
@@ -52,7 +53,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         this.distanceUnit = distance;
         this.sortBy = sort;
         storageReference = ref;
-        image = img;
+
     }
 
 
@@ -105,29 +106,60 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
 
     @Override
-    public void onBindViewHolder(@NonNull CastleViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position) {
         /*Animation animation = AnimationUtils.loadAnimation(mContext,
                 (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
        myParent.startAnimation(animation);
         lastPosition = position;*/
 
+
+        StorageReference myImage = storageReference.child("images/" + castles.get(position).getName().toLowerCase() + " 1.PNG");
+        Log.d(TAG, "onBindViewHolder: " + myImage);
+        myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                int animToUse = R.anim.load_down_anim;
+
+                if (position > lastPosition) {
+                    animToUse = R.anim.load_up_anim;
+                }
+                lastPosition = position;
+
+                float dist = 0;
+                Location castLocation = new Location("");
+                castLocation.setLongitude(castles.get(position).getLongdi());
+                castLocation.setLatitude(castles.get(position).getLat());
+                if (phoneLocation != null) {
+                    dist = phoneLocation.distanceTo(castLocation);
+                }
+
+                    holder.bind(castles.get(position).getName(), uri, dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+                int animToUse = R.anim.load_down_anim;
+
+                if (position > lastPosition) {
+                    animToUse = R.anim.load_up_anim;
+                }
+                lastPosition = position;
+
+                float dist = 0;
+                Location castLocation = new Location("");
+                castLocation.setLongitude(castles.get(position).getLongdi());
+                castLocation.setLatitude(castles.get(position).getLat());
+                if (phoneLocation != null) {
+                    dist = phoneLocation.distanceTo(castLocation);
+                }
+                holder.bind(castles.get(position).getName(), null, dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
+            }
+        });
         //loads correct animation for if scrolling up or down, passes this anim to view holder
-        int animToUse = R.anim.load_down_anim;
 
-        if (position > lastPosition) {
-            animToUse = R.anim.load_up_anim;
-        }
-        lastPosition = position;
-
-        float dist = 0;
-        Location castLocation = new Location("");
-        castLocation.setLongitude(castles.get(position).getLongdi());
-        castLocation.setLatitude(castles.get(position).getLat());
-        if (phoneLocation != null) {
-            dist = phoneLocation.distanceTo(castLocation);
-        }
-
-        holder.bind(castles.get(position).getName(), image, dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
     }
 
     @Override
@@ -169,7 +201,14 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 distanceTextView.setText(String.valueOf(myDist) + " Miles away");
             }
             Log.d(TAG, "bind: " + y);
-            Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
+            if (y != null) {
+                Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
+            } else {
+                Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
+
+            }
+
+
         }
 
         @Override
