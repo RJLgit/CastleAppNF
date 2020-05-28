@@ -37,7 +37,7 @@ public class DummyData {
 
         int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
         int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
-        int[] warwickPics = {R.drawable.warwick_castle, R.drawable.warwickpictwo, R.drawable.warkpicthree};
+        int[] warwickPics = {R.drawable.warwick_castle_1, R.drawable.warwick_castle_2, R.drawable.warwick_castle_3};
         int[] dunstanPics = {R.drawable.dunstan_castle, R.drawable.dunstanpictwo, R.drawable.dunstanpicthree};
         int[] rabyPics = {R.drawable.raby_castle, R.drawable.rabypictwo, R.drawable.rabypicthree};
         int[] berkPics = {R.drawable.berk_castle, R.drawable.berkpictwo, R.drawable.berkpicthree};
