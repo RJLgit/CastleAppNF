@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "230886233201",
+    "firebase_url": "https://castleappnf.firebaseio.com",
+    "project_id": "castleappnf",
+    "storage_bucket": "castleappnf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230886233201:android:7ded62af3ec0bc12e9f7d0",
+        "android_client_info": {
+          "package_name": "com.example.android.castleappnf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230886233201-1to41f9kpcequ4b4ics3ves4upvb8i2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.castleappnf",
+            "certificate_hash": "5692d60b502acf70cfeae9034aa3326e768bb12e"
+          }
+        },
+        {
+          "client_id": "230886233201-r7cu977d8d95ppelipafnm5c01pps2er.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYL5Eiv_uAMaFcER32sT19LQ_KXK01zJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230886233201-r7cu977d8d95ppelipafnm5c01pps2er.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
