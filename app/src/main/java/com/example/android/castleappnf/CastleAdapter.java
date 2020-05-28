@@ -3,6 +3,8 @@ package com.example.android.castleappnf;
 import android.content.Context;
 import android.content.res.Resources;
 import android.location.Location;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -32,18 +36,23 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private String sortBy;
     private int lastPosition = -1;
     private View myParent;
+    private StorageReference storageReference;
+    private Uri image;
+    private static final String TAG = "CastleAdapter";
 
 
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance, String sort) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance, String sort, StorageReference ref, Uri img) {
         this.mContext = mContext;
         this.castles = castles;
         this.mListener = listener;
         this.phoneLocation = location;
         this.distanceUnit = distance;
         this.sortBy = sort;
+        storageReference = ref;
+        image = img;
     }
 
 
@@ -118,7 +127,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             dist = phoneLocation.distanceTo(castLocation);
         }
 
-        holder.bind(castles.get(position).getName(), castles.get(position).getImage()[0], dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
+        holder.bind(castles.get(position).getName(), image, dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
     }
 
     @Override
@@ -146,7 +155,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             mConstraint = v.findViewById(R.id.itemview_parent);
         }
 
-        public void bind(String x, int y, float z, String distUnit, int rating, Context context, int theAnim) {
+        public void bind(String x, Uri y, float z, String distUnit, int rating, Context context, int theAnim) {
             //applies the anim to the whole viewholder
             mConstraint.setAnimation(AnimationUtils.loadAnimation(context, theAnim));
 
@@ -159,6 +168,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 int myDist = (int) z / 1609;
                 distanceTextView.setText(String.valueOf(myDist) + " Miles away");
             }
+            Log.d(TAG, "bind: " + y);
             Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
         }
 
