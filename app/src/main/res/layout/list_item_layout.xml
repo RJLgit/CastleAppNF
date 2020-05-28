@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/castleNameTextView"
-        android:layout_width="166dp"
+        android:layout_width="wrap_content"
         android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
