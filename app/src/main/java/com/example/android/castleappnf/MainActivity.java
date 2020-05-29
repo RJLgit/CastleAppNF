@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     RecyclerView recyclerView;
     private StorageReference mStorageRef;
     Uri image;
-
+    private FirebaseAuth mAuth;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -67,7 +67,17 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() == null) {
+            mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInAnonymously:success");
+                        Toast.makeText(MainActivity.this, "Authentication Success.",
+                                Toast.LENGTH_SHORT).show();
+                        mStorageRef = FirebaseStorage.getInstance().getReference();
 //        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 //                                @Override
 //                                public void onSuccess(Uri uri) {
@@ -82,11 +92,46 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
 //                            });
 
 
-        setUpSharedPreferences();
-if (isMapsEnabled()) {
+                        setUpSharedPreferences();
+                        if (isMapsEnabled()) {
 
-    getLocationPermission();
-}
+                            getLocationPermission();
+                        }
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInAnonymously:failure", task.getException());
+                        Toast.makeText(MainActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                    // ...
+                }
+            });
+        } else {
+            mStorageRef = FirebaseStorage.getInstance().getReference();
+//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    image = uri;
+//                                    Log.d(TAG, "onSuccess: " + uri);
+//                                    setUpSharedPreferences();
+//                                    if (isMapsEnabled()) {
+//
+//                                        getLocationPermission();
+//                                    }
+//                                }
+//                            });
+
+
+            setUpSharedPreferences();
+            if (isMapsEnabled()) {
+
+                getLocationPermission();
+            }
+        }
+
+
 
 
 
