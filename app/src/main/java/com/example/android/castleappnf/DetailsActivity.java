@@ -1,5 +1,6 @@
 package com.example.android.castleappnf;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -30,6 +31,10 @@ import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 
@@ -55,23 +60,32 @@ public class DetailsActivity extends AppCompatActivity {
     private int imgIndex = 0;
     ImageView forwards;
     ImageView backwards;
+    private StorageReference mStorageRef;
+    int currentImage = 1;
+    //Number of images per castle in firebase
+    final int maxImages = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         Intent intent = getIntent();
         final Castles myCastle = (Castles) intent.getSerializableExtra("Castle");
 
-        String name = myCastle.getName();
-        String operator = myCastle.getOperator();
-        String[] history = myCastle.getHistory();
-        int rating = myCastle.getRating();
+        final String name = myCastle.getName();
+        final String operator = myCastle.getOperator();
+        final String[] history = myCastle.getHistory();
+        final int rating = myCastle.getRating();
         int image = myCastle.getImage()[imgIndex];
-        int audio = myCastle.getAudio();
+        final int audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
         final String openTimesWeb = myCastle.getOpeningTimes();
+
+        StorageReference myImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+
 
         resourceId = audio;
 
@@ -89,94 +103,199 @@ public class DetailsActivity extends AppCompatActivity {
         forwards = findViewById(R.id.forwardImage);
         backwards = findViewById(R.id.backwardsImage);
 
+        myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+                openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
+                historyTitleTextView.setText("Brief history of the site");
+                ratingTitleTextView.setText(getString(R.string.details_rating_title));
+                myRatingBarWidget.setVisibility(View.VISIBLE);
+                for (int i = 0; i < history.length; i++) {
+                    historyDetailsTextView.append("\u25CF" + history[i]);
+                    historyDetailsTextView.append("\n\n");
+                }
+                //historyDetailsTextView.setText(history);
+                operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
+                myRatingBarWidget.setRating(rating);
+
+                toolbar = findViewById(R.id.toolbar);
+                toolbar.setTitle(name);
+                toolbar.setSubtitle("Here are the details");
+
+                setSupportActionBar(toolbar);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+                operatedByTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
+                        startActivity(browserIntent);
+                    }
+                });
+
+                openTimesTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
+                        startActivity(browserIntent);
+                    }
+                });
+
+                addressButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
+                        Log.d(TAG, "onClick: " + locUri);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
+                    }
+                });
+
+                castleImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        currentImage++;
+                        if (currentImage > maxImages) {
+                            currentImage = 1;
+                        }
+                        StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+                        myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
+                                Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+                            }
+                        });
+                    }
+                });
+                forwards.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        currentImage++;
+                        if (currentImage > maxImages) {
+                            currentImage = 1;
+                        }
+                        StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+                        myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
+                                Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+                            }
+                        });
+                    }
+                });
+
+                backwards.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        currentImage--;
+                        if (currentImage < 1) {
+                            currentImage = maxImages;
+                        }
+                        StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+                        myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
+                                Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+                            }
+                        });
+                    }
+                });
+
+                registerForContextMenu(historyDetailsTextView);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+                Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+                openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
+                historyTitleTextView.setText("Brief history of the site");
+                ratingTitleTextView.setText(getString(R.string.details_rating_title));
+                myRatingBarWidget.setVisibility(View.VISIBLE);
+                for (int i = 0; i < history.length; i++) {
+                    historyDetailsTextView.append("\u25CF" + history[i]);
+                    historyDetailsTextView.append("\n\n");
+                }
+                //historyDetailsTextView.setText(history);
+                operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
+                myRatingBarWidget.setRating(rating);
+
+                toolbar = findViewById(R.id.toolbar);
+                toolbar.setTitle(name);
+                toolbar.setSubtitle("Here are the details");
+
+                setSupportActionBar(toolbar);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+                operatedByTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
+                        startActivity(browserIntent);
+                    }
+                });
+
+                openTimesTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
+                        startActivity(browserIntent);
+                    }
+                });
+
+                addressButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
+                        Log.d(TAG, "onClick: " + locUri);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
+                    }
+                });
+
+
+
+                registerForContextMenu(historyDetailsTextView);
+            }
+        });
+
         //Sets up data in details view - change to use data sent from intent
-        Picasso.get().load(image).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-        openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
-        historyTitleTextView.setText("Brief history of the site");
-        ratingTitleTextView.setText(getString(R.string.details_rating_title));
-        myRatingBarWidget.setVisibility(View.VISIBLE);
-        for (int i = 0; i < history.length; i++) {
-            historyDetailsTextView.append("\u25CF" + history[i]);
-            historyDetailsTextView.append("\n\n");
-        }
-        //historyDetailsTextView.setText(history);
-        operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
-        myRatingBarWidget.setRating(rating);
 
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(name);
-        toolbar.setSubtitle("Here are the details");
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        operatedByTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
-                startActivity(browserIntent);
-            }
-        });
-
-        openTimesTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
-                startActivity(browserIntent);
-            }
-        });
-
-        addressButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
-                Log.d(TAG, "onClick: " + locUri);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent);
-                }
-            }
-        });
-
-        castleImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgIndex  >= myCastle.getImage().length - 1) {
-                    imgIndex = 0;
-                } else {
-                    imgIndex++;
-                }
-                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-            }
-        });
-        forwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgIndex  >= myCastle.getImage().length - 1) {
-                    imgIndex = 0;
-                } else {
-                    imgIndex++;
-                }
-                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-            }
-        });
-
-        backwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgIndex  == 0) {
-                    imgIndex = myCastle.getImage().length - 1;
-                } else {
-                    imgIndex--;
-                }
-                Picasso.get().load(myCastle.getImage()[imgIndex]).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-            }
-        });
-
-        registerForContextMenu(historyDetailsTextView);
 
     }
 
