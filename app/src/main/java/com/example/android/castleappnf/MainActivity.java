@@ -44,7 +44,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class MainActivity extends AppCompatActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainActivity extends BaseActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 5;
     private static final String TAG = "MainActivity";
@@ -65,11 +65,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
 
     private FusedLocationProviderClient fusedLocationClient;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+    public void logIn() {
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() == null) {
             mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                         Log.w(TAG, "signInAnonymously:failure", task.getException());
                         Toast.makeText(MainActivity.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
-                        finish();
+
                     }
 
                     // ...
@@ -133,6 +129,14 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                 getLocationPermission();
             }
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        logIn();
 
 
 

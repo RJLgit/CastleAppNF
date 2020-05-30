@@ -40,7 +40,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends BaseActivity {
 
 
     Button openTimesTextView;
@@ -414,6 +414,8 @@ public class DetailsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+
 
 
 }

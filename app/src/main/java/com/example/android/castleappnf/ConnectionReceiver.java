@@ -19,7 +19,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        final Activity a = (Activity) context;
+        final BaseActivity a = (BaseActivity) context;
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             boolean noConnectivity = intent.getBooleanExtra(
                     ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
@@ -56,6 +56,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
             } else if (!noConnectivity) {
                 Log.d(TAG, "onReceive: " + alert);
                 alert.dismiss();
+                a.logIn();
                 Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
             }
         }
