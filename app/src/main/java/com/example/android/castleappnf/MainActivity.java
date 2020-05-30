@@ -13,10 +13,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
     private StorageReference mStorageRef;
     Uri image;
     private FirebaseAuth mAuth;
+    ConnectionReceiver connectionReceiver = new ConnectionReceiver();
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -384,4 +387,16 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectionReceiver, filter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(connectionReceiver);
+    }
 }

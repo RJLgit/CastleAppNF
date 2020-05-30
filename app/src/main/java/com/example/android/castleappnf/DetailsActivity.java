@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,6 +66,7 @@ public class DetailsActivity extends AppCompatActivity {
     int currentImage = 1;
     //Number of images per castle in firebase
     final int maxImages = 3;
+    ConnectionReceiver connectionReceiver = new ConnectionReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -365,6 +368,8 @@ public class DetailsActivity extends AppCompatActivity {
         if (Util.SDK_INT >= 24) {
             initializePlayer();
         }
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectionReceiver, filter);
     }
 
     @Override
@@ -373,6 +378,7 @@ public class DetailsActivity extends AppCompatActivity {
         if (Util.SDK_INT >= 24) {
             releasePlayer();
         }
+        unregisterReceiver(connectionReceiver);
     }
 
     @Override
@@ -408,4 +414,6 @@ public class DetailsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+
 }
