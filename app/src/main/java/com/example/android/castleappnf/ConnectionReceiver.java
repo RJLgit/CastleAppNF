@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 public class ConnectionReceiver extends BroadcastReceiver {
     private static final String TAG = "ConnectionReceiver";
-    private static final int REQUEST_CONN = 172;
+    public static final int REQUEST_CONN = 172;
+    private AlertDialog.Builder builder;
+    private AlertDialog alert;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -22,28 +24,32 @@ public class ConnectionReceiver extends BroadcastReceiver {
             boolean noConnectivity = intent.getBooleanExtra(
                     ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
             );
+            Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show();
+            if (builder == null) {
+                builder = new AlertDialog.Builder(context);
+                builder.setMessage("This application requires internet connection to work correctly. Please connect to the internet.")
+                        .setCancelable(true)
+                        .setNegativeButton("Close app", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                a.finishAffinity();
+                            }
+                        });
+
+            }
+            if (alert == null) {
+                alert = builder.create();
+            }
+
+
             if (noConnectivity) {
                 Log.d(TAG, "onReceive: " + "conn");
-                Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show();
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("This application requires internet connection to work correctly. Please connect to the internet.")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                                Intent connectionIntent = new Intent(Settings.ACTION_WIFI_SETTINGS);
-                                a.startActivityForResult(connectionIntent, REQUEST_CONN);
-                            }
-                        })
-                .setNegativeButton("Close app", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                        a.finishAffinity();
-                    }
-                });
-                final AlertDialog alert = builder.create();
                 alert.show();
-            } else {
+            } else if (!noConnectivity) {
+                Log.d(TAG, "onReceive: " + alert);
+                alert.dismiss();
                 Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
             }
         }

@@ -282,6 +282,16 @@ public class MainActivity extends AppCompatActivity implements CastleAdapter.OnR
                     getLocationPermission();
                 }
             }
+            /*case ConnectionReceiver.REQUEST_CONN: {
+                boolean noConnectivity = data.getBooleanExtra(
+                        ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
+                );
+                if (!noConnectivity) {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+            }*/
         }
 
     }
