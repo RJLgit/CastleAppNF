@@ -29,6 +29,12 @@ public class ConnectionReceiver extends BroadcastReceiver {
                 builder = new AlertDialog.Builder(context);
                 builder.setMessage("This application requires internet connection to work correctly. Please connect to the internet.")
                         .setCancelable(true)
+                        .setPositiveButton("Continue in offline mode", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                alert.dismiss();
+                            }
+                        })
                         .setNegativeButton("Close app", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
