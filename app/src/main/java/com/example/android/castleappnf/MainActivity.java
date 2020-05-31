@@ -243,7 +243,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         locationRequest.setInterval(60000);
         locationRequest.setFastestInterval(60000);
         locationRequest.setSmallestDisplacement(100);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         Log.d(TAG, "createLocationRequest: ");
     }
 
