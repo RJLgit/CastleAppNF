@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     Uri image;
     private FirebaseAuth mAuth;
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
+    CastleAdapter castleAdapter;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -172,6 +173,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         setSupportActionBar(toolbar);
         final Context context = this;
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
@@ -180,7 +182,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                         if (location != null) {
                             // Logic to handle location object
                             l = new Location(location);
-                            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy, mStorageRef);
+                            castleAdapter.setPhoneLocation(l);
+
                             recyclerView.setAdapter(castleAdapter);
                             Log.d(TAG, "onSuccess: " + location);
                         }
@@ -196,8 +199,9 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                 }
                 for (Location location : locationResult.getLocations()) {
                     l = location;
-                    CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, l, distanceUnit, sortBy, mStorageRef);
-                    recyclerView.setAdapter(castleAdapter);
+                    castleAdapter.setPhoneLocation(l);
+                    castleAdapter.notifyItemRangeChanged(0, castleAdapter.getItemCount(), l);
+                    //recyclerView.setAdapter(castleAdapter);
                     Log.d(TAG, "onLocationResult: " + location);
                 }
             }
@@ -404,19 +408,23 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("distance_preference")) {
             distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
-            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
+            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+            castleAdapter.setPhoneLocation(l);
             recyclerView.setAdapter(castleAdapter);
         }
         if (s.equals("sort_preference")) {
             sortBy = sharedPreferences.getString("sort_preference", "A-Z");
             if (sortBy.equals("Distance")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+                castleAdapter.setPhoneLocation(l);
                 recyclerView.setAdapter(castleAdapter);
             } else if (sortBy.equals("A-Z")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+                castleAdapter.setPhoneLocation(l);
                 recyclerView.setAdapter(castleAdapter);
             } else if (sortBy.equals("Rating")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, l, distanceUnit, sortBy, mStorageRef);
+                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+                castleAdapter.setPhoneLocation(l);
                 recyclerView.setAdapter(castleAdapter);
             }
         }

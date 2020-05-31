@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -45,18 +46,25 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, Location location, String distance, String sort, StorageReference ref) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, String distance, String sort, StorageReference ref) {
         this.mContext = mContext;
         this.castles = castles;
         this.mListener = listener;
-        this.phoneLocation = location;
+
         this.distanceUnit = distance;
         this.sortBy = sort;
         storageReference = ref;
 
     }
 
+    public Location getPhoneLocation() {
+        return phoneLocation;
+    }
 
+    public void setPhoneLocation(Location phoneLocation) {
+        this.phoneLocation = phoneLocation;
+
+    }
 
     @NonNull
     @Override
@@ -107,10 +115,10 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     @Override
     public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position) {
-        /*Animation animation = AnimationUtils.loadAnimation(mContext,
+        Animation animation = AnimationUtils.loadAnimation(mContext,
                 (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
        myParent.startAnimation(animation);
-        lastPosition = position;*/
+        lastPosition = position;
 
 
         StorageReference myImage = storageReference.child("images/" + castles.get(position).getName().toLowerCase() + " 1.PNG");
@@ -159,6 +167,39 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             }
         });
         //loads correct animation for if scrolling up or down, passes this anim to view holder
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position, @NonNull List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads);
+        } else {
+            Log.d(TAG, "onBindViewHolder: payloads");
+            float dist = 0;
+            Location castLocation = new Location("");
+            castLocation.setLongitude(castles.get(position).getLongdi());
+            castLocation.setLatitude(castles.get(position).getLat());
+            if (phoneLocation != null) {
+                dist = phoneLocation.distanceTo(castLocation);
+                Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + dist + "location is " + phoneLocation);
+            }
+            if (distanceUnit.equals("Km")) {
+
+                int myDist = (int) dist / 1000;
+                Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + myDist);
+                holder.distanceTextView.setText(String.valueOf(myDist) + " KMs away");
+            } else {
+                int myDist = (int) dist / 1609;
+                Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + myDist);
+                holder.distanceTextView.setText(String.valueOf(myDist) + " Miles away");
+            }
+            /*if (phoneLocation != null && sortBy.equals("Distance")) {
+                sortCastlesByDistance();
+                Log.d(TAG, "onBindViewHolder: payloads sort" + position);
+            }*/
+        }
+
 
     }
 
