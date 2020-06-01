@@ -82,7 +82,7 @@ public class DetailsActivity extends BaseActivity {
         final String operator = myCastle.getOperator();
         final String[] history = myCastle.getHistory();
         final int rating = myCastle.getRating();
-        int image = myCastle.getImage()[imgIndex];
+        
         final int audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
         final String openTimesWeb = myCastle.getOpeningTimes();
