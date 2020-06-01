@@ -378,8 +378,8 @@ public class DetailsActivity extends BaseActivity {
         if (Util.SDK_INT >= 24) {
             initializePlayer();
         }
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(connectionReceiver, filter);
+        /*IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectionReceiver, filter);*/
     }
 
     @Override
@@ -388,7 +388,7 @@ public class DetailsActivity extends BaseActivity {
         if (Util.SDK_INT >= 24) {
             releasePlayer();
         }
-        unregisterReceiver(connectionReceiver);
+        /*unregisterReceiver(connectionReceiver);*/
     }
 
     @Override

@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     BottomNavigationView bottNav;
     Uri image;
     private FirebaseAuth mAuth;
-    ConnectionReceiver connectionReceiver = new ConnectionReceiver();
+    //ConnectionReceiver connectionReceiver = new ConnectionReceiver();
     CastleAdapter castleAdapter;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -450,14 +450,14 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     @Override
     protected void onStart() {
         super.onStart();
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(connectionReceiver, filter);
+        /*IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectionReceiver, filter);*/
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        unregisterReceiver(connectionReceiver);
+        //unregisterReceiver(connectionReceiver);
     }
 
     @Override
