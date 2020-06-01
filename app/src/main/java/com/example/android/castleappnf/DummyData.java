@@ -101,7 +101,7 @@ public class DummyData {
         result.add(rising);
         result.add(warkworth);
         result.add(warwick);
-        /*result.add(carlisle);
+        result.add(carlisle);
         result.add(bodiam);
         result.add(rochester);
         result.add(conway);
@@ -116,7 +116,7 @@ public class DummyData {
         result.add(richmond);
         result.add(prudhoe);
         result.add(oxford);
-        result.add(lewes);*/
+        result.add(lewes);
 
 
 
