@@ -55,7 +55,7 @@ public class DetailsActivity extends BaseActivity {
     private SimpleExoPlayer player;
     Toolbar toolbar;
     int resourceId;
-    private boolean playWhenReady = true;
+    private boolean playWhenReady = false;
     private int currentWindow = 0;
     private long playbackPosition = 0;
     private static final String TAG = "DetailsActivity";
@@ -82,7 +82,7 @@ public class DetailsActivity extends BaseActivity {
         final String operator = myCastle.getOperator();
         final String[] history = myCastle.getHistory();
         final int rating = myCastle.getRating();
-        
+
         final int audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
         final String openTimesWeb = myCastle.getOpeningTimes();
