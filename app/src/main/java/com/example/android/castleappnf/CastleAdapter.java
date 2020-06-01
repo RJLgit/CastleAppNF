@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
@@ -115,6 +116,16 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     @Override
     public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position) {
+        int animToUse = R.anim.slide_in_left;
+
+        float dist = 0;
+        Location castLocation = new Location("");
+        castLocation.setLongitude(castles.get(position).getLongdi());
+        castLocation.setLatitude(castles.get(position).getLat());
+        if (phoneLocation != null) {
+            dist = phoneLocation.distanceTo(castLocation);
+        }
+        holder.bind(castles.get(position).getName(), dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
         /*Animation animation = AnimationUtils.loadAnimation(mContext,
                 (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
        myParent.startAnimation(animation);*/
@@ -132,17 +143,9 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                     animToUse = R.anim.load_up_anim;
                 }
                 lastPosition = position;*/
-                int animToUse = R.anim.slide_in_left;
+                holder.setImage(uri);
 
-                float dist = 0;
-                Location castLocation = new Location("");
-                castLocation.setLongitude(castles.get(position).getLongdi());
-                castLocation.setLatitude(castles.get(position).getLat());
-                if (phoneLocation != null) {
-                    dist = phoneLocation.distanceTo(castLocation);
-                }
 
-                    holder.bind(castles.get(position).getName(), uri, dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
 
 
             }
@@ -156,17 +159,8 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                     animToUse = R.anim.load_up_anim;
                 }
                 lastPosition = position;*/
+                holder.setImage(null);
 
-                int animToUse = R.anim.slide_in_left;
-
-                float dist = 0;
-                Location castLocation = new Location("");
-                castLocation.setLongitude(castles.get(position).getLongdi());
-                castLocation.setLatitude(castles.get(position).getLat());
-                if (phoneLocation != null) {
-                    dist = phoneLocation.distanceTo(castLocation);
-                }
-                holder.bind(castles.get(position).getName(), null, dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
             }
         });
         //loads correct animation for if scrolling up or down, passes this anim to view holder
@@ -231,7 +225,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             mConstraint = v.findViewById(R.id.itemview_parent);
         }
 
-        public void bind(String x, Uri y, float z, String distUnit, int rating, Context context, int theAnim) {
+        public void bind(String x, float z, String distUnit, int rating, Context context, int theAnim) {
             //applies the anim to the whole viewholder
             mConstraint.setAnimation(AnimationUtils.loadAnimation(context, theAnim));
 
@@ -244,6 +238,12 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 int myDist = (int) z / 1609;
                 distanceTextView.setText(String.valueOf(myDist) + " Miles away");
             }
+            Picasso.get().load(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
+
+
+        }
+
+        public void setImage(Uri y) {
             Log.d(TAG, "bind: " + y);
             if (y != null) {
                 Picasso.get().load(y).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
@@ -251,8 +251,6 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
 
             }
-
-
         }
 
         @Override
