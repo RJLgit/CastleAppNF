@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent" android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<ScrollView
+    android:layout_height="match_parent" android:layout_width="match_parent"
     android:background="@color/colorPrimary"
+    android:layout_marginBottom="20dp"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/details_root_layout"
         >
+
+
 
         <include
             android:id="@+id/toolbar"
@@ -47,6 +53,8 @@
             app:layout_constraintTop_toBottomOf="@+id/operated_by_text_view"
             tools:text="@string/opening_times_title"
             android:textColor="@color/colorAccent"/>
+
+
 
         <ImageView
             android:id="@+id/photos_image_view"
@@ -176,6 +184,27 @@
             app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+
+<com.google.android.material.bottomnavigation.BottomNavigationView
+android:layout_width="match_parent"
+android:layout_height="20dp"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintBottom_toBottomOf="parent"
+android:background="#FFFFFF"
+    >
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/bottom_status_text_view"
+    android:text="xyx"
+    android:textAlignment="center"
+    />
+</com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

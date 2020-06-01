@@ -9,4 +9,11 @@ public class BaseActivity extends AppCompatActivity {
     public void logIn() {
 
     }
+    public void showBottomToolBar() {
+
+    }
+
+    public void hideBottomToolBar() {
+
+    }
 }
