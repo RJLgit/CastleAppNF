@@ -116,59 +116,62 @@ public class DetailsActivity extends BaseActivity {
         forwards = findViewById(R.id.forwardImage);
         backwards = findViewById(R.id.backwardsImage);
 
+        openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
+        historyTitleTextView.setText("Brief history of the site");
+        ratingTitleTextView.setText(getString(R.string.details_rating_title));
+        myRatingBarWidget.setVisibility(View.VISIBLE);
+        for (int i = 0; i < history.length; i++) {
+            historyDetailsTextView.append("\u25CF" + history[i]);
+            historyDetailsTextView.append("\n\n");
+        }
+        //historyDetailsTextView.setText(history);
+        operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
+        myRatingBarWidget.setRating(rating);
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(name);
+        toolbar.setSubtitle("Here are the details");
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        operatedByTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
+                startActivity(browserIntent);
+            }
+        });
+
+        openTimesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
+                startActivity(browserIntent);
+            }
+        });
+
+        addressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
+                Log.d(TAG, "onClick: " + locUri);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
+        registerForContextMenu(historyDetailsTextView);
+
         myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-                openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
-                historyTitleTextView.setText("Brief history of the site");
-                ratingTitleTextView.setText(getString(R.string.details_rating_title));
-                myRatingBarWidget.setVisibility(View.VISIBLE);
-                for (int i = 0; i < history.length; i++) {
-                    historyDetailsTextView.append("\u25CF" + history[i]);
-                    historyDetailsTextView.append("\n\n");
-                }
-                //historyDetailsTextView.setText(history);
-                operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
-                myRatingBarWidget.setRating(rating);
 
-                toolbar = findViewById(R.id.toolbar);
-                toolbar.setTitle(name);
-                toolbar.setSubtitle("Here are the details");
-
-                setSupportActionBar(toolbar);
-                getSupportActionBar().setDisplayShowHomeEnabled(true);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-                operatedByTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
-                        startActivity(browserIntent);
-                    }
-                });
-
-                openTimesTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
-                        startActivity(browserIntent);
-                    }
-                });
-
-                addressButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
-                        Log.d(TAG, "onClick: " + locUri);
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
-                        mapIntent.setPackage("com.google.android.apps.maps");
-                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(mapIntent);
-                        }
-                    }
-                });
 
                 castleImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -244,66 +247,14 @@ public class DetailsActivity extends BaseActivity {
                     }
                 });
 
-                registerForContextMenu(historyDetailsTextView);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
                 Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-                openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
-                historyTitleTextView.setText("Brief history of the site");
-                ratingTitleTextView.setText(getString(R.string.details_rating_title));
-                myRatingBarWidget.setVisibility(View.VISIBLE);
-                for (int i = 0; i < history.length; i++) {
-                    historyDetailsTextView.append("\u25CF" + history[i]);
-                    historyDetailsTextView.append("\n\n");
-                }
-                //historyDetailsTextView.setText(history);
-                operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
-                myRatingBarWidget.setRating(rating);
-
-                toolbar = findViewById(R.id.toolbar);
-                toolbar.setTitle(name);
-                toolbar.setSubtitle("Here are the details");
-
-                setSupportActionBar(toolbar);
-                getSupportActionBar().setDisplayShowHomeEnabled(true);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-                operatedByTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
-                        startActivity(browserIntent);
-                    }
-                });
-
-                openTimesTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
-                        startActivity(browserIntent);
-                    }
-                });
-
-                addressButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Uri locUri = Uri.parse("geo:" + myCastle.getLat() + "," + myCastle.getLongdi() + "?q=" + myCastle.getLat() + "," + myCastle.getLongdi() + "(" + myCastle.getName() + ")");
-                        Log.d(TAG, "onClick: " + locUri);
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, locUri);
-                        mapIntent.setPackage("com.google.android.apps.maps");
-                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(mapIntent);
-                        }
-                    }
-                });
-
-
-
-                registerForContextMenu(historyDetailsTextView);
+               
             }
         });
 
