@@ -165,87 +165,84 @@ public class DetailsActivity extends BaseActivity {
                 }
             }
         });
+        castleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentImage++;
+                if (currentImage > maxImages) {
+                    currentImage = 1;
+                }
+                StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+                myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        loadImages(uri);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        e.printStackTrace();
+                        loadImages(null);
+                    }
+                });
+            }
+        });
+        forwards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentImage++;
+                if (currentImage > maxImages) {
+                    currentImage = 1;
+                }
+                StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+                myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        loadImages(uri);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        e.printStackTrace();
+                        loadImages(null);
+                    }
+                });
+            }
+        });
+
+        backwards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentImage--;
+                if (currentImage < 1) {
+                    currentImage = maxImages;
+                }
+                StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
+                myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        loadImages(uri);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        e.printStackTrace();
+                        loadImages(null);
+                    }
+                });
+            }
+        });
         registerForContextMenu(historyDetailsTextView);
+        loadImages(null);
 
         myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+                loadImages(uri);
 
 
-                castleImageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        currentImage++;
-                        if (currentImage > maxImages) {
-                            currentImage = 1;
-                        }
-                        StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
-                        myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
 
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                                Picasso.get().load(R.drawable.error_loading).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-
-                            }
-                        });
-                    }
-                });
-                forwards.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        currentImage++;
-                        if (currentImage > maxImages) {
-                            currentImage = 1;
-                        }
-                        StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
-                        myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                                Picasso.get().load(R.drawable.error_loading).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-
-                            }
-                        });
-                    }
-                });
-
-                backwards.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        currentImage--;
-                        if (currentImage < 1) {
-                            currentImage = maxImages;
-                        }
-                        StorageReference myClickImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
-                        myClickImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                                Picasso.get().load(R.drawable.error_loading).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-
-                            }
-                        });
-                    }
-                });
 
 
             }
@@ -253,13 +250,26 @@ public class DetailsActivity extends BaseActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
-                Picasso.get().load(R.drawable.ic_error).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-               
+                loadImages(null);
+
             }
         });
 
         //Sets up data in details view - change to use data sent from intent
 
+
+    }
+
+    public void loadImages(Uri uri) {
+        if (uri != null) {
+            Log.d(TAG, "loadImages: " + uri);
+            Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+        } else {
+
+            Log.d(TAG, "loadImages: " + uri);
+            Picasso.get().load(R.drawable.castlethumbnail).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+
+        }
 
     }
 
