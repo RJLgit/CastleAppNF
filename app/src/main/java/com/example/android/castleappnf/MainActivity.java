@@ -24,6 +24,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -472,8 +473,17 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     @Override
     public void hideBottomToolBar() {
         Log.d(TAG, "hideBottomToolBar: ");
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
-        layoutParams.setMargins(0, 0, 0, 0);
-        bottNav.setVisibility(View.INVISIBLE);
+        bottStatus.setText("Online");
+        bottStatus.setBackgroundColor(Color.GREEN);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
+                layoutParams.setMargins(0, 0, 0, 0);
+                bottNav.setVisibility(View.INVISIBLE);
+            }
+        }, 5000);
+
     }
 }

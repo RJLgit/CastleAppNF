@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -437,9 +438,18 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void hideBottomToolBar() {
         Log.d(TAG, "hideBottomToolBar: ");
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
-        layoutParams.setMargins(0, 0, 0, 0);
-        bottNav.setVisibility(View.INVISIBLE);
+        bottStatus.setText("Online");
+        bottStatus.setBackgroundColor(Color.GREEN);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
+                layoutParams.setMargins(0, 0, 0, 0);
+                bottNav.setVisibility(View.INVISIBLE);
+            }
+        }, 5000);
+
     }
 
 
