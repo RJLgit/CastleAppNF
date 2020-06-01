@@ -3,6 +3,7 @@ package com.example.android.castleappnf;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
@@ -28,6 +30,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -39,6 +43,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +65,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     String sortBy;
     RecyclerView recyclerView;
     private StorageReference mStorageRef;
+    TextView bottStatus;
+    BottomNavigationView bottNav;
     Uri image;
     private FirebaseAuth mAuth;
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
@@ -137,6 +144,9 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = findViewById(R.id.recyclerView);
+        bottStatus = findViewById(R.id.bottom_main_status_text_view);
+        bottNav = findViewById(R.id.bott_nav_bar);
 
         logIn();
 
@@ -158,7 +168,6 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
 
     private void permissionsAndGpsGranted() {
-        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -448,5 +457,23 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     protected void onStop() {
         super.onStop();
         unregisterReceiver(connectionReceiver);
+    }
+
+    @Override
+    public void showBottomToolBar() {
+        Log.d(TAG, "showBottomToolBar: ");
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 60);
+        bottNav.setVisibility(View.VISIBLE);
+        bottStatus.setText("Offline");
+        bottStatus.setBackgroundColor(Color.RED);
+    }
+
+    @Override
+    public void hideBottomToolBar() {
+        Log.d(TAG, "hideBottomToolBar: ");
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
+        bottNav.setVisibility(View.INVISIBLE);
     }
 }

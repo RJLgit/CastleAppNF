@@ -3,12 +3,14 @@ package com.example.android.castleappnf;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -55,6 +59,9 @@ public class DetailsActivity extends BaseActivity {
     private SimpleExoPlayer player;
     Toolbar toolbar;
     int resourceId;
+    TextView bottStatus;
+    BottomNavigationView bottNav;
+    ScrollView scrollView;
     private boolean playWhenReady = false;
     private int currentWindow = 0;
     private long playbackPosition = 0;
@@ -91,7 +98,9 @@ public class DetailsActivity extends BaseActivity {
 
 
         resourceId = audio;
-
+        bottStatus = findViewById(R.id.bottom_status_text_view);
+        bottNav = findViewById(R.id.bott_nav_bar_details);
+        scrollView = findViewById(R.id.scroll_view_container);
 
 
         openTimesTextView = findViewById(R.id.opening_times_text_view);
@@ -415,6 +424,23 @@ public class DetailsActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    public void showBottomToolBar() {
+        Log.d(TAG, "showBottomToolBar: ");
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 60);
+        bottNav.setVisibility(View.VISIBLE);
+        bottStatus.setText("Offline");
+        bottStatus.setBackgroundColor(Color.RED);
+    }
+
+    @Override
+    public void hideBottomToolBar() {
+        Log.d(TAG, "hideBottomToolBar: ");
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
+        bottNav.setVisibility(View.INVISIBLE);
+    }
 
 
 

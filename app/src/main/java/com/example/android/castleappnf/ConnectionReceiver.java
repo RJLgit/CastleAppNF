@@ -53,9 +53,11 @@ public class ConnectionReceiver extends BroadcastReceiver {
                 Log.d(TAG, "onReceive: " + "conn");
 
                 alert.show();
+                a.showBottomToolBar();
             } else if (!noConnectivity) {
                 Log.d(TAG, "onReceive: " + alert);
                 alert.dismiss();
+                a.hideBottomToolBar();
                 a.logIn();
                 Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
             }
