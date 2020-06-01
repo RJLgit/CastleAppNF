@@ -438,17 +438,21 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void hideBottomToolBar() {
         Log.d(TAG, "hideBottomToolBar: ");
-        bottStatus.setText("Online");
-        bottStatus.setBackgroundColor(Color.GREEN);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
-                layoutParams.setMargins(0, 0, 0, 0);
-                bottNav.setVisibility(View.INVISIBLE);
-            }
-        }, 5000);
+        if (bottNav.getVisibility() == View.VISIBLE) {
+            bottStatus.setText("Online");
+            bottStatus.setBackgroundColor(Color.GREEN);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
+                    layoutParams.setMargins(0, 0, 0, 0);
+                    bottNav.setVisibility(View.INVISIBLE);
+                }
+            }, 5000);
+        }
+
+
 
     }
 
