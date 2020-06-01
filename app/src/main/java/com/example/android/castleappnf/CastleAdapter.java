@@ -115,9 +115,9 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     @Override
     public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position) {
-        Animation animation = AnimationUtils.loadAnimation(mContext,
+        /*Animation animation = AnimationUtils.loadAnimation(mContext,
                 (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-       myParent.startAnimation(animation);
+       myParent.startAnimation(animation);*/
         lastPosition = position;
 
 
@@ -126,12 +126,13 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                int animToUse = R.anim.load_down_anim;
+               /* int animToUse = R.anim.load_down_anim;
 
                 if (position > lastPosition) {
                     animToUse = R.anim.load_up_anim;
                 }
-                lastPosition = position;
+                lastPosition = position;*/
+                int animToUse = R.anim.slide_in_left;
 
                 float dist = 0;
                 Location castLocation = new Location("");
@@ -149,12 +150,14 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
-                int animToUse = R.anim.load_down_anim;
+                /*int animToUse = R.anim.load_down_anim;
 
                 if (position > lastPosition) {
                     animToUse = R.anim.load_up_anim;
                 }
-                lastPosition = position;
+                lastPosition = position;*/
+
+                int animToUse = R.anim.slide_in_left;
 
                 float dist = 0;
                 Location castLocation = new Location("");
