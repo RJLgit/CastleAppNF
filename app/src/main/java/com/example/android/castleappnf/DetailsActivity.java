@@ -75,6 +75,7 @@ public class DetailsActivity extends BaseActivity {
     //Number of images per castle in firebase
     final int maxImages = 3;
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
+    Castles myCastle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,7 @@ public class DetailsActivity extends BaseActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         Intent intent = getIntent();
-        final Castles myCastle = (Castles) intent.getSerializableExtra("Castle");
+        myCastle = (Castles) intent.getSerializableExtra("Castle");
 
         final String name = myCastle.getName();
         final String operator = myCastle.getOperator();
@@ -301,6 +302,9 @@ public class DetailsActivity extends BaseActivity {
                 startActivity(Intent.createChooser(shareIntent, "Share using"));
                 return true;
             case R.id.full_image_item:
+                Intent intent = new Intent(this, FullImageActivity.class);
+                intent.putExtra("CastleName", myCastle.getName());
+                startActivity(intent);
                 Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
             default:
                 return super.onContextItemSelected(item);
