@@ -81,6 +81,7 @@ public class DetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         Intent intent = getIntent();

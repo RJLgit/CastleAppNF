@@ -334,12 +334,22 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+
                                 ActivityCompat.requestPermissions(MainActivity.this,
                                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                                         PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
 
                             }
-                        }).create().show();
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .create().show();
+
+
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
