@@ -7,14 +7,20 @@
     tools:context=".FullImageActivity"
     >
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <ImageView
         android:id="@+id/fullImageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/castlethumbnail"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="226dp"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
         android:background="@drawable/imgview_backgrdound"
-        android:backgroundTint="#000000"/>
+        android:backgroundTint="#000000"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/castlethumbnail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

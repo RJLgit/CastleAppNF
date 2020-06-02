@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FullImageActivity" android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden"></activity>
+        <activity android:name=".FullImageActivity" android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden" android:parentActivityName=".DetailsActivity"></activity>
 
         <receiver
             android:name=".ConnectionReceiver"

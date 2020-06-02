@@ -2,6 +2,7 @@ package com.example.android.castleappnf;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
     private GestureDetector gestureDetector;
     final int maxImages = 3;
     String castleName;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,14 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
         castleName = getIntent().getStringExtra("CastleName");
         gestureDetector = new GestureDetector(this, this);
         StorageReference myImage = mStorageRef.child("images/" + castleName.toLowerCase() + " " + currentImage + ".PNG");
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(castleName);
+
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
