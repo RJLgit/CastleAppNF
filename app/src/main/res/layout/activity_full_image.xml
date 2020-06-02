@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FullImageActivity">
+    tools:context=".FullImageActivity"
+    >
 
     <ImageView
         android:id="@+id/fullImageView"
@@ -12,5 +13,6 @@
         android:layout_height="match_parent"
         app:srcCompat="@drawable/castlethumbnail"
         tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="226dp" />
+        tools:layout_editor_absoluteY="226dp"
+        android:orientation="horizontal"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
