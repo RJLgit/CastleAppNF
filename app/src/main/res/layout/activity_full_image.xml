@@ -14,5 +14,7 @@
         app:srcCompat="@drawable/castlethumbnail"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="226dp"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal"
+        android:background="@drawable/imgview_backgrdound"
+        android:backgroundTint="#000000"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
