@@ -233,6 +233,19 @@
         <item>The castle was largely destroyed by the parliamentarians after the English civil war, as they did with many of the countries castles which they saw as Royalist symbols.</item>
     </string-array>
 
+    <string-array name="maiden_history">
+        <item>Maiden castle is an Iron Age hill fort. It was expanded around 450 BC to become the largest hill fort in Britain.</item>
+        <item>A hill fort is essentially a fortified hill-top settlement, using earth works to secure the settlement.</item>
+        <item>Maiden caslte, unusually for hill forts, was still occupied during the Roman conquest of Britain in AD 43. After the Roman conquest, the site was abandoned.</item>
+        <item>In the late 4th century a religious structure was built on the hill, most likely worshipping a combination of Roman and British gods.</item>
+    </string-array>
+
+    <string-array name="tamworth_history">
+        <item>Tamworth was an important Anglo-saxon town in the kingdom of Mercia, and was the chief residence of King Offa of Mercia, who was an extremely powerful Anglo-Saxon king in the 8th century.</item>
+        <item>Successive Viking attacks destroyed much of the town, and it only recovered after the Norman conquest when the Norman steward Robert Despenser built a Norman motte and bailey castle on the site of the old Anglo-Saxon defences. </item>
+        <item>The Marmion family, also supporters of the Norman royal family, ruled the castle after Robert died and left the castle to his niece. This family controlled the castle until 1294 and they were responsible for turning it into the stone building seen today, although many additions were made to the castle in later years.</item>
+        <item>The castle was garrisoned by Royalists during the English Civil War, but was captured by Parliament in 1643 and held by them for the rest of the war.</item>
+    </string-array>
 
 
     <string name="appwidget_text">EXAMPLE</string>

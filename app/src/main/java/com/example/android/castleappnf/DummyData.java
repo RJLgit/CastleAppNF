@@ -33,6 +33,8 @@ public class DummyData {
         Castles richmond;
         Castles lewes;
         Castles oxford;
+        Castles maiden;
+        Castles tamworth;
 
 
        /* int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
@@ -89,6 +91,8 @@ public class DummyData {
         prudhoe = new Castles("Prudhoe Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.prudhoe_history), R.raw.canon_in_d, -1.854, 54.964, "https://www.english-heritage.org.uk/visit/places/prudhoe-castle/", "https://www.english-heritage.org.uk/visit/places/prudhoe-castle/prices-and-opening-times/");
         oxford = new Castles("Oxford Castle", "Oxford Castle", 2, context.getResources().getStringArray(R.array.oxford_history), R.raw.canon_in_d, -1.2633, 51.7516, "https://www.oxfordcastleandprison.co.uk/", "https://www.oxfordcastleandprison.co.uk/your-visit/opening-times-and-prices/");
         lewes = new Castles("Lewes Castle", "Sussex Archaeological Society", 3, context.getResources().getStringArray(R.array.lewes_history), R.raw.canon_in_d, 0.0078, 50.8729, "https://sussexpast.co.uk/properties-to-discover/lewes-castle", "https://sussexpast.co.uk/properties-to-discover/lewes-castle");
+        tamworth = new Castles("Tamworth Castle", "Tamworth Castle", 4, context.getResources().getStringArray(R.array.tamworth_history), R.raw.canon_in_d, -1.6969, 52.6326, "http://www.tamworthcastle.co.uk/", "http://www.tamworthcastle.co.uk/opening-times-prices");
+        maiden = new Castles("Maiden Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.maiden_history), R.raw.canon_in_d, -2.4682, 50.6945, "https://www.english-heritage.org.uk/visit/places/maiden-castle/", "https://www.english-heritage.org.uk/visit/places/maiden-castle/#beforeyougo");
 
 
         result.add(alnwick);
@@ -117,6 +121,8 @@ public class DummyData {
         result.add(prudhoe);
         result.add(oxford);
         result.add(lewes);
+        result.add(maiden);
+        result.add(tamworth);
 
 
 
