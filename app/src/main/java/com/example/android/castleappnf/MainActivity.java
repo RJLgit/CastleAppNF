@@ -76,6 +76,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     private FusedLocationProviderClient fusedLocationClient;
 
     public void logIn() {
+
+        Log.d(TAG, "logIn: ");
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() == null) {
             mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -142,12 +144,84 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     }
 
     @Override
+    public void logIn(boolean b) {
+        if (b) {
+
+        } else {
+            mAuth = FirebaseAuth.getInstance();
+            if (mAuth.getCurrentUser() == null) {
+                mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInAnonymously:success");
+                            Toast.makeText(MainActivity.this, "Authentication Success.",
+                                    Toast.LENGTH_SHORT).show();
+                            mStorageRef = FirebaseStorage.getInstance().getReference();
+//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    image = uri;
+//                                    Log.d(TAG, "onSuccess: " + uri);
+//                                    setUpSharedPreferences();
+//                                    if (isMapsEnabled()) {
+//
+//                                        getLocationPermission();
+//                                    }
+//                                }
+//                            });
+
+
+                            setUpSharedPreferences();
+                            if (isMapsEnabled()) {
+
+                                getLocationPermission();
+                            }
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInAnonymously:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        // ...
+                    }
+                });
+            } else {
+                mStorageRef = FirebaseStorage.getInstance().getReference();
+//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    image = uri;
+//                                    Log.d(TAG, "onSuccess: " + uri);
+//                                    setUpSharedPreferences();
+//                                    if (isMapsEnabled()) {
+//
+//                                        getLocationPermission();
+//                                    }
+//                                }
+//                            });
+
+
+                setUpSharedPreferences();
+                if (isMapsEnabled()) {
+
+                    getLocationPermission();
+                }
+            }
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
         bottStatus = findViewById(R.id.bottom_main_status_text_view);
         bottNav = findViewById(R.id.bott_nav_bar);
+        Log.d(TAG, "onCreate: ");
 
         logIn();
 
@@ -161,6 +235,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     }
 
     private void setUpSharedPreferences() {
+        Log.d(TAG, "setUpSharedPreferences: ");
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
         sortBy = sharedPreferences.getString("sort_preference", "A-Z");
@@ -176,7 +251,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-
+        Log.d(TAG, "permissionsAndGpsGranted: ");
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("UK Castles");
         toolbar.setSubtitle("Click Castle to see more info");
@@ -236,6 +311,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
     @Override
     protected void onResume() {
+        Log.d(TAG, "onResume: ");
         super.onResume();
         if (mLocationPermissionGranted) {
             startLocationUpdates();
@@ -262,6 +338,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     }
 
     private void buildAlertMessageNoGps() {
+        Log.d(TAG, "buildAlertMessageNoGps: ");
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("This application requires GPS to work properly, do you want to enable it?")
                 .setCancelable(false)
@@ -321,6 +398,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
+        Log.d(TAG, "getLocationPermission: ");
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -380,9 +458,12 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Log.d(TAG, "onRequestPermissionsResult: granted");
                     mLocationPermissionGranted = true;
                     permissionsAndGpsGranted();
                 } else {
+                    Log.d(TAG, "onRequestPermissionsResult: failed");
                     final AlertDialog.Builder pBuilder = new AlertDialog.Builder(this);
                     pBuilder.setMessage("Please enable location permissions to use this app")
                             .setCancelable(false)
@@ -459,6 +540,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart: ");
         super.onStart();
         /*IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(connectionReceiver, filter);*/
@@ -466,6 +548,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
     @Override
     protected void onStop() {
+        Log.d(TAG, "onStop: ");
         super.onStop();
         //unregisterReceiver(connectionReceiver);
     }

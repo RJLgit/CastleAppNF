@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
 
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
+    public boolean connected = true;
 
-    public void logIn() {
+    public void logIn(boolean b) {
 
     }
+
     public void showBottomToolBar() {
 
     }
@@ -32,5 +34,13 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         unregisterReceiver(connectionReceiver);
+    }
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
     }
 }
