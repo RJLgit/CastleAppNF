@@ -265,6 +265,7 @@ public class DetailsActivity extends BaseActivity {
         if (uri != null) {
             Log.d(TAG, "loadImages: " + uri);
             Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+            registerForContextMenu(castleImageView);
         } else {
 
             Log.d(TAG, "loadImages: " + uri);
@@ -277,7 +278,12 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.long_click_share_menu, menu);
+        if (v == historyDetailsTextView) {
+            getMenuInflater().inflate(R.menu.long_click_share_menu, menu);
+        } else if (v == castleImageView) {
+            getMenuInflater().inflate(R.menu.long_click_image_menu, menu);
+        }
+
 
     }
 
@@ -294,6 +300,8 @@ public class DetailsActivity extends BaseActivity {
                 Log.d(TAG, "onContextItemSelected: " + x);
                 startActivity(Intent.createChooser(shareIntent, "Share using"));
                 return true;
+            case R.id.full_image_item:
+                Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
             default:
                 return super.onContextItemSelected(item);
         }
