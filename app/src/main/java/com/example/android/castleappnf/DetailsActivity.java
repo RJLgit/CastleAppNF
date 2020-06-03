@@ -306,6 +306,7 @@ public class DetailsActivity extends BaseActivity {
                 intent.putExtra("CastleName", myCastle.getName());
                 intent.putExtra("Castle", myCastle);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
             default:
                 return super.onContextItemSelected(item);
@@ -436,6 +437,7 @@ public class DetailsActivity extends BaseActivity {
         if (item.getItemId() == android.R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -445,5 +447,6 @@ public class DetailsActivity extends BaseActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

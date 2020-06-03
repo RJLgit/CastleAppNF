@@ -183,6 +183,7 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
             Intent intent = new Intent(this, DetailsActivity.class);
             intent.putExtra("Castle", myCastle);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             return true;
         }
 
@@ -194,5 +195,6 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("Castle", myCastle);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

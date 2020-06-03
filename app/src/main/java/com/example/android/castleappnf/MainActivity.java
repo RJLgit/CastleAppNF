@@ -485,6 +485,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("Castle", c);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -500,6 +501,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         if (id == R.id.my_settings) {
             Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
             startActivity(startSettingsActivity);
+            //Add slide out top/bottom animations
             return true;
         }
         return super.onOptionsItemSelected(item);
