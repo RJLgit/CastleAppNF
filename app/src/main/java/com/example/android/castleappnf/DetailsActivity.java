@@ -15,6 +15,9 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -123,7 +126,12 @@ public class DetailsActivity extends BaseActivity {
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
         myRatingBarWidget.setVisibility(View.VISIBLE);
         for (int i = 0; i < history.length; i++) {
-            historyDetailsTextView.append("\u25CF" + history[i]);
+            String string = "\u21AC " + history[i];
+            SpannableString spannableString = new SpannableString(string);
+            spannableString.setSpan(new RelativeSizeSpan(2f), 0, 1, 0);
+            spannableString.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, 1, 0);
+            spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent, getTheme())), 0, 1, 0);
+            historyDetailsTextView.append(spannableString);
             historyDetailsTextView.append("\n\n");
         }
         //historyDetailsTextView.setText(history);
