@@ -37,6 +37,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private Location phoneLocation;
     private String distanceUnit;
     private String sortBy;
+    private String filterBy;
     private int lastPosition = -1;
     private View myParent;
     private StorageReference storageReference;
@@ -44,19 +45,52 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     private static final String TAG = "CastleAdapter";
 
 
+
     public CastleAdapter() {
     }
 
-    public CastleAdapter(Context mContext, ArrayList<Castles> castles, OnRecyclerItemClickListener listener, String distance, String sort, StorageReference ref) {
+    public CastleAdapter(Context mContext, ArrayList<Castles> castlesParam, OnRecyclerItemClickListener listener, String distance, String sort, StorageReference ref, String filter) {
         this.mContext = mContext;
-        this.castles = castles;
+        filterBy = filter;
+        if (filterBy.equals("English Heritage")) {
+            this.castles = filterCastles(castlesParam);
+        } else {
+            this.castles = castlesParam;
+        }
+
+
         this.mListener = listener;
 
         this.distanceUnit = distance;
         this.sortBy = sort;
         storageReference = ref;
 
+
     }
+
+/*    private ArrayList<Castles> filterCastles(ArrayList<Castles> castlesList, String filter) {
+        ArrayList<Castles> res = new ArrayList<>();
+        Log.d(TAG, "filterCastles: " + res + "filter is: " + filter);
+        if (filter.equals("English Heritage")) {
+            Log.d(TAG, "filterCastles: heritage");
+            for (Castles cas : castlesList) {
+                if (cas.getOperator().equals("English Heritage")) {
+                    res.add(cas);
+
+                }
+            }
+        } else {
+            Log.d(TAG, "filterCastles: not heritage");
+            for (Castles cas : castlesList) {
+                    res.add(cas);
+            }
+        }
+        Log.d(TAG, "filterCastles: " + res);
+        return res;
+    }*/
+
+
+
 
     public Location getPhoneLocation() {
         return phoneLocation;
@@ -87,7 +121,21 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             sortCastlesByRating();
         }
 
+
         return new CastleViewHolder(view, mListener);
+
+    }
+
+    private ArrayList<Castles> filterCastles(ArrayList<Castles> x) {
+
+        ArrayList<Castles> newList = new ArrayList<>();
+        for (Castles c : x) {
+            if (c.getOperator().equals("English Heritage")) {
+                newList.add(c);
+            }
+        }
+        Log.d(TAG, "filterCastles: " + newList);
+        return newList;
 
     }
 

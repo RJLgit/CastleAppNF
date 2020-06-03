@@ -64,6 +64,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     SharedPreferences sharedPreferences;
     String distanceUnit;
     String sortBy;
+    String filterBy;
     RecyclerView recyclerView;
     private StorageReference mStorageRef;
     TextView bottStatus;
@@ -239,6 +240,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
         sortBy = sharedPreferences.getString("sort_preference", "A-Z");
+        filterBy = sharedPreferences.getString("filter_preference", "None");
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -258,7 +260,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         setSupportActionBar(toolbar);
         final Context context = this;
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef);
+        castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef, filterBy);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
@@ -516,22 +518,37 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("distance_preference")) {
             distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
-            CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+            castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
             castleAdapter.setPhoneLocation(l);
             recyclerView.setAdapter(castleAdapter);
         }
         if (s.equals("sort_preference")) {
             sortBy = sharedPreferences.getString("sort_preference", "A-Z");
             if (sortBy.equals("Distance")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
                 castleAdapter.setPhoneLocation(l);
                 recyclerView.setAdapter(castleAdapter);
             } else if (sortBy.equals("A-Z")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
                 castleAdapter.setPhoneLocation(l);
                 recyclerView.setAdapter(castleAdapter);
             } else if (sortBy.equals("Rating")) {
-                CastleAdapter castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef);
+                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
+                castleAdapter.setPhoneLocation(l);
+                recyclerView.setAdapter(castleAdapter);
+            }
+        }
+        if (s.equals("filter_preference")) {
+            filterBy = sharedPreferences.getString("filter_preference", "None");
+            if (filterBy.equals("English Heritage")) {
+                Log.d(TAG, "onSharedPreferenceChanged: " + filterBy);
+                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
+                castleAdapter.setPhoneLocation(l);
+                recyclerView.setAdapter(castleAdapter);
+            }
+            if (filterBy.equals("None")) {
+                Log.d(TAG, "onSharedPreferenceChanged: " + filterBy);
+                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
                 castleAdapter.setPhoneLocation(l);
                 recyclerView.setAdapter(castleAdapter);
             }

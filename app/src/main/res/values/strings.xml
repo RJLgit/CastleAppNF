@@ -50,6 +50,14 @@
 
     </string-array>
 
+    <string-array name="filter_array">
+        <item>None</item>
+        <item>English Heritage</item>
+
+
+
+    </string-array>
+
     <string-array name="wark_history">
         <item>Built in the mid-twelfth centuryBuilt in the mid-twelfth century</item>
         <item>In 1327, the castle twice held out against Scottish sieges</item>
