@@ -167,7 +167,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     }
 
-    @Override
+   /* @Override
     public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position, @NonNull List<Object> payloads) {
         if (payloads.isEmpty()) {
             Log.d(TAG, "onBindViewHolder: empty payloads");
@@ -192,14 +192,14 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + myDist);
                 holder.distanceTextView.setText(String.valueOf(myDist) + " Miles away");
             }
-            /*if (phoneLocation != null && sortBy.equals("Distance")) {
+            *//*if (phoneLocation != null && sortBy.equals("Distance")) {
                 sortCastlesByDistance();
                 Log.d(TAG, "onBindViewHolder: payloads sort" + position);
-            }*/
+            }*//*
         }
 
 
-    }
+    }*/
 
     @Override
     public int getItemCount() {
