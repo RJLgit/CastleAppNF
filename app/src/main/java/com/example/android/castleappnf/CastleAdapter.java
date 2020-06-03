@@ -170,6 +170,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     @Override
     public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position, @NonNull List<Object> payloads) {
         if (payloads.isEmpty()) {
+            Log.d(TAG, "onBindViewHolder: empty payloads");
             super.onBindViewHolder(holder, position, payloads);
         } else {
             Log.d(TAG, "onBindViewHolder: payloads");

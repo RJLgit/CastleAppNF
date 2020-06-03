@@ -283,11 +283,15 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                     return;
                 }
                 for (Location location : locationResult.getLocations()) {
-                    l = location;
-                    castleAdapter.setPhoneLocation(l);
-                    castleAdapter.notifyItemRangeChanged(0, castleAdapter.getItemCount(), l);
-                    //recyclerView.setAdapter(castleAdapter);
-                    Log.d(TAG, "onLocationResult: " + location);
+                    if (location != l) {
+                        l = location;
+                        castleAdapter.setPhoneLocation(l);
+                        //castleAdapter.notifyItemRangeChanged(0, castleAdapter.getItemCount(), l);
+                        recyclerView.setAdapter(castleAdapter);
+                        Log.d(TAG, "onLocationResult: " + location);
+                        Log.d(TAG, "onLocationResult: " + castleAdapter);
+                    }
+
                 }
             }
         };
