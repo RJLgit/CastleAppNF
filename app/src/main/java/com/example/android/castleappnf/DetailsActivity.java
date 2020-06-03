@@ -304,6 +304,7 @@ public class DetailsActivity extends BaseActivity {
             case R.id.full_image_item:
                 Intent intent = new Intent(this, FullImageActivity.class);
                 intent.putExtra("CastleName", myCastle.getName());
+                intent.putExtra("Castle", myCastle);
                 startActivity(intent);
                 Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
             default:
@@ -430,6 +431,19 @@ public class DetailsActivity extends BaseActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +30,7 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
     final int maxImages = 3;
     String castleName;
     Toolbar toolbar;
+    Castles myCastle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
         setContentView(R.layout.activity_full_image);
         imageView = findViewById(R.id.fullImageView);
         mStorageRef = FirebaseStorage.getInstance().getReference();
+        myCastle = (Castles) getIntent().getSerializableExtra("Castle");
         castleName = getIntent().getStringExtra("CastleName");
         gestureDetector = new GestureDetector(this, this);
         StorageReference myImage = mStorageRef.child("images/" + castleName.toLowerCase() + " " + currentImage + ".PNG");
@@ -78,6 +82,17 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
         }
 
     }
+
+
+
+   /* @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("Castle", myCastle);
+        startActivity(intent);
+    }*/
+
+
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -160,5 +175,24 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
             });
         }
         return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, DetailsActivity.class);
+            intent.putExtra("Castle", myCastle);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("Castle", myCastle);
+        startActivity(intent);
     }
 }
