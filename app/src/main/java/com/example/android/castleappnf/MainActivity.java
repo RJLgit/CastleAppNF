@@ -231,6 +231,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
             @Override
             public void onClick(View view) {
                 //trigger notification
+                NotificationUtils.createNotificationForApp(MainActivity.this);
             }
         });
 
