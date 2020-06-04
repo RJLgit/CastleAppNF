@@ -50,4 +50,9 @@ public class NotificationUtils {
         notificationManager.notify(CASTLE_NOTIFICATION_ID, notification);
 
     }
+
+    public static void clearAllNotifications(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+    }
 }
