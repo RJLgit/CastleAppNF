@@ -32,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +72,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     BottomNavigationView bottNav;
     Uri image;
     private FirebaseAuth mAuth;
+    Button notificationButton;
     //ConnectionReceiver connectionReceiver = new ConnectionReceiver();
     CastleAdapter castleAdapter;
 
@@ -223,6 +225,15 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         bottStatus = findViewById(R.id.bottom_main_status_text_view);
         bottNav = findViewById(R.id.bott_nav_bar);
         Log.d(TAG, "onCreate: ");
+
+        notificationButton = findViewById(R.id.testNotificationButton);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //trigger notification
+            }
+        });
+
 
         logIn();
 

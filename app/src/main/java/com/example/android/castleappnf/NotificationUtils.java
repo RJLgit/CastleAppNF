@@ -7,5 +7,5 @@ public class NotificationUtils {
 
     private static final String CASTLE_NOTIFICATION_CHANNEL_ID = "castle_notification_channel";
 
-    
+
 }
