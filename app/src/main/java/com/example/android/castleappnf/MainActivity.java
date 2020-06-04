@@ -518,42 +518,37 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("distance_preference")) {
             distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
-            castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
-            castleAdapter.setPhoneLocation(l);
-            recyclerView.setAdapter(castleAdapter);
+            createAndSetAdapter();
         }
         if (s.equals("sort_preference")) {
             sortBy = sharedPreferences.getString("sort_preference", "A-Z");
             if (sortBy.equals("Distance")) {
-                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
-                castleAdapter.setPhoneLocation(l);
-                recyclerView.setAdapter(castleAdapter);
+                createAndSetAdapter();
             } else if (sortBy.equals("A-Z")) {
-                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
-                castleAdapter.setPhoneLocation(l);
-                recyclerView.setAdapter(castleAdapter);
+                createAndSetAdapter();
             } else if (sortBy.equals("Rating")) {
-                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
-                castleAdapter.setPhoneLocation(l);
-                recyclerView.setAdapter(castleAdapter);
+                createAndSetAdapter();
             }
         }
         if (s.equals("filter_preference")) {
             filterBy = sharedPreferences.getString("filter_preference", "None");
             if (filterBy.equals("English Heritage")) {
                 Log.d(TAG, "onSharedPreferenceChanged: " + filterBy);
-                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
-                castleAdapter.setPhoneLocation(l);
-                recyclerView.setAdapter(castleAdapter);
+                createAndSetAdapter();
             }
             if (filterBy.equals("None")) {
                 Log.d(TAG, "onSharedPreferenceChanged: " + filterBy);
-                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
-                castleAdapter.setPhoneLocation(l);
-                recyclerView.setAdapter(castleAdapter);
+                createAndSetAdapter();
             }
         }
     }
+
+    private void createAndSetAdapter() {
+        castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
+        castleAdapter.setPhoneLocation(l);
+        recyclerView.setAdapter(castleAdapter);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
