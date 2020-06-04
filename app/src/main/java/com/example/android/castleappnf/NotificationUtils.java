@@ -34,7 +34,7 @@ public class NotificationUtils {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationChannel myChannel = new NotificationChannel(CASTLE_NOTIFICATION_CHANNEL_ID,
                                                             "My notification channel",
-                                                                    NotificationManager.IMPORTANCE_HIGH);
+                                                                    NotificationManager.IMPORTANCE_LOW);
         notificationManager.createNotificationChannel(myChannel);
         Notification notification = new Notification.Builder(context, CASTLE_NOTIFICATION_CHANNEL_ID)
                 .setLargeIcon(getNotificationIcon(context))
@@ -50,6 +50,8 @@ public class NotificationUtils {
         notificationManager.notify(CASTLE_NOTIFICATION_ID, notification);
 
     }
+
+
 
     public static void clearAllNotifications(Context context) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
