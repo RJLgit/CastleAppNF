@@ -35,6 +35,8 @@ public class NotificationUtils {
         NotificationChannel myChannel = new NotificationChannel(CASTLE_NOTIFICATION_CHANNEL_ID,
                                                             "My notification channel",
                                                                     NotificationManager.IMPORTANCE_LOW);
+
+        myChannel.setDescription("Channel to receive weekly notifications about castles");
         notificationManager.createNotificationChannel(myChannel);
         Notification notification = new Notification.Builder(context, CASTLE_NOTIFICATION_CHANNEL_ID)
                 .setLargeIcon(getNotificationIcon(context))
@@ -44,6 +46,7 @@ public class NotificationUtils {
                 .setStyle(new Notification.BigPictureStyle()
                         .bigPicture(getNotificationIcon(context)))
                 .setContentIntent(getPendingIntent(context))
+                .setCategory(NotificationCompat.CATEGORY_PROMO)
                 .setAutoCancel(true)
                 .build();
 
