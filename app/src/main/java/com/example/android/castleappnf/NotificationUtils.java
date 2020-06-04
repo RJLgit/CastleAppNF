@@ -1,5 +1,7 @@
 package com.example.android.castleappnf;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -24,5 +26,13 @@ public class NotificationUtils {
         Bitmap myIcon = BitmapFactory.decodeResource(res, R.drawable.castle);
         return myIcon;
     }
-    
+
+    public static void createNotificationForApp(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel myChannel = new NotificationChannel(CASTLE_NOTIFICATION_CHANNEL_ID,
+                                                            "My notification channel",
+                                                                    NotificationManager.IMPORTANCE_HIGH);
+        notificationManager.createNotificationChannel(myChannel);
+
+    }
 }
