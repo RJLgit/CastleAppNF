@@ -9,6 +9,11 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -51,6 +56,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -225,6 +232,14 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         bottStatus = findViewById(R.id.bottom_main_status_text_view);
         bottNav = findViewById(R.id.bott_nav_bar);
         Log.d(TAG, "onCreate: ");
+
+        Constraints constraints = new Constraints.Builder()
+                .build();
+        PeriodicWorkRequest workRequest =
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 10, TimeUnit.SECONDS)
+                        .build();
+
+        WorkManager.getInstance(this).enqueue(workRequest);
 
         notificationButton = findViewById(R.id.testNotificationButton);
         notificationButton.setOnClickListener(new View.OnClickListener() {
