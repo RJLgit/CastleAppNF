@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -109,7 +110,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                         .setConstraints(constraints)
                         .build();
 
-        WorkManager.getInstance(this).enqueue(workRequest);
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(NotificationWorker.NOT_TASK_ID,
+                ExistingPeriodicWorkPolicy.KEEP, workRequest);
     }
 
     public void logIn() {

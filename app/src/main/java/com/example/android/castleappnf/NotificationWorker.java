@@ -12,6 +12,7 @@ public class NotificationWorker extends Worker {
 
     Context context;
     private static final String TAG = "NotificationWorker";
+    public static final String NOT_TASK_ID = "castle_not";
 
     public NotificationWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);

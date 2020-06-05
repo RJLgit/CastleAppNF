@@ -8,6 +8,7 @@ import android.widget.Toast;
 import java.util.concurrent.TimeUnit;
 
 import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -27,7 +28,8 @@ public class NotificationBootReceiver extends BroadcastReceiver {
                         .setConstraints(constraints)
                         .build();
 
-        WorkManager.getInstance(context).enqueue(workRequest);
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(NotificationWorker.NOT_TASK_ID,
+                ExistingPeriodicWorkPolicy.KEEP, workRequest);
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
 
