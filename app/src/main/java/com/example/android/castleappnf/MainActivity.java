@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
 
 
-    //Triggered when phone connects to the internet
+    //Triggered when phone connects to the internet by broadcast receiver. Means when phone connects it is able to gain access to firebase
     @Override
     public void logIn(boolean b) {
         if (b) {
@@ -135,13 +135,13 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     }
 
 
-
+    //Sets up the shared preferences file and finds the current shared preference values for each of the preferences
     private void setUpSharedPreferences() {
         Log.d(TAG, "setUpSharedPreferences: ");
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
-        sortBy = sharedPreferences.getString("sort_preference", "A-Z");
-        filterBy = sharedPreferences.getString("filter_preference", "None");
+        distanceUnit = sharedPreferences.getString(getString(R.string.shared_preference_distance_key), getString(R.string.shared_preference_distance_default));
+        sortBy = sharedPreferences.getString(getString(R.string.shared_preference_sort_key), getString(R.string.shared_preference_sort_default));
+        filterBy = sharedPreferences.getString(getString(R.string.shared_preference_filter_key), getString(R.string.shared_preference_filter_default));
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 

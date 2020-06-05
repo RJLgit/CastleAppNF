@@ -35,6 +35,15 @@
     <string name="audio_title">Detailed history of the site</string>
     <string name="details_rating_title">Site rating</string>
 
+    <!--Shared preference strings-->
+    <string name="shared_preference_distance_key">distance_preference</string>
+    <string name="shared_preference_sort_key">sort_preference</string>
+    <string name="shared_preference_filter_key">filter_preference</string>
+    <string name="shared_preference_distance_default">Miles</string>
+    <string name="shared_preference_sort_default">A-Z</string>
+    <string name="shared_preference_filter_default">None</string>
+
+
     <string-array name="distance_array">
         <item>Km</item>
         <item>Miles</item>
@@ -258,4 +267,7 @@
 
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+
+
+
 </resources>
