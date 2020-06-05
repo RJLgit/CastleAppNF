@@ -50,6 +50,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -237,8 +239,9 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         }
     }
 
-
+    //When all permissions have been granted, this method is launched
     private void permissionsAndGpsGranted() {
+        //Set up of the recyclerview
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -247,13 +250,18 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         Log.d(TAG, "permissionsAndGpsGranted: ");
+        //Set up of the toolbar for the activity
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("UK Castles");
         toolbar.setSubtitle("Click Castle to see more info");
         setSupportActionBar(toolbar);
+
         final Context context = this;
+        //Fused location client is created
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        //Adapter is created with dummy data, firebase reference and shared preference information
         castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef, filterBy);
+        //Get last location finds the last location of the phone and sets it to the adapter object. Adapter is then set to the recyclerview
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
@@ -270,6 +278,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                         Log.d(TAG, "onSuccess: " + location);
                     }
                 });
+        //Location callback is initiated. This object handles the location callback when the location of the phone is communicated with the app via the location request created at the end of this method
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -281,7 +290,6 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                     if (location != l) {
                         l = location;
                         castleAdapter.setPhoneLocation(l);
-                        //castleAdapter.notifyItemRangeChanged(0, castleAdapter.getItemCount(), l);
                         recyclerView.setAdapter(castleAdapter);
                         Log.d(TAG, "onLocationResult: " + location);
                         Log.d(TAG, "onLocationResult: " + castleAdapter);
@@ -291,23 +299,22 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
             }
         };
         createLocationRequest();
-
-
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopLocationUpdates();
+    //Creates a location request to regularly get the location for the app.
+    protected void createLocationRequest() {
+        locationRequest = LocationRequest.create();
+        //Location communicated every 60 seconds but only if distance moves a certain amount
+        locationRequest.setInterval(60000);
+        locationRequest.setFastestInterval(60000);
+        //Means that location is only communicated with the app when it changes by at least 1 KM
+        locationRequest.setSmallestDisplacement(1000);
+        //Accurated location obtained.
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        Log.d(TAG, "createLocationRequest: ");
     }
 
-    private void stopLocationUpdates() {
-        if (fusedLocationClient != null && locationCallback != null) {
-            fusedLocationClient.removeLocationUpdates(locationCallback);
-        }
-
-    }
-
+    //If the app has permissions then location updates are started in onresume.
     @Override
     protected void onResume() {
         Log.d(TAG, "onResume: ");
@@ -315,11 +322,17 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         if (mLocationPermissionGranted) {
             startLocationUpdates();
         }
-
-
     }
 
+    //Location updates are stopped in onpause
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
 
+    //The fusedlocationclient pairs together the location request that defines how accurate and often the location request is, with the location callback which defines what to do with the location request
+    //The callback essentially takes the new location and uses it to change the adapter to have the new data in the recyclerview
     private void startLocationUpdates() {
         fusedLocationClient.requestLocationUpdates(locationRequest,
                 locationCallback,
@@ -327,32 +340,12 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         Log.d(TAG, "startLocationUpdates: ");
     }
 
-    protected void createLocationRequest() {
-        locationRequest = LocationRequest.create();
-        locationRequest.setInterval(60000);
-        locationRequest.setFastestInterval(60000);
-        locationRequest.setSmallestDisplacement(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        Log.d(TAG, "createLocationRequest: ");
-    }
-
-
-
-
-
-
-
- /*       if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-            permissionsAndGpsGranted();
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+    //If the location client and callback exists then their association is removed to stop the app updating its location in the background.
+    private void stopLocationUpdates() {
+        if (fusedLocationClient != null && locationCallback != null) {
+            fusedLocationClient.removeLocationUpdates(locationCallback);
         }
-    }*/
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
