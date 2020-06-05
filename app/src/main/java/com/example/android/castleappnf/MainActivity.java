@@ -239,6 +239,41 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         }
     }
 
+    //Method which responds to the result of permission requests
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        //Sets the boolean variable to false
+        mLocationPermissionGranted = false;
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Log.d(TAG, "onRequestPermissionsResult: granted");
+                    mLocationPermissionGranted = true;
+                    permissionsAndGpsGranted();
+                } else {
+                    //Forces app to be closed if permission not granted.
+                    Log.d(TAG, "onRequestPermissionsResult: failed");
+                    final AlertDialog.Builder pBuilder = new AlertDialog.Builder(this);
+                    pBuilder.setMessage("Please enable location permissions to use this app")
+                            .setCancelable(false)
+                            .setNeutralButton("Close App", new DialogInterface.OnClickListener() {
+                                public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                                    finishAffinity();
+                                    System.exit(0);
+                                }
+                            });
+                    final AlertDialog pAlert = pBuilder.create();
+                    pAlert.show();
+                }
+            }
+        }
+    }
+
     //When all permissions have been granted, this method is launched
     private void permissionsAndGpsGranted() {
         //Set up of the recyclerview
@@ -347,46 +382,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        mLocationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Log.d(TAG, "onRequestPermissionsResult: granted");
-                    mLocationPermissionGranted = true;
-                    permissionsAndGpsGranted();
-                } else {
-                    Log.d(TAG, "onRequestPermissionsResult: failed");
-                    final AlertDialog.Builder pBuilder = new AlertDialog.Builder(this);
-                    pBuilder.setMessage("Please enable location permissions to use this app")
-                            .setCancelable(false)
-                            .setNeutralButton("Close App", new DialogInterface.OnClickListener() {
-                                public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                                    finishAffinity();
-                                    System.exit(0);
-                                }
-                            });
-                    final AlertDialog pAlert = pBuilder.create();
-                    pAlert.show();
-                }
-            }
-        }
-    }
-
-    @Override
-    public void onMyItemClicked(Castles c) {
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("Castle", c);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
-
+    //Creates the options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -394,48 +391,38 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         return true;
     }
 
+    //When an option is selected from the settings menu then it starts the settings activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.my_settings) {
             Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
             startActivity(startSettingsActivity);
+            //Adds in animations to move between activities
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
-            //Add slide out top/bottom animations
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    //This method is called when the shared preferences are changed. Each time they are changed then it recreates the adapter and sets it to the recyclerview with different sharedpreference variables.
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if (s.equals("distance_preference")) {
-            distanceUnit = sharedPreferences.getString("distance_preference", "Miles");
+        if (s.equals(getString(R.string.shared_preference_distance_key))) {
+            distanceUnit = sharedPreferences.getString(getString(R.string.shared_preference_distance_key), getString(R.string.shared_preference_distance_default));
             createAndSetAdapter();
         }
-        if (s.equals("sort_preference")) {
-            sortBy = sharedPreferences.getString("sort_preference", "A-Z");
-            if (sortBy.equals("Distance")) {
-                createAndSetAdapter();
-            } else if (sortBy.equals("A-Z")) {
-                createAndSetAdapter();
-            } else if (sortBy.equals("Rating")) {
-                createAndSetAdapter();
-            }
+        if (s.equals(getString(R.string.shared_preference_sort_key))) {
+            sortBy = sharedPreferences.getString(getString(R.string.shared_preference_sort_key), getString(R.string.shared_preference_sort_default));
+            createAndSetAdapter();
         }
-        if (s.equals("filter_preference")) {
-            filterBy = sharedPreferences.getString("filter_preference", "None");
-            if (filterBy.equals("English Heritage")) {
-                Log.d(TAG, "onSharedPreferenceChanged: " + filterBy);
-                createAndSetAdapter();
-            }
-            if (filterBy.equals("None")) {
-                Log.d(TAG, "onSharedPreferenceChanged: " + filterBy);
-                createAndSetAdapter();
-            }
+        if (s.equals(getString(R.string.shared_preference_filter_key))) {
+            filterBy = sharedPreferences.getString(getString(R.string.shared_preference_filter_key), getString(R.string.shared_preference_filter_default));
+            createAndSetAdapter();
         }
     }
 
+    //Helper method to deal with creating the setting adapter to recyclerview
     private void createAndSetAdapter() {
         castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), this, distanceUnit, sortBy, mStorageRef, filterBy);
         castleAdapter.setPhoneLocation(l);
@@ -493,5 +480,14 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         }
 
 
+    }
+
+    //Interface method that acts on onclick events in the recyclerview
+    @Override
+    public void onMyItemClicked(Castles c) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("Castle", c);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }
