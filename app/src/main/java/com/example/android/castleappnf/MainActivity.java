@@ -429,44 +429,45 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         recyclerView.setAdapter(castleAdapter);
     }
 
+    //Unregister on shared preference listener that is registered in oncreate
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    //The BaseActivity super class registers ConnectionReceiver here
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart: ");
         super.onStart();
-        /*IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(connectionReceiver, filter);*/
     }
 
+    //The BaseActivity super class unregisters ConnectionReceiver here
     @Override
     protected void onStop() {
         Log.d(TAG, "onStop: ");
         super.onStop();
-        //unregisterReceiver(connectionReceiver);
     }
 
+    //Shows bottom toolbar when user goes offline
     @Override
     public void showBottomToolBar() {
         Log.d(TAG, "showBottomToolBar: ");
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
         layoutParams.setMargins(0, 0, 0, 60);
         bottNav.setVisibility(View.VISIBLE);
-        bottStatus.setText("Offline");
+        bottStatus.setText(R.string.offline_string);
         bottStatus.setBackgroundColor(Color.RED);
     }
 
+    //Hides bottom toolbar when user goes online. Short delay where it shows user online using a handler postDelayed method
     @Override
     public void hideBottomToolBar() {
         Log.d(TAG, "hideBottomToolBar: ");
         if (bottNav.getVisibility() == View.VISIBLE) {
-            bottStatus.setText("Online");
+            bottStatus.setText(R.string.online_string);
             bottStatus.setBackgroundColor(Color.GREEN);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {

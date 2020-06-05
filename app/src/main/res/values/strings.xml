@@ -43,6 +43,10 @@
     <string name="shared_preference_sort_default">A-Z</string>
     <string name="shared_preference_filter_default">None</string>
 
+    <!--Strings for text in bottom toolbar about whether device online or offline-->
+    <string name="offline_string">Offline</string>
+    <string name="online_string">Online</string>
+
 
     <string-array name="distance_array">
         <item>Km</item>
