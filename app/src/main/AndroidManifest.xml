@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FullImageActivity" android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden" android:parentActivityName=".DetailsActivity"></activity>
+        <receiver
+            android:name=".NotificationBootReceiver"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".FullImageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".DetailsActivity"
+            android:screenOrientation="landscape" />
 
         <receiver
             android:name=".ConnectionReceiver"
@@ -32,7 +47,9 @@
         <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".DetailsActivity" android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".DetailsActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop">

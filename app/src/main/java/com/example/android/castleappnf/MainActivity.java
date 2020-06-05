@@ -241,14 +241,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
         WorkManager.getInstance(this).enqueue(workRequest);
 
-        notificationButton = findViewById(R.id.testNotificationButton);
-        notificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //trigger notification
-                NotificationUtils.createNotificationForApp(MainActivity.this);
-            }
-        });
+       
 
 
         logIn();
