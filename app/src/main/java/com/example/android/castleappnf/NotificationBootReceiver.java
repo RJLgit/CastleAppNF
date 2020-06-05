@@ -19,9 +19,12 @@ public class NotificationBootReceiver extends BroadcastReceiver {
         Toast.makeText(context, "Boot completed", Toast.LENGTH_LONG).show();
 
         Constraints constraints = new Constraints.Builder()
+                .setRequiresCharging(true)
                 .build();
         PeriodicWorkRequest workRequest =
-                new PeriodicWorkRequest.Builder(NotificationWorker.class, 10, TimeUnit.SECONDS)
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 48, TimeUnit.HOURS)
+                        .setInitialDelay(1, TimeUnit.HOURS)
+                        .setConstraints(constraints)
                         .build();
 
         WorkManager.getInstance(context).enqueue(workRequest);

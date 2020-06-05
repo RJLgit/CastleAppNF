@@ -234,14 +234,17 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         Log.d(TAG, "onCreate: ");
 
         Constraints constraints = new Constraints.Builder()
+                .setRequiresCharging(true)
                 .build();
         PeriodicWorkRequest workRequest =
-                new PeriodicWorkRequest.Builder(NotificationWorker.class, 10, TimeUnit.SECONDS)
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 48, TimeUnit.HOURS)
+                        .setInitialDelay(1, TimeUnit.HOURS)
+                        .setConstraints(constraints)
                         .build();
 
         WorkManager.getInstance(this).enqueue(workRequest);
 
-       
+
 
 
         logIn();
