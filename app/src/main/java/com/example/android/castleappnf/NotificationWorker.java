@@ -14,7 +14,6 @@ public class NotificationWorker extends Worker {
     private static final String TAG = "NotificationWorker";
 
     public NotificationWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
-
         super(context, workerParams);
         this.context = context;
         Log.d(TAG, "NotificationWorker: ");

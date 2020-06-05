@@ -82,7 +82,36 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     String distanceUnit;
     String sortBy;
     String filterBy;
-    
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //Assign UI elements to variables
+        recyclerView = findViewById(R.id.recyclerView);
+        bottStatus = findViewById(R.id.bottom_main_status_text_view);
+        bottNav = findViewById(R.id.bott_nav_bar);
+        Log.d(TAG, "onCreate: ");
+
+        createWorkerNotification();
+
+        logIn();
+    }
+
+    //Creates peroidic work request object and uses workmanager to send notification every 48 hours
+    private void createWorkerNotification() {
+        Constraints constraints = new Constraints.Builder()
+                .setRequiresCharging(true)
+                .build();
+        PeriodicWorkRequest workRequest =
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 48, TimeUnit.HOURS)
+                        .setInitialDelay(1, TimeUnit.HOURS)
+                        .setConstraints(constraints)
+                        .build();
+
+        WorkManager.getInstance(this).enqueue(workRequest);
+    }
+
     public void logIn() {
 
         Log.d(TAG, "logIn: ");
@@ -222,39 +251,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.recyclerView);
-        bottStatus = findViewById(R.id.bottom_main_status_text_view);
-        bottNav = findViewById(R.id.bott_nav_bar);
-        Log.d(TAG, "onCreate: ");
 
-        Constraints constraints = new Constraints.Builder()
-                .setRequiresCharging(true)
-                .build();
-        PeriodicWorkRequest workRequest =
-                new PeriodicWorkRequest.Builder(NotificationWorker.class, 48, TimeUnit.HOURS)
-                        .setInitialDelay(1, TimeUnit.HOURS)
-                        .setConstraints(constraints)
-                        .build();
-
-        WorkManager.getInstance(this).enqueue(workRequest);
-
-
-
-
-        logIn();
-
-
-
-
-
-
-
-
-    }
 
     private void setUpSharedPreferences() {
         Log.d(TAG, "setUpSharedPreferences: ");
