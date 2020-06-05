@@ -1,52 +1,35 @@
 package com.example.android.castleappnf;
 
-import android.location.Location;
-import android.os.Parcelable;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.Comparator;
 
+/*Class that represents the castles themselves, implements Serializable so it can be passed between activities in intents.*/
 public class Castles implements Serializable {
     private String name;
     private String operator;
-    //Need to add time and geolocation in future
     private int rating;
     private String[] history;
-
     private int audio;
-    //Hard coded until calculated from location data and phone location
     private float distance;
     private double longdi;
     private double lat;
     private String website;
     private String openingTimes;
-    //private Location castleLocation;
 
     public Castles(String name, String operator, int rating, String[] history, int audio, double longditude, double latitude, String web, String openingTimes) {
         this.name = name;
         this.operator = operator;
         this.rating = rating;
         this.history = history;
-
         this.audio = audio;
+        //Hardcoded distance in case location on phone doesn't work
         this.distance = 45;
         this.lat = latitude;
         this.longdi = longditude;
         this.website = web;
         this.openingTimes = openingTimes;
-        //castleLocation = new Location("");
-        //castleLocation.setLatitude(latitude);
-        //castleLocation.setLongitude(longditude);
     }
-
-  /*  public Location getCastleLocation() {
-        return castleLocation;
-    }
-
-    public void setCastleLocation(Location castleLocation) {
-        this.castleLocation = castleLocation;
-    }*/
 
     public String getName() {
         return name;
@@ -129,23 +112,14 @@ public class Castles implements Serializable {
         this.openingTimes = openingTimes;
     }
 
-    /*@Override
-    public int compareTo(Castles castles) {
-        if(distance==castles.distance)
-            return 0;
-        else if(distance>castles.distance)
-            return 1;
-        else
-            return -1;
-    }*/
-
+    //Comparator to allow sorting by A-Z
     static class AZComparator implements Comparator<Castles> {
         @Override
         public int compare(Castles castles, Castles t1) {
            return castles.getName().compareTo(t1.getName());
         }
     }
-
+    //Comparator to allow sorting by distance
     static class DistanceComparator implements Comparator<Castles> {
         @Override
         public int compare(Castles castles, Castles t1) {
@@ -157,7 +131,7 @@ public class Castles implements Serializable {
                 return -1;
         }
     }
-
+    //Comparator to allow sorting by rating
     static class RatingComparator implements Comparator<Castles> {
         @Override
         public int compare(Castles castles, Castles t1) {
@@ -169,7 +143,5 @@ public class Castles implements Serializable {
                 return 1;
         }
     }
-
-
-
+    
 }
