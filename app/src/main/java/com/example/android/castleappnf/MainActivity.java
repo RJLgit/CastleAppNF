@@ -145,6 +145,98 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    //Method which checks whether GPS is enabled on the device. If it is then it returns true. Otherwise it returns false and builds an alert to requet GPS enabled
+    public boolean isMapsEnabled(){
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+        Log.d(TAG, "isMapsEnabled: ");
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            Log.d(TAG, "isMapsEnabled: false");
+            buildAlertMessageNoGps();
+
+            return false;
+        }
+        Log.d(TAG, "isMapsEnabled: true");
+        return true;
+    }
+
+    //Method builds an Alert which allows the user to enable GPS permission.
+    private void buildAlertMessageNoGps() {
+        Log.d(TAG, "buildAlertMessageNoGps: ");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("This application requires GPS to work properly, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        Intent enableGpsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(enableGpsIntent, PERMISSIONS_REQUEST_ENABLE_GPS);
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    //On activity result called when the GPS permission is granted. This then checks to see if the location permission is granted. If not it requests that. If so then it continues with the app function
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: called.");
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ENABLE_GPS: {
+                if(mLocationPermissionGranted){
+                    permissionsAndGpsGranted();
+                }
+                else{
+                    getLocationPermission();
+                }
+            }
+        }
+    }
+
+    //Checks if location permission granted. If so it sets the boolean variable to true for future reference.
+    //If not then it requests the permission from the user. If the user previously rejected the permission then permission rationale is shown
+    //If user not previously rejected permission then it is requested.
+    private void getLocationPermission() {
+        /*
+         * Request location permission, so that we can get the location of the
+         * device. The result of the permission request is handled by a callback,
+         * onRequestPermissionsResult.
+         */
+        Log.d(TAG, "getLocationPermission: ");
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mLocationPermissionGranted = true;
+            permissionsAndGpsGranted();
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                new AlertDialog.Builder(this).setTitle("Permission needed")
+                        .setMessage("This permission is needed for the app to run")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .create().show();
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
+        }
+    }
+
 
     private void permissionsAndGpsGranted() {
         recyclerView.setHasFixedSize(true);
@@ -244,104 +336,11 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         Log.d(TAG, "createLocationRequest: ");
     }
 
-    private void buildAlertMessageNoGps() {
-        Log.d(TAG, "buildAlertMessageNoGps: ");
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("This application requires GPS to work properly, do you want to enable it?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        Intent enableGpsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivityForResult(enableGpsIntent, PERMISSIONS_REQUEST_ENABLE_GPS);
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-    public boolean isMapsEnabled(){
-        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
-        Log.d(TAG, "isMapsEnabled: ");
-        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-            Log.d(TAG, "isMapsEnabled: false");
-            buildAlertMessageNoGps();
-            
-            return false;
-        }
-        Log.d(TAG, "isMapsEnabled: true");
-        return true;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "onActivityResult: called.");
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ENABLE_GPS: {
-                if(mLocationPermissionGranted){
-                    permissionsAndGpsGranted();
-                }
-                else{
-                    getLocationPermission();
-                }
-            }
-            /*case ConnectionReceiver.REQUEST_CONN: {
-                boolean noConnectivity = data.getBooleanExtra(
-                        ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
-                );
-                if (!noConnectivity) {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-
-                }
-            }*/
-        }
-
-    }
-
-    private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        Log.d(TAG, "getLocationPermission: ");
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-            permissionsAndGpsGranted();
-        } else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                new AlertDialog.Builder(this).setTitle("Permission needed")
-                        .setMessage("This permission is needed for the app to run")
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .create().show();
 
 
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-            }
-        }
-    }
+
+
+
 
  /*       if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
