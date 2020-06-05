@@ -3,6 +3,7 @@ package com.example.android.castleappnf;
 import android.content.Context;
 
 import java.util.ArrayList;
+/*Class that creates the castles and generates an ArrayList of them for the app to use.*/
 
 public class DummyData {
     public static ArrayList<Castles> generateAndReturnDataAZ(Context context) {
@@ -35,36 +36,7 @@ public class DummyData {
         Castles oxford;
         Castles maiden;
         Castles tamworth;
-
-
-       /* int[] alnPics = {R.drawable.alnwick_castle, R.drawable.alnwickpictwo, R.drawable.alnwickpicthree};
-        int[] walkPics = {R.drawable.walkworth_castle, R.drawable.warkpictwo, R.drawable.warkpicthree};
-        int[] warwickPics = {R.drawable.warwick_castle_1, R.drawable.warwick_castle_2, R.drawable.warwick_castle_3};
-        int[] dunstanPics = {R.drawable.dunstan_castle, R.drawable.dunstanpictwo, R.drawable.dunstanpicthree};
-        int[] rabyPics = {R.drawable.raby_castle, R.drawable.rabypictwo, R.drawable.rabypicthree};
-        int[] berkPics = {R.drawable.berk_castle, R.drawable.berkpictwo, R.drawable.berkpicthree};
-        int[] caenPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
-        int[] banPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
-        int[] risPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
-        int[] dovPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
-        int[] carPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};*/
-        //Need to add photos
-       /* int[] bodPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
-        int[] rochPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
-        int[] conwayPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
-        int[] edinPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
-        int[] stirPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
-        int[] durPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
-        int[] conisPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
-        int[] yorkPics = {R.drawable.caenarven_castle, R.drawable.caenpictwo, R.drawable.caenpicthree};
-        int[] lancasterPics = {R.drawable.banburgh_castle, R.drawable.bampictwo, R.drawable.bampicthree};
-        int[] pontePics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
-        int[] cardiffPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
-        int[] prudhoePics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
-        int[] richmondPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};
-        int[] oxfordPics = {R.drawable.castle_rising, R.drawable.risingpictwo, R.drawable.risingpicthree};
-        int[] lewesPics = {R.drawable.dover_castle, R.drawable.doverpictwo, R.drawable.doverpicthree};*/
-
+        
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
         rising = new Castles("Castle Rising", "Castle rising", 4, context.getResources().getStringArray(R.array.rising_history), R.raw.music_three, 0.4704, 52.7981, "http://www.castlerising.co.uk/", "http://www.castlerising.co.uk/visit-us/");
@@ -94,7 +66,6 @@ public class DummyData {
         tamworth = new Castles("Tamworth Castle", "Tamworth Castle", 4, context.getResources().getStringArray(R.array.tamworth_history), R.raw.music_three, -1.6969, 52.6326, "http://www.tamworthcastle.co.uk/", "http://www.tamworthcastle.co.uk/opening-times-prices");
         maiden = new Castles("Maiden Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.maiden_history), R.raw.music_four, -2.4682, 50.6945, "https://www.english-heritage.org.uk/visit/places/maiden-castle/", "https://www.english-heritage.org.uk/visit/places/maiden-castle/#beforeyougo");
 
-
         result.add(alnwick);
         result.add(banbury);
         result.add(berkhamsted);
@@ -123,12 +94,6 @@ public class DummyData {
         result.add(lewes);
         result.add(maiden);
         result.add(tamworth);
-
-
-
-
-
-
 
         return result;
     }
