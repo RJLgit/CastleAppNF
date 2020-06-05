@@ -36,6 +36,8 @@ public class DummyData {
         Castles oxford;
         Castles maiden;
         Castles tamworth;
+        Castles lincoln;
+        Castles colchester;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -65,6 +67,8 @@ public class DummyData {
         lewes = new Castles("Lewes Castle", "Sussex Archaeological Society", 3, context.getResources().getStringArray(R.array.lewes_history), R.raw.music_two, 0.0078, 50.8729, "https://sussexpast.co.uk/properties-to-discover/lewes-castle", "https://sussexpast.co.uk/properties-to-discover/lewes-castle");
         tamworth = new Castles("Tamworth Castle", "Tamworth Castle", 4, context.getResources().getStringArray(R.array.tamworth_history), R.raw.music_three, -1.6969, 52.6326, "http://www.tamworthcastle.co.uk/", "http://www.tamworthcastle.co.uk/opening-times-prices");
         maiden = new Castles("Maiden Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.maiden_history), R.raw.music_four, -2.4682, 50.6945, "https://www.english-heritage.org.uk/visit/places/maiden-castle/", "https://www.english-heritage.org.uk/visit/places/maiden-castle/#beforeyougo");
+        colchester = new Castles("Colchester Castle", "Colchester museums", 4, context.getResources().getStringArray(R.array.colchester_history), R.raw.music_one, 0.9030, 51.8905, "https://colchester.cimuseums.org.uk/visit/colchester-castle/", "https://colchester.cimuseums.org.uk/visit/colchester-castle/");
+        lincoln = new Castles("Lincoln Castle", "Lincoln Castle", 4, context.getResources().getStringArray(R.array.lincoln_history), R.raw.music_two, -0.5407, 53.2346, "https://www.lincolncastle.com/", "https://www.lincolncastle.com/content/plan-your-visit");
 
         result.add(alnwick);
         result.add(banbury);
@@ -94,6 +98,8 @@ public class DummyData {
         result.add(lewes);
         result.add(maiden);
         result.add(tamworth);
+        result.add(lincoln);
+        result.add(colchester);
 
         return result;
     }

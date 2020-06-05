@@ -268,6 +268,19 @@
         <item>The castle was garrisoned by Royalists during the English Civil War, but was captured by Parliament in 1643 and held by them for the rest of the war.</item>
     </string-array>
 
+    <string-array name="lincoln_history">
+        <item>Lincoln sits on high ground overlooking a generally flat landscape, this strategic importance was recognised by the Romans who built a legionary fortress on this site.</item>
+        <item>A major Norman castle was then constructed on this site following the invasion of William the Conqueror.</item>
+        <item>During the war for the crown between Stephen and Matilda, Lincoln Castle was besieged by Stephen. He was then attacked by a force loyal to Matilda, and was defeated and imprisoned, allowing Matilda to rule England for around 18 months.</item>
+        <item>Following the signing of Magna Carta, Lincoln Castle was the site of another battle between Henry III and the future Louis VIII of France, who had earlier been invited over to England to fight against King John. Henry III decisively won the battle and it was a turning point in the war against Louis and the English barons who supported him.</item>
+    </string-array>
+
+    <string-array name="colchester_history">
+        <item>Colchester Castle was built by the Normans after the invasion of William the Conqueror.</item>
+        <item>Colchester was a major Roman centre, and the large size of the keep is due to the use of the masonry base of the Roman Temple of Claudius, which was the largest Roman temple in Britain.</item>
+        <item>King John besieged Colchester Castle during his war with the Barons, who garrisoned the castle with French troops sent over by Prince Louis of France. John successfully took the castle via negotiations with the defenders.</item>
+        <item>The castle was later used as a prison. In the mid-17th century, the Witchfinder General, Matthew Hopkins, used the castle to interrogate and imprison suspected witches.</item>
+    </string-array>
 
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
