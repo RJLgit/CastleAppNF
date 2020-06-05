@@ -143,5 +143,5 @@ public class Castles implements Serializable {
                 return 1;
         }
     }
-    
+
 }

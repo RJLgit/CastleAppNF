@@ -1,7 +1,6 @@
 package com.example.android.castleappnf;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -10,8 +9,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.Constraints;
-import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -20,13 +17,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,45 +41,48 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
+    //Constant for the permission request for GPS and location
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 5;
-    private static final String TAG = "MainActivity";
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 8;
+    private static final String TAG = "MainActivity";
+
+    //UI elements
     Toolbar toolbar;
+    RecyclerView recyclerView;
+    CastleAdapter castleAdapter;
+    //UI elements shown when connection status changes
+    TextView bottStatus;
+    BottomNavigationView bottNav;
+
+    //Firebase and storage variables
+    private StorageReference mStorageRef;
+    private FirebaseAuth mAuth;
+
+    //Variables that help to obtain and store phone location
     private boolean mLocationPermissionGranted = false;
     private Location l;
     LocationRequest locationRequest;
     LocationCallback locationCallback;
+    private FusedLocationProviderClient fusedLocationClient;
+
+    //Shared preference variables
     SharedPreferences sharedPreferences;
     String distanceUnit;
     String sortBy;
     String filterBy;
-    RecyclerView recyclerView;
-    private StorageReference mStorageRef;
-    TextView bottStatus;
-    BottomNavigationView bottNav;
-    Uri image;
-    private FirebaseAuth mAuth;
-    Button notificationButton;
-    //ConnectionReceiver connectionReceiver = new ConnectionReceiver();
-    CastleAdapter castleAdapter;
-
-    private FusedLocationProviderClient fusedLocationClient;
-
+    
     public void logIn() {
 
         Log.d(TAG, "logIn: ");
