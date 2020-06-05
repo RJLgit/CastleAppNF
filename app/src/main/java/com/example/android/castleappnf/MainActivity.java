@@ -69,7 +69,6 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
     //Firebase and storage variables
     private StorageReference mStorageRef;
-    private FirebaseAuth mAuth;
 
     //Variables that help to obtain and store phone location
     private boolean mLocationPermissionGranted = false;
@@ -95,8 +94,12 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         Log.d(TAG, "onCreate: ");
 
         createWorkerNotification();
-
-        logIn();
+        //Gets storage reference
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        setUpSharedPreferences();
+        if (isMapsEnabled()) {
+            getLocationPermission();
+        }
     }
 
     //Creates peroidic work request object and uses workmanager to send notification every 48 hours
@@ -105,8 +108,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                 .setRequiresCharging(true)
                 .build();
         PeriodicWorkRequest workRequest =
-                new PeriodicWorkRequest.Builder(NotificationWorker.class, 48, TimeUnit.HOURS)
-                        .setInitialDelay(1, TimeUnit.HOURS)
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 1, TimeUnit.SECONDS)
+                        //.setInitialDelay(1, TimeUnit.HOURS)
                         .setConstraints(constraints)
                         .build();
 
@@ -114,142 +117,20 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                 ExistingPeriodicWorkPolicy.KEEP, workRequest);
     }
 
-    public void logIn() {
-
-        Log.d(TAG, "logIn: ");
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() == null) {
-            mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInAnonymously:success");
-                        Toast.makeText(MainActivity.this, "Authentication Success.",
-                                Toast.LENGTH_SHORT).show();
-                        mStorageRef = FirebaseStorage.getInstance().getReference();
-//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    image = uri;
-//                                    Log.d(TAG, "onSuccess: " + uri);
-//                                    setUpSharedPreferences();
-//                                    if (isMapsEnabled()) {
-//
-//                                        getLocationPermission();
-//                                    }
-//                                }
-//                            });
 
 
-                        setUpSharedPreferences();
-                        if (isMapsEnabled()) {
-
-                            getLocationPermission();
-                        }
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInAnonymously:failure", task.getException());
-                        Toast.makeText(MainActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    // ...
-                }
-            });
-        } else {
-            mStorageRef = FirebaseStorage.getInstance().getReference();
-//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    image = uri;
-//                                    Log.d(TAG, "onSuccess: " + uri);
-//                                    setUpSharedPreferences();
-//                                    if (isMapsEnabled()) {
-//
-//                                        getLocationPermission();
-//                                    }
-//                                }
-//                            });
-
-
-            setUpSharedPreferences();
-            if (isMapsEnabled()) {
-
-                getLocationPermission();
-            }
-        }
-    }
-
+    //Triggered when phone connects to the internet
     @Override
     public void logIn(boolean b) {
         if (b) {
 
         } else {
-            mAuth = FirebaseAuth.getInstance();
-            if (mAuth.getCurrentUser() == null) {
-                mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInAnonymously:success");
-                            Toast.makeText(MainActivity.this, "Authentication Success.",
-                                    Toast.LENGTH_SHORT).show();
-                            mStorageRef = FirebaseStorage.getInstance().getReference();
-//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    image = uri;
-//                                    Log.d(TAG, "onSuccess: " + uri);
-//                                    setUpSharedPreferences();
-//                                    if (isMapsEnabled()) {
-//
-//                                        getLocationPermission();
-//                                    }
-//                                }
-//                            });
+            mStorageRef = FirebaseStorage.getInstance().getReference();
 
-
-                            setUpSharedPreferences();
-                            if (isMapsEnabled()) {
-
-                                getLocationPermission();
+            setUpSharedPreferences();
+            if (isMapsEnabled()) {
+                getLocationPermission();
                             }
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInAnonymously:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        // ...
-                    }
-                });
-            } else {
-                mStorageRef = FirebaseStorage.getInstance().getReference();
-//        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    image = uri;
-//                                    Log.d(TAG, "onSuccess: " + uri);
-//                                    setUpSharedPreferences();
-//                                    if (isMapsEnabled()) {
-//
-//                                        getLocationPermission();
-//                                    }
-//                                }
-//                            });
-
-
-                setUpSharedPreferences();
-                if (isMapsEnabled()) {
-
-                    getLocationPermission();
-                }
-            }
         }
     }
 

@@ -23,8 +23,8 @@ public class NotificationBootReceiver extends BroadcastReceiver {
                 .setRequiresCharging(true)
                 .build();
         PeriodicWorkRequest workRequest =
-                new PeriodicWorkRequest.Builder(NotificationWorker.class, 48, TimeUnit.HOURS)
-                        .setInitialDelay(1, TimeUnit.HOURS)
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 1, TimeUnit.SECONDS)
+                        //.setInitialDelay(1, TimeUnit.HOURS)
                         .setConstraints(constraints)
                         .build();
 
