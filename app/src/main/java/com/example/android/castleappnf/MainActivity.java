@@ -123,8 +123,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
     //Triggered when phone connects to the internet by broadcast receiver. Means when phone connects it is able to gain access to firebase
     @Override
-    public void logIn(boolean b) {
-        Log.d(TAG, "logIn: " + b);
+    public void userConnected(boolean b) {
+        Log.d(TAG, "userConnected: " + b);
         if (b) {
 
         } else {

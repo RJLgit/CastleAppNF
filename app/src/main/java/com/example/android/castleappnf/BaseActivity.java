@@ -11,7 +11,7 @@ public class BaseActivity extends AppCompatActivity {
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
     public static boolean connected = true;
 
-    public void logIn(boolean b) {
+    public void userConnected(boolean b) {
 
     }
 

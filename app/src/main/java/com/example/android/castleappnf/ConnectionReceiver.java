@@ -1,13 +1,11 @@
 package com.example.android.castleappnf;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -59,7 +57,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
                 Log.d(TAG, "onReceive: " + alert);
                 alert.dismiss();
                 a.hideBottomToolBar();
-                a.logIn(a.isConnected());
+                a.userConnected(a.isConnected());
                 a.setConnected(true);
                 Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
             }
