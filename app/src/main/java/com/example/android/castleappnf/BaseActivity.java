@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
 
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
-    public boolean connected = true;
+    public static boolean connected = true;
 
     public void logIn(boolean b) {
 

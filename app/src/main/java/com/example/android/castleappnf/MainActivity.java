@@ -124,6 +124,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     //Triggered when phone connects to the internet by broadcast receiver. Means when phone connects it is able to gain access to firebase
     @Override
     public void logIn(boolean b) {
+        Log.d(TAG, "logIn: " + b);
         if (b) {
 
         } else {
@@ -309,8 +310,11 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
 
                             recyclerView.setAdapter(castleAdapter);
                             Log.d(TAG, "onSuccess: " + location);
+                        } else {
+                            Log.d(TAG, "onSuccess: was null" + location);
+
                         }
-                        Log.d(TAG, "onSuccess: " + location);
+
                     }
                 });
         //Location callback is initiated. This object handles the location callback when the location of the phone is communicated with the app via the location request created at the end of this method
