@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/appwidget_image"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_margin="0dp"
         android:padding="0dp"
@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="0dp"
         android:padding="0dp"
-        android:text="Castle App"
+        android:text="My Castle App"
         android:textSize="8sp"
          />
 
