@@ -8,23 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,70 +25,58 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleViewHolder> {
 
     private Context mContext;
+    //Collection of Castles to populated the recyclerview with
     private ArrayList<Castles> castles;
+    //Click listener which is implemented in MainActivity.
     private OnRecyclerItemClickListener mListener;
+    //Location of the phone which is set from MainActivity when Location changes by 1 KM at least or when app starts
     private Location phoneLocation;
+    //Shared preference info from MainActivity.
     private String distanceUnit;
     private String sortBy;
     private String filterBy;
+    //FireBase storage reference
+    private StorageReference storageReference;
+
     private int lastPosition = -1;
     private View myParent;
-    private StorageReference storageReference;
     private Uri image;
+
     private static final String TAG = "CastleAdapter";
 
 
 
     public CastleAdapter() {
+        //Empty constructor
     }
 
+    //Constructor
     public CastleAdapter(Context mContext, ArrayList<Castles> castlesParam, OnRecyclerItemClickListener listener, String distance, String sort, StorageReference ref, String filter) {
         this.mContext = mContext;
+        //The shared preference data from MainActivity
+        this.distanceUnit = distance;
+        this.sortBy = sort;
         filterBy = filter;
+        //Filters the collection of Castles if the user selected to filter the Castles.
+        //May have to add more filter options here if more filter options added.
         if (filterBy.equals("English Heritage")) {
             this.castles = filterCastles(castlesParam);
         } else {
             this.castles = castlesParam;
         }
-
-
         this.mListener = listener;
-
-        this.distanceUnit = distance;
-        this.sortBy = sort;
+        //Receives the Firebase Storage reference in order to get the images
         storageReference = ref;
 
 
     }
 
-/*    private ArrayList<Castles> filterCastles(ArrayList<Castles> castlesList, String filter) {
-        ArrayList<Castles> res = new ArrayList<>();
-        Log.d(TAG, "filterCastles: " + res + "filter is: " + filter);
-        if (filter.equals("English Heritage")) {
-            Log.d(TAG, "filterCastles: heritage");
-            for (Castles cas : castlesList) {
-                if (cas.getOperator().equals("English Heritage")) {
-                    res.add(cas);
-
-                }
-            }
-        } else {
-            Log.d(TAG, "filterCastles: not heritage");
-            for (Castles cas : castlesList) {
-                    res.add(cas);
-            }
-        }
-        Log.d(TAG, "filterCastles: " + res);
-        return res;
-    }*/
-
-
-
-
+    //Getter for phone location
     public Location getPhoneLocation() {
         return phoneLocation;
     }
 
+    //Setter for phone location so it can be set (when it changes) in adapter from Mainactivity without recreated whole adapter (as would have to do if sent location in constructor)
     public void setPhoneLocation(Location phoneLocation) {
         this.phoneLocation = phoneLocation;
 
