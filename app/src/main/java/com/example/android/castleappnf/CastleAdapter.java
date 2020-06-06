@@ -38,10 +38,6 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     //FireBase storage reference
     private StorageReference storageReference;
 
-    private int lastPosition = -1;
-    private View myParent;
-    private Uri image;
-
     private static final String TAG = "CastleAdapter";
 
 
@@ -82,6 +78,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     }
 
+    //Viewholder is created. Different layout for the items used if device has over a certain width in px.
     @NonNull
     @Override
     public CastleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -91,9 +88,7 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             view = inflater.inflate(R.layout.large_list_item_layout, parent, false);
         }
 
-
-
-        myParent = view;
+        //Sorts the Castles collection based on what the sortBy value is in sharedpreferences in MainActivity
         if (phoneLocation != null && sortBy.equals("Distance")) {
             sortCastlesByDistance();
         } else if (sortBy.equals("A-Z")) {
@@ -102,13 +97,13 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             sortCastlesByRating();
         }
 
-
         return new CastleViewHolder(view, mListener);
-
     }
 
+    //Method which filters the Castles collection to return a new collection with only English Heritage Castles if the user wants to filter by this.
+    //In future, may need to pass String that is the filter or even two strings into this method like filterCastles(collection of castles, string of castle variable to filter by, string of what to filter)
+    //So filterCastles(collection, "Operator", "National Trust") would filter by national trust sites only.
     private ArrayList<Castles> filterCastles(ArrayList<Castles> x) {
-
         ArrayList<Castles> newList = new ArrayList<>();
         for (Castles c : x) {
             if (c.getOperator().equals("English Heritage")) {
@@ -120,10 +115,11 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
     }
 
+    //Uses the Castles comparator to sort castles by rating
     private void sortCastlesByRating() {
         Collections.sort(castles, new Castles.RatingComparator());
     }
-
+    //Uses the Castles comparator to sort castles by distance. Has to use phone location to set the distances in each Castles object before this.
     private void sortCastlesByDistance() {
         for (Castles c : castles) {
             float dist = 0;
@@ -132,21 +128,20 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             castLocation.setLatitude(c.getLat());
             dist = phoneLocation.distanceTo(castLocation);
             c.setDistance(dist);
-
         }
         Collections.sort(castles, new Castles.DistanceComparator());
     }
-
+    //Uses the Castles comparator to sort castles by A-Z
     private void sortCastlesByAZ() {
-
         Collections.sort(castles, new Castles.AZComparator());
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position) {
+        //The animation to bind the viewholder with.
         int animToUse = R.anim.slide_in_left;
-
+        //Set a dist float to 0. This will be changed to have the distance between the phone and the castle in it
         float dist = 0;
         Location castLocation = new Location("");
         castLocation.setLongitude(castles.get(position).getLongdi());
@@ -154,82 +149,29 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         if (phoneLocation != null) {
             dist = phoneLocation.distanceTo(castLocation);
         }
+        //Calls the viewholder bind method, passing in the name of the castle, distance, the distance unit, the rating, the context and the animation to use.
         holder.bind(castles.get(position).getName(), dist, distanceUnit, castles.get(position).getRating(), mContext, animToUse);
-        /*Animation animation = AnimationUtils.loadAnimation(mContext,
-                (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-       myParent.startAnimation(animation);*/
-        lastPosition = position;
 
-
+        //The image is obtained from the firebase storage reference using the castle name to get the correct image
         StorageReference myImage = storageReference.child("images/" + castles.get(position).getName().toLowerCase() + " 1.PNG");
         Log.d(TAG, "onBindViewHolder: " + myImage);
         myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-               /* int animToUse = R.anim.load_down_anim;
-
-                if (position > lastPosition) {
-                    animToUse = R.anim.load_up_anim;
-                }
-                lastPosition = position;*/
+                //The viewholder method to the set the image to the viewholder image view is called, passing the uri of the image
                 holder.setImage(uri);
-
-
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                //If image load failed then null is passed to the viewholder and handled there.
                 e.printStackTrace();
-                /*int animToUse = R.anim.load_down_anim;
-
-                if (position > lastPosition) {
-                    animToUse = R.anim.load_up_anim;
-                }
-                lastPosition = position;*/
                 holder.setImage(null);
-
             }
         });
-        //loads correct animation for if scrolling up or down, passes this anim to view holder
-
     }
 
-   /* @Override
-    public void onBindViewHolder(@NonNull final CastleViewHolder holder, final int position, @NonNull List<Object> payloads) {
-        if (payloads.isEmpty()) {
-            Log.d(TAG, "onBindViewHolder: empty payloads");
-            super.onBindViewHolder(holder, position, payloads);
-        } else {
-            Log.d(TAG, "onBindViewHolder: payloads");
-            float dist = 0;
-            Location castLocation = new Location("");
-            castLocation.setLongitude(castles.get(position).getLongdi());
-            castLocation.setLatitude(castles.get(position).getLat());
-            if (phoneLocation != null) {
-                dist = phoneLocation.distanceTo(castLocation);
-                Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + dist + "location is " + phoneLocation);
-            }
-            if (distanceUnit.equals("Km")) {
-
-                int myDist = (int) dist / 1000;
-                Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + myDist);
-                holder.distanceTextView.setText(String.valueOf(myDist) + " KMs away");
-            } else {
-                int myDist = (int) dist / 1609;
-                Log.d(TAG, "onBindViewHolder: payloads " + "position: " + position + "dist: " + myDist);
-                holder.distanceTextView.setText(String.valueOf(myDist) + " Miles away");
-            }
-            *//*if (phoneLocation != null && sortBy.equals("Distance")) {
-                sortCastlesByDistance();
-                Log.d(TAG, "onBindViewHolder: payloads sort" + position);
-            }*//*
-        }
-
-
-    }*/
-
+    //Returns the size of the collection
     @Override
     public int getItemCount() {
         return castles.size();
