@@ -1,6 +1,5 @@
 package com.example.android.castleappnf;
 
-import android.app.Activity;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
@@ -10,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
     //Attachs connection receiver to the activities
     ConnectionReceiver connectionReceiver = new ConnectionReceiver();
-    //Variable which records if app is online. 
+    //Variable which records if app is online.
     public static boolean connected = true;
 
     //Method that is called by the receiver when the users connection state changes between offline and online. The boolean passed allows the activity to know if
