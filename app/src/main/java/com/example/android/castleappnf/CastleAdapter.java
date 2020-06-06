@@ -178,29 +178,34 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
     }
 
     public class CastleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+        //Viewholder UI elements
         TextView nameTextView;
         TextView distanceTextView;
         ImageView imgView;
-        OnRecyclerItemClickListener onRecyclerItemClickListener;
         RatingBar mRatingBar;
         ConstraintLayout mConstraint;
+        //Where to send the click events
+        OnRecyclerItemClickListener onRecyclerItemClickListener;
+
 
         public CastleViewHolder(@NonNull View v, OnRecyclerItemClickListener listener) {
             super(v);
             nameTextView = v.findViewById(R.id.castleNameTextView);
             distanceTextView = v.findViewById(R.id.distanceValueTextView);
             imgView = v.findViewById(R.id.castleRvImageView);
-            onRecyclerItemClickListener = listener;
-            v.setOnClickListener(this);
             mRatingBar = v.findViewById(R.id.myRatingBar);
             mConstraint = v.findViewById(R.id.itemview_parent);
+
+            onRecyclerItemClickListener = listener;
+            //Sets the onclicklistener to this so it must implement onclick
+            v.setOnClickListener(this);
+
         }
 
         public void bind(String x, float z, String distUnit, int rating, Context context, int theAnim) {
             //applies the anim to the whole viewholder
             mConstraint.setAnimation(AnimationUtils.loadAnimation(context, theAnim));
-
+            //Sets the views in the viewholder.
             nameTextView.setText(x);
             mRatingBar.setRating(rating);
             if (distUnit.equals("Km")) {
@@ -210,11 +215,9 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
                 int myDist = (int) z / 1609;
                 distanceTextView.setText(String.valueOf(myDist) + " Miles away");
             }
-            Picasso.get().load(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(450, 310).centerInside().into(imgView);
-
-
         }
 
+        //Sets the imageview to the image obtained from firebase. If null is passed then firebase could not obtain the image and an error image is shown instead.
         public void setImage(Uri y) {
             Log.d(TAG, "bind: " + y);
             if (y != null) {
@@ -224,12 +227,15 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
 
             }
         }
-
+        //When the viewholder is clicked it triggers this method. This essentially sends the click to be handled by the Activity, which is passed to the adapter and then
+        //to the viewholder. This activity implements this onmyitemclicked method which is an interface defined in the adapter. The mainactivity then responds to this
+        //click how it wants. It knows which item is clicked as this method sends a parameter which is the Castles object clicked.
         @Override
         public void onClick(View view) {
             onRecyclerItemClickListener.onMyItemClicked(castles.get(getAdapterPosition()));
         }
     }
+    //Interface to handle the clicks which is implemented in the host activity.
     public interface OnRecyclerItemClickListener{
         void onMyItemClicked(Castles c);
     }
