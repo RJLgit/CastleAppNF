@@ -282,6 +282,20 @@
         <item>The castle was later used as a prison. In the mid-17th century, the Witchfinder General, Matthew Hopkins, used the castle to interrogate and imprison suspected witches.</item>
     </string-array>
 
+    <string-array name="restormel_history">
+        <item>Built in the South West of England, the castle was originally built by the Normans to try and control the area, which was a centre for Anglo-Saxon resistance following the Norman invasion in 1066.</item>
+        <item>Simon de Montfort seized the castle without a fight in 1264 as he took power from Henry III. Henry’s supporters took the castle back the next year.</item>
+        <item>The castle passed into the ownership of the crown in 1299, but was not extensively lived in.</item>
+        <item>The castle was in a state of disrepair from as early as the mid 14th century. </item>
+    </string-array>
+
+    <string-array name="ludlow_history">
+        <item>Founded after the Norman conquest, Ludlow Castle was one of the first stone castles in England.</item>
+        <item>The castle was heavily involved in the war for the English crown between Stephen and Matilda. Stephen took the castle in 1139 and granted it to one of his knights. However, this knight later lost the castle to the de Lacy family during an inter-family conflict.</item>
+        <item>Prince Edward (the future Edward I) gathered his supporters at the castle in 1265, and was able to defeat Simon de Montfort and gain back power for his father Henry III. Simon had previously rebelled against the king and taken power for himself.</item>
+        <item>The castle was an important seat of power for the Yorkists during the Wars of the Roses, as the castle was inherited by the Duke of York in 1425.</item>
+    </string-array>
+
     <string name="appwidget_text">UK Castles</string>
     <string name="add_widget">Add widget</string>
 

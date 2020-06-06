@@ -38,6 +38,8 @@ public class DummyData {
         Castles tamworth;
         Castles lincoln;
         Castles colchester;
+        Castles ludlow;
+        Castles restormel;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -69,6 +71,10 @@ public class DummyData {
         maiden = new Castles("Maiden Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.maiden_history), R.raw.music_four, -2.4682, 50.6945, "https://www.english-heritage.org.uk/visit/places/maiden-castle/", "https://www.english-heritage.org.uk/visit/places/maiden-castle/#beforeyougo");
         colchester = new Castles("Colchester Castle", "Colchester museums", 4, context.getResources().getStringArray(R.array.colchester_history), R.raw.music_one, 0.9030, 51.8905, "https://colchester.cimuseums.org.uk/visit/colchester-castle/", "https://colchester.cimuseums.org.uk/visit/colchester-castle/");
         lincoln = new Castles("Lincoln Castle", "Lincoln Castle", 4, context.getResources().getStringArray(R.array.lincoln_history), R.raw.music_two, -0.5407, 53.2346, "https://www.lincolncastle.com/", "https://www.lincolncastle.com/content/plan-your-visit");
+        restormel = new Castles("Restormel Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.restormel_history), R.raw.music_three, -4.6715, 50.4223, "https://www.english-heritage.org.uk/visit/places/restormel-castle/", "https://www.english-heritage.org.uk/visit/places/restormel-castle/prices-and-opening-times/");
+        ludlow = new Castles("Ludlow Castle", "Ludlow Castle", 5, context.getResources().getStringArray(R.array.ludlow_history), R.raw.music_four, -2.7230, 52.3672, "https://www.ludlowcastle.com/", "https://www.ludlowcastle.com/times-admission/");
+
+
 
         result.add(alnwick);
         result.add(banbury);
@@ -100,6 +106,8 @@ public class DummyData {
         result.add(tamworth);
         result.add(lincoln);
         result.add(colchester);
+        result.add(ludlow);
+        result.add(restormel);
 
         return result;
     }
