@@ -5,11 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark"
     android:elevation="30dp"
-    app:title="UK Castles"
+    app:title="@string/app_name"
     app:titleTextColor="#000000"
     app:subtitleTextColor="#000000"
     android:theme="@style/ToolbarTheme"
-
     >
 
 </androidx.appcompat.widget.Toolbar>
