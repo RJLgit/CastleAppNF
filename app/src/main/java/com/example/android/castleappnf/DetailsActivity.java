@@ -1,17 +1,10 @@
 package com.example.android.castleappnf;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.annotation.SuppressLint;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,13 +21,11 @@ import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -47,12 +38,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-
 public class DetailsActivity extends BaseActivity {
-
-
-    Button openTimesTextView;
-    Button operatedByTextView;
+    private static final String TAG = "DetailsActivity";
+    //UI elements
+    Button openTimesButton;
+    Button operatedByButton;
     ImageView castleImageView;
     TextView historyTitleTextView;
     TextView historyDetailsTextView;
@@ -62,69 +52,71 @@ public class DetailsActivity extends BaseActivity {
     PlayerView mPlayerView;
     private SimpleExoPlayer player;
     Toolbar toolbar;
-    int resourceId;
     TextView bottStatus;
     BottomNavigationView bottNav;
     ScrollView scrollView;
+    ImageView forwards;
+    ImageView backwards;
+
+
+    //Variables associated with the media player
     private boolean playWhenReady = false;
     private int currentWindow = 0;
     private long playbackPosition = 0;
-    private static final String TAG = "DetailsActivity";
-    private int imgIndex = 0;
-    ImageView forwards;
-    ImageView backwards;
+
+    //Firebase StorageReference variable
     private StorageReference mStorageRef;
+
+    //Variables to define the current image being displayed and the total number of images for each castle on firebase
     int currentImage = 1;
     //Number of images per castle in firebase
     final int maxImages = 3;
-    ConnectionReceiver connectionReceiver = new ConnectionReceiver();
+
+    //Castles object passed to the activity from MainActivity
     Castles myCastle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
-
+        //Get the firebase instance and reference
         mStorageRef = FirebaseStorage.getInstance().getReference();
-
+        //Get the Castles object in the intent sent to this activity
         Intent intent = getIntent();
         myCastle = (Castles) intent.getSerializableExtra("Castle");
-
+        //Get all the information from that object to populate the Activity views with
         final String name = myCastle.getName();
         final String operator = myCastle.getOperator();
         final String[] history = myCastle.getHistory();
         final int rating = myCastle.getRating();
-
         final int audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
         final String openTimesWeb = myCastle.getOpeningTimes();
-
+        //A specific reference to the firebase storage image to display first for that castle
         StorageReference myImage = mStorageRef.child("images/" + name.toLowerCase() + " " + currentImage + ".PNG");
 
-
-        resourceId = audio;
+        //Defines the UI elements
         bottStatus = findViewById(R.id.bottom_status_text_view);
         bottNav = findViewById(R.id.bott_nav_bar_details);
         scrollView = findViewById(R.id.scroll_view_container);
-
-
-        openTimesTextView = findViewById(R.id.opening_times_text_view);
-        operatedByTextView = findViewById(R.id.operated_by_text_view);
+        openTimesButton = findViewById(R.id.opening_times_button);
+        operatedByButton = findViewById(R.id.operated_by_button);
         castleImageView = findViewById(R.id.photos_image_view);
         historyTitleTextView = findViewById(R.id.details_history_title_text_view);
         historyDetailsTextView = findViewById(R.id.history_details_text_view);
-        addressButton = findViewById(R.id.address_details_text_view);
+        addressButton = findViewById(R.id.address_details_button);
         ratingTitleTextView = findViewById(R.id.site_rating_title);
         myRatingBarWidget = findViewById(R.id.ratingBar);
         mPlayerView = findViewById(R.id.playerView);
         forwards = findViewById(R.id.forwardImage);
         backwards = findViewById(R.id.backwardsImage);
 
-        openTimesTextView.setText("Opening times change due to time of year - click to see current opening times");
+        //Set the buttons to the desired strings and sets the rating bar to be visible
+        openTimesButton.setText("Opening times change due to time of year - click to see current opening times");
         historyTitleTextView.setText("Brief history of the site");
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
         myRatingBarWidget.setVisibility(View.VISIBLE);
+
         for (int i = 0; i < history.length; i++) {
             String string = "\u21AC " + history[i];
             SpannableString spannableString = new SpannableString(string);
@@ -134,8 +126,7 @@ public class DetailsActivity extends BaseActivity {
             historyDetailsTextView.append(spannableString);
             historyDetailsTextView.append("\n\n");
         }
-        //historyDetailsTextView.setText(history);
-        operatedByTextView.setText("Operated by: " + operator + ". Click to visit their website.");
+        operatedByButton.setText("Operated by: " + operator + ". Click to visit their website.");
         myRatingBarWidget.setRating(rating);
 
         toolbar = findViewById(R.id.toolbar);
@@ -147,7 +138,7 @@ public class DetailsActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        operatedByTextView.setOnClickListener(new View.OnClickListener() {
+        operatedByButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webPage));
@@ -155,7 +146,7 @@ public class DetailsActivity extends BaseActivity {
             }
         });
 
-        openTimesTextView.setOnClickListener(new View.OnClickListener() {
+        openTimesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openTimesWeb));
