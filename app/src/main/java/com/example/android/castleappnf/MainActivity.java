@@ -12,7 +12,6 @@ import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -23,7 +22,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -33,25 +31,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -213,19 +202,19 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                new AlertDialog.Builder(this).setTitle("Permission needed")
-                        .setMessage("This permission is needed for the app to run")
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this).setTitle(getString(R.string.permission_rationale_title))
+                        .setMessage(getString(R.string.permission_rationale_message))
+                        .setPositiveButton(getString(R.string.ok_alert_button), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
 
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getString(R.string.cancel_alert_button), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
@@ -260,9 +249,9 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                     //Forces app to be closed if permission not granted.
                     Log.d(TAG, "onRequestPermissionsResult: failed");
                     final AlertDialog.Builder pBuilder = new AlertDialog.Builder(this);
-                    pBuilder.setMessage("Please enable location permissions to use this app")
+                    pBuilder.setMessage(getString(R.string.no_location_permission_message))
                             .setCancelable(false)
-                            .setNeutralButton("Close App", new DialogInterface.OnClickListener() {
+                            .setNeutralButton(getString(R.string.close_app_alert_option), new DialogInterface.OnClickListener() {
                                 public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                                     finishAffinity();
                                     System.exit(0);
@@ -288,8 +277,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         Log.d(TAG, "permissionsAndGpsGranted: ");
         //Set up of the toolbar for the activity
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("UK Castles");
-        toolbar.setSubtitle("Click Castle to see more info");
+        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setSubtitle(getString(R.string.toolbar_subtitle_text));
         setSupportActionBar(toolbar);
 
         final Context context = this;
