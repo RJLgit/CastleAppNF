@@ -59,6 +59,10 @@
     <string name="add_widget">Add widget</string>
     <string name="share_intent_title">Share using</string>
 
+    <!--Strings for Adapter-->
+    <string name="km_away_string">KMs away</string>
+    <string name="miles_away_string">Miles away</string>
+
 
     <string-array name="distance_array">
         <item>Km</item>

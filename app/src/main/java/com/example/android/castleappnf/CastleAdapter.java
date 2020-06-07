@@ -210,10 +210,10 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
             mRatingBar.setRating(rating);
             if (distUnit.equals("Km")) {
                 int myDist = (int) z / 1000;
-                distanceTextView.setText(String.valueOf(myDist) + " KMs away");
+                distanceTextView.setText(String.valueOf(myDist) + context.getString(R.string.km_away_string));
             } else {
                 int myDist = (int) z / 1609;
-                distanceTextView.setText(String.valueOf(myDist) + " Miles away");
+                distanceTextView.setText(String.valueOf(myDist) + context.getString(R.string.miles_away_string));
             }
         }
 
