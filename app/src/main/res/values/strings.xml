@@ -57,7 +57,7 @@
     <!--Strings for Widgets-->
     <string name="appwidget_text">UK Castles</string>
     <string name="add_widget">Add widget</string>
-
+    <string name="share_intent_title">Share using</string>
 
 
     <string-array name="distance_array">

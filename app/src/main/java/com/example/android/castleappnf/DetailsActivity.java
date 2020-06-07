@@ -60,10 +60,10 @@ public class DetailsActivity extends BaseActivity {
 
 
     //Variables associated with the media player
-    private boolean playWhenReady = false;
     private int currentWindow = 0;
     private long playbackPosition = 0;
-
+    //This defines whether the media is played when the activity loads or not.
+    private boolean playWhenReady = false;
     //Firebase StorageReference variable
     private StorageReference mStorageRef;
 
@@ -256,100 +256,26 @@ public class DetailsActivity extends BaseActivity {
         });
     }
 
+    //Load images method which loads the image if it is returned from firebase and otherwise returns an error image
     public void loadImages(Uri uri) {
         if (uri != null) {
             Log.d(TAG, "loadImages: " + uri);
             Picasso.get().load(uri).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
+            //Registers the imageview for a long click to open menu
             registerForContextMenu(castleImageView);
         } else {
-
             Log.d(TAG, "loadImages: " + uri);
             Picasso.get().load(R.drawable.castlethumbnail).placeholder(R.drawable.castlethumbnail).error(R.drawable.ic_error).resize(320, 240).centerInside().into(castleImageView);
-
         }
-
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        if (v == historyDetailsTextView) {
-            getMenuInflater().inflate(R.menu.long_click_share_menu, menu);
-        } else if (v == castleImageView) {
-            getMenuInflater().inflate(R.menu.long_click_image_menu, menu);
-        }
-
-
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.share_item:
-                Toast.makeText(this, "Selected share", Toast.LENGTH_SHORT).show();
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TITLE, "Some facts about " + toolbar.getTitle().toString());
-                shareIntent.putExtra(Intent.EXTRA_TEXT, historyDetailsTextView.getText().toString());
-                String x = shareIntent.getStringExtra(Intent.EXTRA_TEXT);
-                Log.d(TAG, "onContextItemSelected: " + x);
-                startActivity(Intent.createChooser(shareIntent, "Share using"));
-                return true;
-            case R.id.full_image_item:
-                Intent intent = new Intent(this, FullImageActivity.class);
-                intent.putExtra("CastleName", myCastle.getName());
-                intent.putExtra("Castle", myCastle);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
-            default:
-                return super.onContextItemSelected(item);
-        }
-
-
-    }
-
-    private void initializePlayer() {
-        player = ExoPlayerFactory.newSimpleInstance(this);
-        mPlayerView.setPlayer(player);
-        player.setPlayWhenReady(playWhenReady);
-        player.seekTo(currentWindow, playbackPosition);
-
-        /*Resources resources = this.getResources();
-        Uri uri = new Uri.Builder()
-                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-                .authority(resources.getResourcePackageName(resourceId))
-                .appendPath(resources.getResourceTypeName(resourceId))
-                .appendPath(resources.getResourceEntryName(resourceId))
-                .build();
-        MediaSource mediaSource = buildMediaSource(uri);*/
-        player.prepare(buildMediaSource(audio));
-    }
-
-
-    private MediaSource buildMediaSource(int ra) {
-        DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(ra));
-        final RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(this);
-        try {
-            rawResourceDataSource.open(dataSpec);
-        } catch (RawResourceDataSource.RawResourceDataSourceException e) {
-            e.printStackTrace();
-        }
-
-        DataSource.Factory dataSourceFactory =
-                new DefaultDataSourceFactory(this, "my-app");
-        return new ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(rawResourceDataSource.getUri());
-    }
-
+    //The media player is initialised in onStart or onResume depending on the SDK level. It is released on the opposite in each case
     @Override
     protected void onStart() {
         super.onStart();
         if (Util.SDK_INT >= 24) {
             initializePlayer();
         }
-        /*IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(connectionReceiver, filter);*/
     }
 
     @Override
@@ -358,7 +284,6 @@ public class DetailsActivity extends BaseActivity {
         if (Util.SDK_INT >= 24) {
             releasePlayer();
         }
-        /*unregisterReceiver(connectionReceiver);*/
     }
 
     @Override
@@ -377,8 +302,31 @@ public class DetailsActivity extends BaseActivity {
         }
     }
 
-
-
+    //Initializes the media player
+    private void initializePlayer() {
+        player = ExoPlayerFactory.newSimpleInstance(this);
+        mPlayerView.setPlayer(player);
+        //Play when ready is false meaning it doesn't play when ready
+        player.setPlayWhenReady(playWhenReady);
+        player.seekTo(currentWindow, playbackPosition);
+        player.prepare(buildMediaSource(audio));
+    }
+    //This method prepares the media source using the resource int value obtained from the Castles object
+    private MediaSource buildMediaSource(int ra) {
+        DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(ra));
+        final RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(this);
+        try {
+            rawResourceDataSource.open(dataSpec);
+        } catch (RawResourceDataSource.RawResourceDataSourceException e) {
+            e.printStackTrace();
+        }
+        DataSource.Factory dataSourceFactory =
+                new DefaultDataSourceFactory(this, "my-app");
+        return new ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(rawResourceDataSource.getUri());
+    }
+    //The media player is released and player is set to null when the activity is not in focus.
+    //The playbackposition is recorded so when the activity is back into focus it can know where it was previously playing and whether it was playing or not.
     private void releasePlayer() {
         if (player != null) {
             playWhenReady = player.getPlayWhenReady();
@@ -389,27 +337,60 @@ public class DetailsActivity extends BaseActivity {
         }
     }
 
+    //Loads the context menu on a long click. It loads a different menu for each of the two views that could be clicked
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v == historyDetailsTextView) {
+            getMenuInflater().inflate(R.menu.long_click_share_menu, menu);
+        } else if (v == castleImageView) {
+            getMenuInflater().inflate(R.menu.long_click_image_menu, menu);
+        }
+    }
+    //Checks which context item is clicked. If it is the share item them the user shares a plain text file how they choose.
+    //This is done by creating an intent and allowing the user how to share the information
+    //For the full image item clicked it opens the FullImageActivity and passes the Casltes object as an extra
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.share_item:
+                Toast.makeText(this, "Selected share", Toast.LENGTH_SHORT).show();
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TITLE, "Some facts about " + toolbar.getTitle().toString());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, historyDetailsTextView.getText().toString());
+                String x = shareIntent.getStringExtra(Intent.EXTRA_TEXT);
+                Log.d(TAG, "onContextItemSelected: " + x);
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.share_intent_title)));
+                return true;
+            case R.id.full_image_item:
+                Intent intent = new Intent(this, FullImageActivity.class);
+                intent.putExtra("CastleName", myCastle.getName());
+                intent.putExtra("Castle", myCastle);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
+    //Method which shows the bottom toolbar when the user goes offline
     @Override
     public void showBottomToolBar() {
         Log.d(TAG, "showBottomToolBar: ");
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
         layoutParams.setMargins(0, 0, 0, 60);
         bottNav.setVisibility(View.VISIBLE);
-        bottStatus.setText("Offline");
+        bottStatus.setText(getString(R.string.offline_string));
         bottStatus.setBackgroundColor(Color.RED);
     }
-
+    //Hides the toolbar when the user goes online after a short delay in which it says the user is online
     @Override
     public void hideBottomToolBar() {
         Log.d(TAG, "hideBottomToolBar: ");
         if (bottNav.getVisibility() == View.VISIBLE) {
-            bottStatus.setText("Online");
+            bottStatus.setText(getString(R.string.online_string));
             bottStatus.setBackgroundColor(Color.GREEN);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -421,26 +402,27 @@ public class DetailsActivity extends BaseActivity {
                 }
             }, 5000);
         }
-
-
-
     }
-
+    //If the user clicks back on the toolbar then load MainActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //Load Main Activity if the user clicks back on the phone
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
