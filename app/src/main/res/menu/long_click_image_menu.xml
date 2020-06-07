@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/full_image_item"
-        android:title="See full image slideshow"
+        android:title="@string/full_image_long_click_title"
         />
 </menu>

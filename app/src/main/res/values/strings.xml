@@ -11,6 +11,8 @@
     <string name="details_rating_title">Site rating</string>
     <string name="click_website_string">. Click to visit their website.</string>
     <string name="music_title_text">Some medieval music to get you in the mood for your visit</string>
+    <string name="share_long_click_title">Share</string>
+    <string name="full_image_long_click_title">See full image slideshow</string>
 
     <!--Shared preference strings-->
     <string name="shared_preference_distance_key">distance_preference</string>
