@@ -52,7 +52,9 @@
     <string name="settings_toolbar_title">Settings</string>
     <string name="content_description_image_item">Image of Castle</string>
 
-
+    <!--Strings for FullImageActivity-->
+    <string name="full_image_content_description">Full image in full image activity</string>
+    
     <!--Settings strings-->
     <string-array name="distance_array">
         <item>Km</item>
