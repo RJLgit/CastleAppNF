@@ -48,7 +48,14 @@
     <string name="online_string">Online</string>
 
     <!--Strings for Notifications-->
+    <string name="notification_channel_description">Channel to receive weekly notifications about castles</string>
+    <string name="notification_channel_name">My notification channel</string>
+    <string name="notification_title">Castle App</string>
+    <string name="notification_content">We now have 24 castles to view</string>
 
+    <!--Strings for Widgets-->
+    <string name="appwidget_text">UK Castles</string>
+    <string name="add_widget">Add widget</string>
 
     <string-array name="distance_array">
         <item>Km</item>
@@ -298,12 +305,8 @@
         <item>The castle was an important seat of power for the Yorkists during the Wars of the Roses, as the castle was inherited by the Duke of York in 1425.</item>
     </string-array>
 
-    <string name="appwidget_text">UK Castles</string>
-    <string name="add_widget">Add widget</string>
-    <string name="notification_channel_description">Channel to receive weekly notifications about castles</string>
-    <string name="notification_channel_name">My notification channel</string>
-    <string name="notification_title">Castle App</string>
-    <string name="notification_content">We now have 24 castles to view</string>
+
+
 
 
 </resources>
