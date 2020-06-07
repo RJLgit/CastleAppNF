@@ -33,6 +33,7 @@
     <string name="appwidget_text">UK Castles</string>
     <string name="add_widget">Add widget</string>
     <string name="share_intent_title">Share using</string>
+    <string name="castle_app_widget_image">Castle image for widget</string>
 
     <!--Strings for Adapter-->
     <string name="km_away_string">KMs away</string>
@@ -50,6 +51,7 @@
     <!--Strings for SettingsActivity-->
     <string name="settings_toolbar_title">Settings</string>
     <string name="content_description_image_item">Image of Castle</string>
+
 
     <!--Settings strings-->
     <string-array name="distance_array">
