@@ -8,19 +8,6 @@
     android:background="#000000"
     >
 
-    <!--  <view
-        class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-
-    </view>-->
-
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -42,7 +29,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="60px"
+        android:layout_height="25dp"
         android:id="@+id/bott_nav_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,12 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/bottom_main_status_text_view"
-            android:text="xyx"
             android:textAlignment="center"
             android:textStyle="bold"
             />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
