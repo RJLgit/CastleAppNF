@@ -367,6 +367,7 @@ public class DetailsActivity extends BaseActivity {
                 Intent intent = new Intent(this, FullImageActivity.class);
                 intent.putExtra("CastleName", myCastle.getName());
                 intent.putExtra("Castle", myCastle);
+                intent.putExtra("CurrentImage", currentImage);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();

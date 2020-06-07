@@ -52,6 +52,7 @@ public class FullImageActivity extends AppCompatActivity implements View.OnTouch
         //Get the Castles object from the intent so we know which caslte we are interested in
         myCastle = (Castles) getIntent().getSerializableExtra("Castle");
         castleName = getIntent().getStringExtra("CastleName");
+        currentImage = getIntent().getIntExtra("CurrentImage", 1);
         //Creates the gesture detector and assigns it to a variable
         gestureDetector = new GestureDetector(this, this);
         //Gets the Storage Reference to the specific castle image required first

@@ -57,7 +57,7 @@
 
     <!--Strings for FullImageActivity-->
     <string name="full_image_content_description">Full image in full image activity</string>
-    
+
     <!--Strings for Settings Fragment-->
     <string name="settings_distance_title">Distance</string>
     <string name="settings_sort_title">Sort by</string>
