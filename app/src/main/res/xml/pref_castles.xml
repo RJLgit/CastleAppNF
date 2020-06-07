@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 <ListPreference
     android:key="distance_preference"
-    android:title="Distance"
+    android:title="@string/settings_distance_title"
     android:entries="@array/distance_array"
     android:entryValues="@array/distance_array"
     android:summary="%s"
@@ -11,7 +11,7 @@
 
     <ListPreference
         android:key="sort_preference"
-        android:title="Sort by"
+        android:title="@string/settings_sort_title"
         android:entries="@array/sort_array"
         android:entryValues="@array/sort_array"
         android:summary="%s"
@@ -20,7 +20,7 @@
 
     <ListPreference
         android:key="filter_preference"
-        android:title="Filter by"
+        android:title="@string/settings_filter_title"
         android:entries="@array/filter_array"
         android:entryValues="@array/filter_array"
         android:summary="%s"
