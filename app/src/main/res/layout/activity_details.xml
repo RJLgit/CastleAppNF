@@ -17,7 +17,6 @@
         >
 
 
-
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
@@ -38,7 +37,6 @@
             tools:text="@string/operated_by_title"
             android:textColor="@color/colorAccent"/>
 
-
         <Button
             android:id="@+id/opening_times_button"
             android:layout_width="match_parent"
@@ -48,13 +46,11 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/germania_one"
             android:textAlignment="center"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/operated_by_button"
             tools:text="@string/opening_times_title"
             android:textColor="@color/colorAccent"/>
-
 
 
         <ImageView
@@ -119,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/medievalsharp"
-            android:text="Some medieval music to get you in the mood for your visit"
+            android:text="@string/music_title_text"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
@@ -136,7 +132,6 @@
             app:layout_constraintTop_toBottomOf="@id/playerView_title"
 
             />
-
 
         <TextView
             android:id="@+id/site_rating_title"
@@ -159,8 +154,6 @@
             android:stepSize="0.1"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/site_rating_title" />
 
@@ -184,16 +177,13 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
 
 <com.google.android.material.bottomnavigation.BottomNavigationView
 android:layout_width="match_parent"
-android:layout_height="60px"
+android:layout_height="25dp"
 app:layout_constraintEnd_toEndOf="parent"
 app:layout_constraintStart_toStartOf="parent"
 app:layout_constraintBottom_toBottomOf="parent"
@@ -205,7 +195,6 @@ android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/bottom_status_text_view"
-    android:text="xyx"
     android:textAlignment="center"
     android:textStyle="bold"
     />

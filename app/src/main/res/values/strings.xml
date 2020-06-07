@@ -10,6 +10,7 @@
     <string name="audio_title">Detailed history of the site</string>
     <string name="details_rating_title">Site rating</string>
     <string name="click_website_string">. Click to visit their website.</string>
+    <string name="music_title_text">Some medieval music to get you in the mood for your visit</string>
 
     <!--Shared preference strings-->
     <string name="shared_preference_distance_key">distance_preference</string>
@@ -54,7 +55,7 @@
 
     <!--Strings for FullImageActivity-->
     <string name="full_image_content_description">Full image in full image activity</string>
-    
+
     <!--Settings strings-->
     <string-array name="distance_array">
         <item>Km</item>
