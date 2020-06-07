@@ -72,8 +72,9 @@ public class DetailsActivity extends BaseActivity {
     //Number of images per castle in firebase
     final int maxImages = 3;
 
-    //Castles object passed to the activity from MainActivity
+    //Castles object passed to the activity from MainActivity and its audio file
     Castles myCastle;
+    int audio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,7 @@ public class DetailsActivity extends BaseActivity {
         final String operator = myCastle.getOperator();
         final String[] history = myCastle.getHistory();
         final int rating = myCastle.getRating();
-        final int audio = myCastle.getAudio();
+        audio = myCastle.getAudio();
         final String webPage = myCastle.getWebsite();
         final String openTimesWeb = myCastle.getOpeningTimes();
         //A specific reference to the firebase storage image to display first for that castle
@@ -112,12 +113,13 @@ public class DetailsActivity extends BaseActivity {
         backwards = findViewById(R.id.backwardsImage);
 
         //Set the buttons to the desired strings and sets the rating bar to be visible
-        openTimesButton.setText("Opening times change due to time of year - click to see current opening times");
-        historyTitleTextView.setText("Brief history of the site");
+        openTimesButton.setText(getString(R.string.opening_times_title));
+        historyTitleTextView.setText(getString(R.string.history_title));
         ratingTitleTextView.setText(getString(R.string.details_rating_title));
         myRatingBarWidget.setVisibility(View.VISIBLE);
-
+        //Sets the History text view to have the history string array seperated by bullet points and line breaks
         for (int i = 0; i < history.length; i++) {
+            //Special bullet point character
             String string = "\u21AC " + history[i];
             SpannableString spannableString = new SpannableString(string);
             spannableString.setSpan(new RelativeSizeSpan(2f), 0, 1, 0);
@@ -126,18 +128,18 @@ public class DetailsActivity extends BaseActivity {
             historyDetailsTextView.append(spannableString);
             historyDetailsTextView.append("\n\n");
         }
-        operatedByButton.setText("Operated by: " + operator + ". Click to visit their website.");
+        //Sets the rating and the operated by button
+        operatedByButton.setText(getString(R.string.operated_by_title) + operator + getString(R.string.click_website_string));
         myRatingBarWidget.setRating(rating);
-
+        //Sets up the toolbar
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(name);
         toolbar.setSubtitle("Here are the details");
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        //Sets the onclick listener to operated by button to open the relevent web page
         operatedByButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +147,7 @@ public class DetailsActivity extends BaseActivity {
                 startActivity(browserIntent);
             }
         });
-
+        //Sets the onclick listener to opening times button to open the relevent web page
         openTimesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,7 +155,7 @@ public class DetailsActivity extends BaseActivity {
                 startActivity(browserIntent);
             }
         });
-
+        //Sets the onclick listener to Address button to open google maps at the location of the castle
         addressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,6 +168,7 @@ public class DetailsActivity extends BaseActivity {
                 }
             }
         });
+        //When the image is clicked it cycles forward through the images of the castle
         castleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -189,6 +192,7 @@ public class DetailsActivity extends BaseActivity {
                 });
             }
         });
+        //When the forwards image is clicked it cycles forward through the images of the castle
         forwards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -211,7 +215,7 @@ public class DetailsActivity extends BaseActivity {
                 });
             }
         });
-
+        //When the backwards image is clicked it cycles forward through the images of the castle
         backwards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -234,18 +238,13 @@ public class DetailsActivity extends BaseActivity {
                 });
             }
         });
+        //Registers long click listener to the history details text view to share the history
         registerForContextMenu(historyDetailsTextView);
-        loadImages(null);
-
+        //Gets the image from firebase and if it cannot get an image it sends null to the load images method
         myImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 loadImages(uri);
-
-
-
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -255,10 +254,6 @@ public class DetailsActivity extends BaseActivity {
 
             }
         });
-
-        //Sets up data in details view - change to use data sent from intent
-
-
     }
 
     public void loadImages(Uri uri) {
@@ -328,7 +323,7 @@ public class DetailsActivity extends BaseActivity {
                 .appendPath(resources.getResourceEntryName(resourceId))
                 .build();
         MediaSource mediaSource = buildMediaSource(uri);*/
-        player.prepare(buildMediaSource(resourceId));
+        player.prepare(buildMediaSource(audio));
     }
 
 

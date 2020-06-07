@@ -27,13 +27,14 @@
     <string name="richmond_hisotry"></string>
     <string name="prudhoe_history"></string>
     <!--Titles for Details Activity-->
-    <string name="opening_times_title">Opening times:</string>
-    <string name="operated_by_title">Operated by:</string>
+    <string name="opening_times_title">Opening times change due to time of year - click to see current opening times</string>
+    <string name="operated_by_title">Operated by: </string>
     <string name="status_details_title">Current status:</string>
     <string name="address_title">See location on a map</string>
     <string name="history_title">Brief history of the site</string>
     <string name="audio_title">Detailed history of the site</string>
     <string name="details_rating_title">Site rating</string>
+    <string name="click_website_string">. Click to visit their website.</string>
 
     <!--Shared preference strings-->
     <string name="shared_preference_distance_key">distance_preference</string>
@@ -56,6 +57,8 @@
     <!--Strings for Widgets-->
     <string name="appwidget_text">UK Castles</string>
     <string name="add_widget">Add widget</string>
+
+
 
     <string-array name="distance_array">
         <item>Km</item>
