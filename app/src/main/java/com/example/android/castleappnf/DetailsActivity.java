@@ -50,7 +50,6 @@ public class DetailsActivity extends BaseActivity {
     TextView ratingTitleTextView;
     RatingBar myRatingBarWidget;
     PlayerView mPlayerView;
-    private SimpleExoPlayer player;
     Toolbar toolbar;
     TextView bottStatus;
     BottomNavigationView bottNav;
@@ -60,6 +59,7 @@ public class DetailsActivity extends BaseActivity {
 
 
     //Variables associated with the media player
+    private SimpleExoPlayer player;
     private int currentWindow = 0;
     private long playbackPosition = 0;
     //This defines whether the media is played when the activity loads or not.
@@ -304,12 +304,19 @@ public class DetailsActivity extends BaseActivity {
 
     //Initializes the media player
     private void initializePlayer() {
-        player = ExoPlayerFactory.newSimpleInstance(this);
+        if (player == null) {
+            player = ExoPlayerFactory.newSimpleInstance(this);
+            //Play when ready is false meaning it doesn't play when ready
+            player.prepare(buildMediaSource(audio));
+            player.setPlayWhenReady(playWhenReady);
+            player.seekTo(currentWindow, playbackPosition);
+
+        } else {
+            player.prepare(buildMediaSource(audio));
+            player.setPlayWhenReady(playWhenReady);
+            player.seekTo(currentWindow, playbackPosition);
+        }
         mPlayerView.setPlayer(player);
-        //Play when ready is false meaning it doesn't play when ready
-        player.setPlayWhenReady(playWhenReady);
-        player.seekTo(currentWindow, playbackPosition);
-        player.prepare(buildMediaSource(audio));
     }
     //This method prepares the media source using the resource int value obtained from the Castles object
     private MediaSource buildMediaSource(int ra) {
