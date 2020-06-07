@@ -40,6 +40,8 @@ public class DummyData {
         Castles colchester;
         Castles ludlow;
         Castles restormel;
+        Castles belvoir;
+        Castles berkeley;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -73,6 +75,8 @@ public class DummyData {
         lincoln = new Castles("Lincoln Castle", "Lincoln Castle", 4, context.getResources().getStringArray(R.array.lincoln_history), R.raw.music_two, -0.5407, 53.2346, "https://www.lincolncastle.com/", "https://www.lincolncastle.com/content/plan-your-visit");
         restormel = new Castles("Restormel Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.restormel_history), R.raw.music_three, -4.6715, 50.4223, "https://www.english-heritage.org.uk/visit/places/restormel-castle/", "https://www.english-heritage.org.uk/visit/places/restormel-castle/prices-and-opening-times/");
         ludlow = new Castles("Ludlow Castle", "Ludlow Castle", 5, context.getResources().getStringArray(R.array.ludlow_history), R.raw.music_four, -2.7230, 52.3672, "https://www.ludlowcastle.com/", "https://www.ludlowcastle.com/times-admission/");
+        berkeley = new Castles("Berkeley Castle", "Berkeley Castle", 5, context.getResources().getStringArray(R.array.berkeley_history), R.raw.music_one, -2.4571, 51.6879, "https://www.berkeley-castle.com/", "https://www.berkeley-castle.com/visit");
+        belvoir = new Castles("Belvoir Castle", "Belvoir Castle", 4, context.getResources().getStringArray(R.array.belvoir_history), R.raw.music_two, -0.7762, 52.8877, "https://www.belvoircastle.com/", "https://www.belvoircastle.com/castle-opening-times/");
 
 
 
@@ -108,6 +112,8 @@ public class DummyData {
         result.add(colchester);
         result.add(ludlow);
         result.add(restormel);
+        result.add(berkeley);
+        result.add(belvoir);
 
         return result;
     }

@@ -306,4 +306,18 @@
         <item>The castle was an important seat of power for the Yorkists during the Wars of the Roses, as the castle was inherited by the Duke of York in 1425.</item>
     </string-array>
 
+    <string-array name="berkeley_history">
+        <item>The fast castle was built here almost immediately after the Norman invasion in 1066.</item>
+        <item>Henry II granted a royal charter to the owner of the castle in 1153 to allow the owner to rebuild a more extensive castle on the site. </item>
+        <item>The deposed Edward II was held at Berkeley castle in 1327. During his time captive at the castle, his supporters attacked the castle and rescued him. This rescue was short-lived and he was returned to the castle shortly afterwards and he was likely murdered at the castle.</item>
+        <item>During the Civil War, Parliament captured the castle with the use of cannon. The castle was not allowed to be repaired following the civil war, as parliament saw castles as symbol of royal dominance of the country.</item>
+    </string-array>
+
+    <string-array name="belvoir_history">
+        <item>Originally a Norman castle existed on this site, Belvoir was originally a royal manor until it was granted to Robert de Ros in 1257.</item>
+        <item>The Norman castle was ruined by the 15th century, and a new castle was built on the site by 1555. The castle was a Royalist stronghold during the English Civil War, even housing the King for a night during the war.</item>
+        <item>After the Civil War, parliament destroyed the castle and a stately home was built in its place by 1668.</item>
+        <item>The castle was rebuilt in the early 19th century by the Duke and Duchess of Rutland in the gothic revival style.</item>
+    </string-array>
+
 </resources>
