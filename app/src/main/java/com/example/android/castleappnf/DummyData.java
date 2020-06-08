@@ -42,6 +42,8 @@ public class DummyData {
         Castles restormel;
         Castles belvoir;
         Castles berkeley;
+        Castles harlech;
+        Castles longtown;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -77,6 +79,8 @@ public class DummyData {
         ludlow = new Castles("Ludlow Castle", "Ludlow Castle", 5, context.getResources().getStringArray(R.array.ludlow_history), R.raw.music_four, -2.7230, 52.3672, "https://www.ludlowcastle.com/", "https://www.ludlowcastle.com/times-admission/");
         berkeley = new Castles("Berkeley Castle", "Berkeley Castle", 5, context.getResources().getStringArray(R.array.berkeley_history), R.raw.music_one, -2.4571, 51.6879, "https://www.berkeley-castle.com/", "https://www.berkeley-castle.com/visit");
         belvoir = new Castles("Belvoir Castle", "Belvoir Castle", 4, context.getResources().getStringArray(R.array.belvoir_history), R.raw.music_two, -0.7762, 52.8877, "https://www.belvoircastle.com/", "https://www.belvoircastle.com/castle-opening-times/");
+        longtown = new Castles("Longtown Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.longtown_history), R.raw.music_three, -2.9910, 51.9562, "https://www.english-heritage.org.uk/visit/places/longtown-castle/", "https://www.english-heritage.org.uk/visit/places/longtown-castle/opening-times/");
+        harlech = new Castles("Harlech Castle", "Cadw", 5, context.getResources().getStringArray(R.array.harlech_history), R.raw.music_four, -4.1089, 52.8600, "https://cadw.gov.wales/visit/places-to-visit/harlech-castle", "https://cadw.gov.wales/visit/places-to-visit/harlech-castle#opening-times");
 
 
 
@@ -114,6 +118,8 @@ public class DummyData {
         result.add(restormel);
         result.add(berkeley);
         result.add(belvoir);
+        result.add(harlech);
+        result.add(longtown);
 
         return result;
     }

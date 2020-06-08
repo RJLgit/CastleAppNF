@@ -320,4 +320,18 @@
         <item>The castle was rebuilt in the early 19th century by the Duke and Duchess of Rutland in the gothic revival style.</item>
     </string-array>
 
+    <string-array name="longtown_history">
+        <item>Longtown was originally home to a Roman fort, the ditch of which was deepened and widened to protect against welsh incursion into England in 1055.</item>
+        <item>A small Norman castle was built close to the site of the current castle shortly after the Norman conquest of England.</item>
+        <item>The castle was upgraded to stone in the 12th century, and that is the structure we see today. </item>
+        <item>The castle had fallen into disrepair by the early 15th century. However, Henry IV refortified the castle in 1403 in response to the Welsh uprising by Owain Glyndwr.</item>
+    </string-array>
+
+    <string-array name="harlech_history">
+        <item>Harlech Castle was built by Edward I during his invasion of Wales in the late 13th century.</item>
+        <item>Owain Glyndwr, the last Welsh Prince of Wales, took the castle in 1404 and made it his headquarters for the rest of the uprising. However, by 1409 Owain was recaptured and Wales was back under the control of England.</item>
+        <item>The castle was held by the Lancastrians for much of the the Wars of the Roses, before it was captured by the Yorkists in 1468. It was the last major fortification held by the Lancastrians at that point and had been the launch-pad for many Lancastrian revolts against the Yorkist King Edward IV.</item>
+        <item>The damage done in the siege of 1468 was only repaired during the English Civil War, when the royalists repaired the castle. The castle was the last major royalist stronghold to surrender to parliament.</item>
+    </string-array>
+
 </resources>
