@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -361,7 +360,6 @@ public class DetailsActivity extends BaseActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share_item:
-                Toast.makeText(this, "Selected share", Toast.LENGTH_SHORT).show();
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TITLE, "Some facts about " + toolbar.getTitle().toString());
@@ -377,7 +375,6 @@ public class DetailsActivity extends BaseActivity {
                 intent.putExtra("CurrentImage", currentImage);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                Toast.makeText(this, "Open full image activity", Toast.LENGTH_SHORT).show();
             default:
                 return super.onContextItemSelected(item);
         }

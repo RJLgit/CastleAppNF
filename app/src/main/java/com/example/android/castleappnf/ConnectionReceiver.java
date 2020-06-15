@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.util.Log;
-import android.widget.Toast;
+
 
 public class ConnectionReceiver extends BroadcastReceiver {
 
@@ -26,7 +26,6 @@ public class ConnectionReceiver extends BroadcastReceiver {
             boolean noConnectivity = intent.getBooleanExtra(
                     ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
             );
-            Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show();
             //If builder does not exist then build a new one
             if (builder == null) {
                 builder = new AlertDialog.Builder(context);
@@ -71,7 +70,6 @@ public class ConnectionReceiver extends BroadcastReceiver {
                 a.hideBottomToolBar();
                 a.userConnected(a.isConnected());
                 a.setConnected(true);
-                Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
             }
         }
     }
