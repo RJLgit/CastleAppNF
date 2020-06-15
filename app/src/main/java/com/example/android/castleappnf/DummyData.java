@@ -44,6 +44,8 @@ public class DummyData {
         Castles berkeley;
         Castles harlech;
         Castles longtown;
+        Castles launceston;
+        Castles lindisfarne;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -81,6 +83,8 @@ public class DummyData {
         belvoir = new Castles("Belvoir Castle", "Belvoir Castle", 4, context.getResources().getStringArray(R.array.belvoir_history), R.raw.music_two, -0.7762, 52.8877, "https://www.belvoircastle.com/", "https://www.belvoircastle.com/castle-opening-times/");
         longtown = new Castles("Longtown Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.longtown_history), R.raw.music_three, -2.9910, 51.9562, "https://www.english-heritage.org.uk/visit/places/longtown-castle/", "https://www.english-heritage.org.uk/visit/places/longtown-castle/opening-times/");
         harlech = new Castles("Harlech Castle", "Cadw", 5, context.getResources().getStringArray(R.array.harlech_history), R.raw.music_four, -4.1089, 52.8600, "https://cadw.gov.wales/visit/places-to-visit/harlech-castle", "https://cadw.gov.wales/visit/places-to-visit/harlech-castle#opening-times");
+        launceston = new Castles("Launceston Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.launceston_history), R.raw.music_one, -4.3614, 50.6378, "https://www.english-heritage.org.uk/visit/places/launceston-castle/", "https://www.english-heritage.org.uk/visit/places/launceston-castle/prices-and-opening-times/");
+        lindisfarne = new Castles("Lindisfarne Castle", "National Trust", 4, context.getResources().getStringArray(R.array.lindisfarne_history), R.raw.music_two, -1.7850, 55.6690, "https://www.nationaltrust.org.uk/lindisfarne-castle", "https://www.nationaltrust.org.uk/lindisfarne-castle#Opening%20times");
 
 
 
@@ -120,6 +124,8 @@ public class DummyData {
         result.add(belvoir);
         result.add(harlech);
         result.add(longtown);
+        result.add(lindisfarne);
+        result.add(launceston);
 
         return result;
     }

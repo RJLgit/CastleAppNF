@@ -334,4 +334,18 @@
         <item>The damage done in the siege of 1468 was only repaired during the English Civil War, when the royalists repaired the castle. The castle was the last major royalist stronghold to surrender to parliament.</item>
     </string-array>
 
+    <string-array name="lindisfarne_history">
+        <item>The castle was built in 1550 mainly using stones from the Priory which was shut down and plundered by Henry VIII following the break with the Catholic church.</item>
+        <item>The union of England and Scotland reduced the importance of Lindisfarne castle, although it maintained a garrison.</item>
+        <item>In the civil war, Parliament captured the castle from the Royalists, and with it took control of the port on the island.</item>
+        <item>The castle was briefly captured by the Jacobites in 1715, before they were forced to run away on news of an approaching English force from Berwick.</item>
+    </string-array>
+
+    <string-array name="launceston_history">
+        <item>Built just after the Norman invasion, this castle was the administrative centre of the earldom of Cornwall.</item>
+        <item>The castle was rebuilt in stone in the late-12th century.</item>
+        <item>The earldom of Cornwall, and the castle, passed to Henry III’s younger brother Richard in 1227. He reworked the castles defences using money from the Cornish tin mining industry.</item>
+        <item>The castle was briefing owned by Piers Gaveston, the controversial favourite of Edward II. However, by the time the castle passed into the hands of the son of Edward III, it was reported as being in poor condition.</item>
+    </string-array>
+
 </resources>
