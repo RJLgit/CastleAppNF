@@ -348,4 +348,18 @@
         <item>The castle was briefing owned by Piers Gaveston, the controversial favourite of Edward II. However, by the time the castle passed into the hands of the son of Edward III, it was reported as being in poor condition.</item>
     </string-array>
 
+    <string-array name="totnes_history">
+        <item>Totnes was the site of a fortified burh in Devon during the Saxon times. Its strategic importance lead to it being raided many times by the Vikings.</item>
+        <item>Totnes castle was originally constructed by the Normans shortly after their invasion, likely following the rebellion against King William in the South West shortly after he took the English crown.</item>
+        <item>King John seized the castle from its legal owner during his reign and granted it to one of his supporters. After John’s death, however, it passed back to the legal owner.</item>
+        <item>The castle was significantly rebuilt in the early 14th century, however the castle fell into disrepair by the end of the Wars of the Roses.</item>
+    </string-array>
+
+    <string-array name="wallingford_history">
+        <item>Built shortly after the Norman invasion, this castle was one of the most powerful royal castles in the 12th and 13th centuries.</item>
+        <item>The castle was held by supporters of Matilda during her war for the crown with Stephen. It was sieged many times, but never taken.</item>
+        <item>The castle was owned by King John during his reign, and he used it throughout his wars with the Barons.</item>
+        <item>Simon de Montfort captured the castle in 1264 and briefly used it to hold the royal family prisoner.</item>
+    </string-array>
+
 </resources>
