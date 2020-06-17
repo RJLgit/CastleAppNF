@@ -31,6 +31,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -41,6 +44,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements CastleAdapter.OnRecyclerItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -54,6 +59,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     Toolbar toolbar;
     RecyclerView recyclerView;
     CastleAdapter castleAdapter;
+    AutoCompleteTextView searchEditText;
+    Button searchButton;
     //UI elements shown when connection status changes
     TextView bottStatus;
     BottomNavigationView bottNav;
@@ -82,6 +89,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         recyclerView = findViewById(R.id.recyclerView);
         bottStatus = findViewById(R.id.bottom_main_status_text_view);
         bottNav = findViewById(R.id.bott_nav_bar);
+        searchEditText = findViewById(R.id.autoCompleteTextView);
+        searchButton = findViewById(R.id.button);
         Log.d(TAG, "onCreate: ");
 
         createWorkerNotification();
@@ -286,6 +295,10 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         //Adapter is created with dummy data, firebase reference and shared preference information
         castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef, filterBy);
+        //Creates an array adapter with all the names of the castles and sets it to the auto complete text field
+        ArrayAdapter<String> castleAutocompleteAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, getAllCastleNames(DummyData.generateAndReturnDataAZ(getApplicationContext())));
+        searchEditText.setAdapter(castleAutocompleteAdapter);
         //Get last location finds the last location of the phone and sets it to the adapter object. Adapter is then set to the recyclerview
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -296,8 +309,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                             // Logic to handle location object
                             l = new Location(location);
                             castleAdapter.setPhoneLocation(l);
-
                             recyclerView.setAdapter(castleAdapter);
+
                             Log.d(TAG, "onSuccess: " + location);
                         } else {
                             Log.d(TAG, "onSuccess: was null" + location);
@@ -327,6 +340,14 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
             }
         };
         createLocationRequest();
+    }
+
+    private String[] getAllCastleNames(ArrayList<Castles> generateAndReturnDataAZ) {
+        String[] result = new String[generateAndReturnDataAZ.size()];
+        for (int i = 0; i < generateAndReturnDataAZ.size(); i++) {
+            result[i] = generateAndReturnDataAZ.get(i).getName();
+        }
+        return result;
     }
 
     //Creates a location request to regularly get the location for the app.
