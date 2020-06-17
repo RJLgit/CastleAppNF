@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     CastleAdapter castleAdapter;
     AutoCompleteTextView searchEditText;
     Button searchButton;
+    Button resetButton;
     //UI elements shown when connection status changes
     TextView bottStatus;
     BottomNavigationView bottNav;
@@ -91,6 +92,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         bottNav = findViewById(R.id.bott_nav_bar);
         searchEditText = findViewById(R.id.autoCompleteTextView);
         searchButton = findViewById(R.id.button);
+        resetButton = findViewById(R.id.resetButton);
         Log.d(TAG, "onCreate: ");
 
         createWorkerNotification();
@@ -318,6 +320,18 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                                     castleAdapter.search(searchEditText.getText().toString());
                                 }
                             });
+                            //The reset button reloads the adapter with all the settings
+                            resetButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef, filterBy);
+                                    if (l != null) {
+                                        castleAdapter.setPhoneLocation(l);
+                                    }
+                                    recyclerView.setAdapter(castleAdapter);
+                                    searchEditText.getText().clear();
+                                }
+                            });
                             Log.d(TAG, "onSuccess: " + location);
                         } else {
                             Log.d(TAG, "onSuccess: was null" + location);
@@ -344,6 +358,18 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                             @Override
                             public void onClick(View view) {
                                 castleAdapter.search(searchEditText.getText().toString());
+                            }
+                        });
+                        //The reset button reloads the adapter with all the settings
+                        resetButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                castleAdapter = new CastleAdapter(getApplicationContext(), DummyData.generateAndReturnDataAZ(getApplicationContext()), (CastleAdapter.OnRecyclerItemClickListener) context, distanceUnit, sortBy, mStorageRef, filterBy);
+                                if (l != null) {
+                                    castleAdapter.setPhoneLocation(l);
+                                }
+                                recyclerView.setAdapter(castleAdapter);
+                                searchEditText.getText().clear();
                             }
                         });
                         Log.d(TAG, "onLocationResult: " + location);

@@ -66,4 +66,13 @@
         app:layout_constraintStart_toEndOf="@+id/autoCompleteTextView"
         app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView" />
 
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Reset"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

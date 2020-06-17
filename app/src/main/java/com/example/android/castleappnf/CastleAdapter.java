@@ -177,6 +177,21 @@ public class CastleAdapter extends RecyclerView.Adapter<CastleAdapter.CastleView
         return castles.size();
     }
 
+    //Method called when search button is clicked. Parameter passed in is the search text field
+    //It finds all castles where the name matches the search entry
+    public void search(String editTextEntry) {
+        ArrayList<Castles> searchedCastles = new ArrayList<>();
+        String trimmedString = editTextEntry.toLowerCase().trim();
+        for (Castles c : castles) {
+            String name = c.getName();
+            if (name.toLowerCase().contains(trimmedString)) {
+                searchedCastles.add(c);
+            }
+        }
+        castles = searchedCastles;
+        notifyDataSetChanged();
+    }
+
     public class CastleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //Viewholder UI elements
         TextView nameTextView;
