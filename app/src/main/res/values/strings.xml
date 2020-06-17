@@ -50,6 +50,9 @@
     <string name="permission_rationale_message">This permission is needed for the app to run</string>
     <string name="cancel_alert_button">Cancel</string>
     <string name="ok_alert_button">OK</string>
+    <string name="search_text_view_hint">Enter search</string>
+    <string name="search_button_text">Search</string>
+    <string name="reset_button_text">Reset</string>
 
     <!--Strings for SettingsActivity-->
     <string name="settings_toolbar_title">Settings</string>
