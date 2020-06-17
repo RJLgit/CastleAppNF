@@ -299,6 +299,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         ArrayAdapter<String> castleAutocompleteAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, getAllCastleNames(DummyData.generateAndReturnDataAZ(getApplicationContext())));
         searchEditText.setAdapter(castleAutocompleteAdapter);
+
         //Get last location finds the last location of the phone and sets it to the adapter object. Adapter is then set to the recyclerview
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -310,7 +311,13 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                             l = new Location(location);
                             castleAdapter.setPhoneLocation(l);
                             recyclerView.setAdapter(castleAdapter);
-
+                            //When the search button is clicked it checks the input in the search edit text and sends it to the adapter
+                            searchButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    castleAdapter.search(searchEditText.getText().toString());
+                                }
+                            });
                             Log.d(TAG, "onSuccess: " + location);
                         } else {
                             Log.d(TAG, "onSuccess: was null" + location);
@@ -332,6 +339,13 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
                         l = location;
                         castleAdapter.setPhoneLocation(l);
                         recyclerView.setAdapter(castleAdapter);
+                        //When the search button is clicked it checks the input in the search edit text and sends it to the adapter
+                        searchButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                castleAdapter.search(searchEditText.getText().toString());
+                            }
+                        });
                         Log.d(TAG, "onLocationResult: " + location);
                         Log.d(TAG, "onLocationResult: " + castleAdapter);
                     }
