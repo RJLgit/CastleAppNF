@@ -365,4 +365,11 @@
         <item>Simon de Montfort captured the castle in 1264 and briefly used it to hold the royal family prisoner.</item>
     </string-array>
 
+    <string-array name="kenilworth_history">
+        <item>The castle was founded in the early 12th century by the then treasurer to Henry I.</item>
+        <item>Due to its strategic importance, Henry II took the castle into royal possession during a revolt against him by his son.</item>
+        <item>King John spent a lot of resources upgrading Kenilworth Castle after he was excommunicated. John had to cede he castle as part of his signing Magna Carta, and it only returned to royal possession during the reign of his son Henry III.</item>
+        <item>The castle is ruined because of the slighting of the castle following the English Civil War.</item>
+    </string-array>
+
 </resources>
