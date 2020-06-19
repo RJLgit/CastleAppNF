@@ -49,6 +49,7 @@ public class DummyData {
         Castles totnes;
         Castles wallingford;
         Castles kenilworth;
+        Castles middleham;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -91,6 +92,7 @@ public class DummyData {
         totnes = new Castles("Totnes Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.totnes_history), R.raw.music_three, -3.6906, 50.4320, "https://www.english-heritage.org.uk/visit/places/totnes-castle/", "https://www.english-heritage.org.uk/visit/places/totnes-castle/opening-times/");
         wallingford = new Castles("Wallingford Castle", "Wallingford council", 2, context.getResources().getStringArray(R.array.wallingford_history), R.raw.music_four, -1.1214, 51.6025, "https://www.wallingford.co.uk/visitors/places-to-visit/castle-gardens---meadow", "https://www.wallingford.co.uk/visitors/places-to-visit/castle-gardens---meadow");
         kenilworth = new Castles("Kenilworth Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.kenilworth_history), R.raw.music_one, -1.5921, 52.3482, "https://www.english-heritage.org.uk/visit/places/kenilworth-castle/", "https://www.english-heritage.org.uk/visit/places/kenilworth-castle/prices-and-opening-times/");
+        middleham = new Castles("Middleham Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.middleham_history), R.raw.music_two, -1.8068, 54.2841, "https://www.english-heritage.org.uk/visit/places/middleham-castle/", "https://www.english-heritage.org.uk/visit/places/middleham-castle/prices-and-opening-times/");
 
 
 
@@ -135,6 +137,7 @@ public class DummyData {
         result.add(totnes);
         result.add(wallingford);
         result.add(kenilworth);
+        result.add(middleham);
 
         return result;
     }

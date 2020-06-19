@@ -372,4 +372,11 @@
         <item>The castle is ruined because of the slighting of the castle following the English Civil War.</item>
     </string-array>
 
+    <string-array name="middleham_history">
+        <item>A motte and bailey castle was originally built in Middleham shortly after the Norman invasion of England.</item>
+        <item>The stone castle was likely built on the current site in the late 12th century.</item>
+        <item>The castle came into the hands of the Neville family in 1270, and eventually into the hands of Richard Neville, the Earl or Warwick, who was known as the kingmaker during the Wars of the Roses.</item>
+        <item>The future Richard III married Anne Neville and took the castle as his main home following the death of the Earl of Warwick. During his reign, Richard rarely if ever visited the castle.</item>
+    </string-array>
+
 </resources>
