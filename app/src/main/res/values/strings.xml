@@ -379,4 +379,11 @@
         <item>The future Richard III married Anne Neville and took the castle as his main home following the death of the Earl of Warwick. During his reign, Richard rarely if ever visited the castle.</item>
     </string-array>
 
+    <string-array name="beeston_history">
+        <item>The castle was built in the early 1220’s for the Earl of Chester. The castle is unusual as it does not have a keep, instead using natural features of the land to make the bailey’s themselves strongholds.</item>
+        <item>King Henry III inherited the Earldom of Cheshire and increased the size of the castle during his wars with the Welsh, where the castle was used to hold prisoners of war.</item>
+        <item>Henry gave the castle and the Earldom of Cheshire to his heir, and ever since it has been given to the heir to the throne.</item>
+        <item>The castle was in ruin at the start of the English Civil War, however, parliament repaired it and garrisoned it. The castle was lost to a tiny royal force, who crept into the castle at night. The parliamentarian castle governor was shot for his failure to hold the castle.</item>
+    </string-array>
+
 </resources>
