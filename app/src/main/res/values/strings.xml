@@ -386,4 +386,11 @@
         <item>The castle was in ruin at the start of the English Civil War, however, parliament repaired it and garrisoned it. The castle was lost to a tiny royal force, who crept into the castle at night. The parliamentarian castle governor was shot for his failure to hold the castle.</item>
     </string-array>
 
+    <string-array name="pendennis_history">
+        <item>Pendennis castle was built by Henry VIII as part of his fort building programme to protect against potential French invasion.</item>
+        <item>In the late 16th century, the keep and gun platform was expanded in response to a growing threat from catholic Spain.</item>
+        <item>The castle was taken by Parliament in 1646, during the English civil war, after a successful siege. The castle was a formidable fortress, and briefly housed Prince Charles during the war.</item>
+        <item>The castle saw service during both world wars, and was upgraded in response to the renewed French threat following the French revolution and rise of Napoleon. </item>
+    </string-array>
+
 </resources>

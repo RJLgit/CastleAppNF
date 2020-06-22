@@ -51,6 +51,7 @@ public class DummyData {
         Castles kenilworth;
         Castles middleham;
         Castles beeston;
+        Castles pendennis;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -95,6 +96,7 @@ public class DummyData {
         kenilworth = new Castles("Kenilworth Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.kenilworth_history), R.raw.music_one, -1.5921, 52.3482, "https://www.english-heritage.org.uk/visit/places/kenilworth-castle/", "https://www.english-heritage.org.uk/visit/places/kenilworth-castle/prices-and-opening-times/");
         middleham = new Castles("Middleham Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.middleham_history), R.raw.music_two, -1.8068, 54.2841, "https://www.english-heritage.org.uk/visit/places/middleham-castle/", "https://www.english-heritage.org.uk/visit/places/middleham-castle/prices-and-opening-times/");
         beeston = new Castles("Beeston Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.beeston_history), R.raw.music_three, -2.6936, 53.1286, "https://www.english-heritage.org.uk/visit/places/beeston-castle-and-woodland-park/", "https://www.english-heritage.org.uk/visit/places/beeston-castle-and-woodland-park/prices-and-opening-times/");
+        pendennis = new Castles("Pendennis Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.pendennis_history), R.raw.music_four, -5.0466, 50.1461, "https://www.english-heritage.org.uk/visit/places/pendennis-castle/", "https://www.english-heritage.org.uk/visit/places/pendennis-castle/prices-and-opening-times/");
 
 
 
@@ -141,6 +143,7 @@ public class DummyData {
         result.add(kenilworth);
         result.add(middleham);
         result.add(beeston);
+        result.add(pendennis);
 
         return result;
     }
