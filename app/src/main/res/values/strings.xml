@@ -393,4 +393,11 @@
         <item>The castle saw service during both world wars, and was upgraded in response to the renewed French threat following the French revolution and rise of Napoleon. </item>
     </string-array>
 
+    <string-array name="portchester_history">
+        <item>Due to its strategic importance, a Roman fort was constructed on the site of the castle in the late 3rd century.</item>
+        <item>The fort was used by the Saxon’s to defend about Viking raids on the southern coast. Edward the Elder, son of Alfred the Great, took control of the castle for this purpose in 904.</item>
+        <item>The Normans built a later castle on this site, and it was a royal castle for a long period from 1154. It was besieged and taken by the French in 1216, but later was returned to English control.</item>
+        <item>Edward III gathered his army for his invasion of France in 1346. This army famously went onto to win a decisive victory at the Battle of Crecy.</item>
+    </string-array>
+
 </resources>
