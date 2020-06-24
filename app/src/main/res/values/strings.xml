@@ -400,4 +400,11 @@
         <item>Edward III gathered his army for his invasion of France in 1346. This army famously went onto to win a decisive victory at the Battle of Crecy.</item>
     </string-array>
 
+    <string-array name="dunnottar_history">
+        <item>The Scottish King Donald II was killed at Dunnottar during a Viking raid in 900. The castle was destroyed in the raid.</item>
+        <item>The castle was captured from an English garrison by William Wallace in 1297. Wallace burned the church where the English were hiding and destroyed the castle.</item>
+        <item>Mary, Queen of Scots visited the castle several times, including with her young son, the future James I of England.</item>
+        <item>Oliver Cromwell sieged the castle in 1651 during his campaign in Scotland after the English civil war. The castle held out for 8 months before surrendering upon the arrival of heavy cannons at the siege. </item>
+    </string-array>
+
 </resources>
