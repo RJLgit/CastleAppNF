@@ -407,4 +407,11 @@
         <item>Oliver Cromwell sieged the castle in 1651 during his campaign in Scotland after the English civil war. The castle held out for 8 months before surrendering upon the arrival of heavy cannons at the siege. </item>
     </string-array>
 
+    <string-array name="kenmure_history">
+        <item>The semi-independent Lords of Galloway possibly had a fortress on this site prior to the 13th century.</item>
+        <item>The core of the current castle was constructed in the 17th century by the Gordon family, who were made Viscounts of Kenmure by Charles I.</item>
+        <item>The 6th Viscount of Kenmure was executed for his role in the Jacobite rising of 1715. His estates, including the castle, were forfeit and the castle was in ruin by 1790.</item>
+        <item>The Gordon’s were granted the viscount status back in 1824, and the castle was modernised considerably during the 19th century.</item>
+    </string-array>
+
 </resources>

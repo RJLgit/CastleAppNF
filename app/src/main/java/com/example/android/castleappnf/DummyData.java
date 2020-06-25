@@ -54,6 +54,7 @@ public class DummyData {
         Castles pendennis;
         Castles portchester;
         Castles dunnottar;
+        Castles kenmure;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -101,6 +102,7 @@ public class DummyData {
         pendennis = new Castles("Pendennis Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.pendennis_history), R.raw.music_four, -5.0466, 50.1461, "https://www.english-heritage.org.uk/visit/places/pendennis-castle/", "https://www.english-heritage.org.uk/visit/places/pendennis-castle/prices-and-opening-times/");
         portchester = new Castles("Portchester Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.portchester_history), R.raw.music_one, -1.1138, 50.8375, "https://www.english-heritage.org.uk/visit/places/portchester-castle/", "https://www.english-heritage.org.uk/visit/places/portchester-castle/prices-and-opening-times/");
         dunnottar = new Castles("Dunnottar Castle", "Dunnottar Castle", 4, context.getResources().getStringArray(R.array.dunnottar_history), R.raw.music_two, -2.1972, 56.9458, "https://www.dunnottarcastle.co.uk/", "https://www.dunnottarcastle.co.uk/getting-here/");
+        kenmure = new Castles("Kenmure Castle", "None", 5, context.getResources().getStringArray(R.array.kenmure_history), R.raw.music_three, -4.1384, 55.0632, "https://en.wikipedia.org/wiki/Kenmure_Castle", "https://en.wikipedia.org/wiki/Kenmure_Castle");
 
 
 
@@ -150,6 +152,7 @@ public class DummyData {
         result.add(pendennis);
         result.add(portchester);
         result.add(dunnottar);
+        result.add(kenmure);
 
         return result;
     }
