@@ -414,4 +414,11 @@
         <item>The Gordon’s were granted the viscount status back in 1824, and the castle was modernised considerably during the 19th century.</item>
     </string-array>
 
+    <string-array name="spynie_history">
+        <item>This castle was the fortified seat of the Bishops of Moray for 500 years and was founded in the late 12th century.</item>
+        <item>The site was used by administrators for King Edward I during his occupation of Scotland in the late 13th century.</item>
+        <item>The castle was owned by the Scottish King Robert III allowing him to grant the castle to Bishop William of Moray.</item>
+        <item>The bishops continued to develop and modernise the castle, with the largest David’s tower being constructed under the instructions of the Bishop in the late 15th century.</item>
+    </string-array>
+
 </resources>
