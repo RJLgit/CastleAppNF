@@ -421,4 +421,11 @@
         <item>The bishops continued to develop and modernise the castle, with the largest David’s tower being constructed under the instructions of the Bishop in the late 15th century.</item>
     </string-array>
 
+    <string-array name="dudley_history">
+        <item>Dudley castle was originally a wooden motte and bailey castle built shortly after the Norman invasion of 1066.</item>
+        <item>The castle was destroyed in 1173 under the orders of Henry II, as its owner had joined a rebellion against him. The castle was rebuilt in the mid 13th century by the Somery family.</item>
+        <item>Hugh Despenser, a favourite of Edward II, briefly owned the castle before Edward’s forceful removal from power lead to the castle being take from Despenser.</item>
+        <item>The Royalists held the castle during the English Civil War, but the Parliamentarians successfully took the castle in 1646 after a long siege. Parliament purposefully damaged the castle to stop it being used in future conflicts.</item>
+    </string-array>
+
 </resources>
