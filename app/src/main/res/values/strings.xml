@@ -428,4 +428,11 @@
         <item>The Royalists held the castle during the English Civil War, but the Parliamentarians successfully took the castle in 1646 after a long siege. Parliament purposefully damaged the castle to stop it being used in future conflicts.</item>
     </string-array>
 
+    <string-array name="tintagel_history">
+        <item>Artefacts found on this site suggest it was likely occupied in the Romano-British period.</item>
+        <item>In the early middle ages it was likely one of the residences of the regional king of Dummonia.</item>
+        <item>The Earl of Cornwall built a castle on this site in the 13th century, although the castle later fell into ruin.</item>
+        <item>The castle has a long association with the legend of King Arthur. Legend has evolved to suggest Arthur was born at the castle, although this is nowhere in the works of Geoffrey of Monmouth, who made the Arthurian legend famous in the 12th century.</item>
+    </string-array>
+
 </resources>
