@@ -435,4 +435,11 @@
         <item>The castle has a long association with the legend of King Arthur. Legend has evolved to suggest Arthur was born at the castle, although this is nowhere in the works of Geoffrey of Monmouth, who made the Arthurian legend famous in the 12th century.</item>
     </string-array>
 
+    <string-array name="hylton_history">
+        <item>The first castle was likely wooden, and was built shortly after the Norman invasion by the Hylton family, who were rewarded for their support of William the Conqueror with land on the River Wear.</item>
+        <item>The castle was later rebuilt as a fortified manor house in the early 15th century. </item>
+        <item>The castle stayed in the Hylton family until the last Hylton died without any male heirs in 1746, whereby the castle passed to a nephew called Richard Musgrave.</item>
+        <item>The castle went into a period of decay prior to 1812, when it was bought and refurbished by a local businessman. The castle had several other owners in more recent years, with many of them carrying out refurbishment on the castle.</item>
+    </string-array>
+
 </resources>

@@ -58,6 +58,7 @@ public class DummyData {
         Castles spynie;
         Castles dudley;
         Castles tintagel;
+        Castles hylton;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -109,6 +110,7 @@ public class DummyData {
         spynie = new Castles("Spynie Palace", "Historic environment Scotland", 3, context.getResources().getStringArray(R.array.spynie_history), R.raw.music_four, -3.2911, 57.6760, "https://www.historicenvironment.scot/visit-a-place/places/spynie-palace/", "https://www.historicenvironment.scot/visit-a-place/places/spynie-palace/prices-and-opening-times/");
         dudley = new Castles("Dudley Castle", "Dudley Zoo", 5, context.getResources().getStringArray(R.array.dudley_history), R.raw.music_one, -2.0799, 52.5141, "https://www.dudleyzoo.org.uk/dudley-castle/", "https://www.dudleyzoo.org.uk/plan-your-visit/opening-times-admissions/");
         tintagel = new Castles("Tintagel Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.tintagel_history), R.raw.music_two, -4.7585, 50.6673, "https://www.english-heritage.org.uk/visit/places/tintagel-castle/", "https://www.english-heritage.org.uk/visit/places/tintagel-castle/prices-and-opening-times/");
+        hylton = new Castles("Hylton Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.hylton_history), R.raw.music_three, -1.4432, 54.9226, "https://www.english-heritage.org.uk/visit/places/hylton-castle/", "https://www.english-heritage.org.uk/visit/places/hylton-castle/opening-times/");
 
 
         result.add(alnwick);
@@ -161,6 +163,7 @@ public class DummyData {
         result.add(spynie);
         result.add(dudley);
         result.add(tintagel);
+        result.add(hylton);
 
         return result;
     }
