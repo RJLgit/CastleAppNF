@@ -442,4 +442,11 @@
         <item>The castle went into a period of decay prior to 1812, when it was bought and refurbished by a local businessman. The castle had several other owners in more recent years, with many of them carrying out refurbishment on the castle.</item>
     </string-array>
 
+    <string-array name="brancepeth_history">
+        <item>The original Norman castle built on the site by the Bulmers was rebuilt by the powerful Neville family in the late 14th century.</item>
+        <item>The castle was confiscated from the Neville family after they joined a catholic rising against Queen Elizabeth in 1569.</item>
+        <item>The current castle generally results from reconstruction of the castle in the 19th century by the Russel family.</item>
+        <item>The castle was used as a field hospital during the 1st world war, and was the headquarters for the Durham Light Infantry during the second world war.</item>
+    </string-array>
+
 </resources>
