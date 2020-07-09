@@ -60,6 +60,7 @@ public class DummyData {
         Castles tintagel;
         Castles hylton;
         Castles brancepeth;
+        Castles mitford;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -113,6 +114,7 @@ public class DummyData {
         tintagel = new Castles("Tintagel Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.tintagel_history), R.raw.music_two, -4.7585, 50.6673, "https://www.english-heritage.org.uk/visit/places/tintagel-castle/", "https://www.english-heritage.org.uk/visit/places/tintagel-castle/prices-and-opening-times/");
         hylton = new Castles("Hylton Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.hylton_history), R.raw.music_three, -1.4432, 54.9226, "https://www.english-heritage.org.uk/visit/places/hylton-castle/", "https://www.english-heritage.org.uk/visit/places/hylton-castle/opening-times/");
         brancepeth = new Castles("Brancepeth Castle", "Brancepeth castle", 4, context.getResources().getStringArray(R.array.brancepeth_history), R.raw.music_four, -1.6548, 54.7338, "https://www.brancepethcastle.org.uk/", "https://www.brancepethcastle.org.uk/news");
+        mitford = new Castles("Mitford Castle", "None", 1, context.getResources().getStringArray(R.array.mitford_history), R.raw.music_one, -1.7343, 55.1630, "https://en.wikipedia.org/wiki/Mitford_Castle", "https://en.wikipedia.org/wiki/Mitford_Castle");
 
 
         result.add(alnwick);
@@ -167,6 +169,7 @@ public class DummyData {
         result.add(tintagel);
         result.add(hylton);
         result.add(brancepeth);
+        result.add(mitford);
 
         return result;
     }

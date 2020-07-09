@@ -449,4 +449,11 @@
         <item>The castle was used as a field hospital during the 1st world war, and was the headquarters for the Durham Light Infantry during the second world war.</item>
     </string-array>
 
+    <string-array name="mitford_history">
+        <item>Before the Norman conquest, the castle was owned by the Mitford family. The daughter, and heir, of the family was married to a Norman knight, called Richard Bertram, by William the Conqueror. </item>
+        <item>The castle was an earthwork fortress of the Bertram family from the late 11th century, but was soon after made into a stone castle.</item>
+        <item>The castle was seized by forces of King John in 1215, during his war with the Northern Barons. The castle was returned to the Bertram family after the death of King John.</item>
+        <item>The castle was taken by the Scottish in 1318, and was badly damaged. It never recovered from this conflict. A pill box was constructed nearby during the second world war to protect against German invasion. </item>
+    </string-array>
+
 </resources>
