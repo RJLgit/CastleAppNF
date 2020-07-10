@@ -456,4 +456,11 @@
         <item>The castle was taken by the Scottish in 1318, and was badly damaged. It never recovered from this conflict. A pill box was constructed nearby during the second world war to protect against German invasion. </item>
     </string-array>
 
+    <string-array name="lydford_history">
+        <item>The first castle was constructed on the site of an Anglo-Saxon burh shortly after the Norman conquest of Britain.</item>
+        <item>The current castle was then built in 1195 to be an administrative centre for the Forest of Dartmoor.</item>
+        <item>Henry III granted his brother, the Earl of Cornwall, the castle in 1238. He rebuilt the tower of the castle. During the next few hundred years, the castle’s primary role was as an infamous prison.</item>
+        <item>The Royalists used the castle as a military prison during the English Civil War. However, by the early 18th century the castle was in ruin and was totally abandoned in 1833.</item>
+    </string-array>
+
 </resources>
