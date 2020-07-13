@@ -463,4 +463,10 @@
         <item>The Royalists used the castle as a military prison during the English Civil War. However, by the early 18th century the castle was in ruin and was totally abandoned in 1833.</item>
     </string-array>
 
+    <string-array name="brougham_history">
+        <item>Due to its strategic location, the Roman’s constructed a fort on this site in the 1st century. This castle was originally made of wood, although was soon after rebuilt in stone.</item>
+        <item>The area of Penrith was captured by the Scottish before the Norman invasion of England, and was only recaptured by William II to take the area back into the control of the English crown.</item>
+        <item>However, the castle was not built on this site until the reign of King John, who wanted the area secured from Scottish incursions.</item>
+        <item>King Edward I was hosted at the castle, an important military base during the wars with Scotland, in 1300. In fact, due to its location, almost 100 years later the castle was taken and sacked by the Scottish.</item>
+    </string-array>
 </resources>
