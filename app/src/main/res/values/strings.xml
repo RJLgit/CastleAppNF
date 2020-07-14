@@ -469,4 +469,11 @@
         <item>However, the castle was not built on this site until the reign of King John, who wanted the area secured from Scottish incursions.</item>
         <item>King Edward I was hosted at the castle, an important military base during the wars with Scotland, in 1300. In fact, due to its location, almost 100 years later the castle was taken and sacked by the Scottish.</item>
     </string-array>
+
+    <string-array name="aydon_history">
+        <item>The owner of the castle, Robert, fought with Edward I during his wars in Scotland, including at the Battle of Falkirk where the English were defeated by William Wallace. Around this time, the castle was being constructed into a stone building.</item>
+        <item>Aydon was sacked by the Scottish under Robert the Bruce in 1311-1312. But the castle was never taken.</item>
+        <item>The owner of the castle, Robery de Raymes, was captured in the Battle of Bannockburn and ransomed for a fee that crippled Robert monetarily. The castle was taken by the Scots in 1315, and was damaged considerably. </item>
+        <item>By the 17th century the castle was being used as a farmhouse, and the de Raymes family had long been forced to sell the property as their fortunes waned. </item>
+    </string-array>
 </resources>

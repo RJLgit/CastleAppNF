@@ -63,6 +63,7 @@ public class DummyData {
         Castles mitford;
         Castles lydford;
         Castles brougham;
+        Castles aydon;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -119,6 +120,7 @@ public class DummyData {
         mitford = new Castles("Mitford Castle", "None", 1, context.getResources().getStringArray(R.array.mitford_history), R.raw.music_one, -1.7343, 55.1630, "https://en.wikipedia.org/wiki/Mitford_Castle", "https://en.wikipedia.org/wiki/Mitford_Castle");
         lydford = new Castles("Lydford Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.lydford_history), R.raw.music_two, -4.1095, 50.6436, "https://www.english-heritage.org.uk/visit/places/lydford-castle-and-saxon-town/", "https://www.english-heritage.org.uk/visit/places/lydford-castle-and-saxon-town/opening-times/");
         brougham = new Castles("Brougham Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.brougham_history), R.raw.music_three, -2.7187, 54.6541, "https://www.english-heritage.org.uk/visit/places/brougham-castle/", "https://www.english-heritage.org.uk/visit/places/brougham-castle/prices-and-opening-times/");
+        aydon = new Castles("Aydon Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.aydon_history), R.raw.music_four, -1.9994, 54.9914, "https://www.english-heritage.org.uk/visit/places/aydon-castle/", "https://www.english-heritage.org.uk/visit/places/aydon-castle/prices-and-opening-times/");
 
 
         result.add(alnwick);
@@ -176,6 +178,7 @@ public class DummyData {
         result.add(mitford);
         result.add(lydford);
         result.add(brougham);
+        result.add(aydon);
 
         return result;
     }
