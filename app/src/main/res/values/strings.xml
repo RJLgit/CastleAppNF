@@ -476,4 +476,11 @@
         <item>The owner of the castle, Robery de Raymes, was captured in the Battle of Bannockburn and ransomed for a fee that crippled Robert monetarily. The castle was taken by the Scots in 1315, and was damaged considerably. </item>
         <item>By the 17th century the castle was being used as a farmhouse, and the de Raymes family had long been forced to sell the property as their fortunes waned. </item>
     </string-array>
+
+    <string-array name="helmsley_history">
+        <item>The castle was the main residence of Walter Espect, who was an important supporter of King Stephen during his conflict with the Empress Matilda.</item>
+        <item>The de Roos family later owned the castle, although Thomas de Roos was executed by the Yorkists after the Lancastrians were defeated at the Battle of Hexham. The castle was then taken into royal ownership.</item>
+        <item>The castle was returned to its original owners on the taking of the crown by the Tudor dynasty, and was upgraded during Tudor times.</item>
+        <item>After the Royalist defeat at Marston Moor, the castle was starved into surrender by Parliamentary forces. The castle, like many in England, was then slighted to prevent its future military use.</item>
+    </string-array>
 </resources>
