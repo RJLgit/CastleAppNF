@@ -483,4 +483,11 @@
         <item>The castle was returned to its original owners on the taking of the crown by the Tudor dynasty, and was upgraded during Tudor times.</item>
         <item>After the Royalist defeat at Marston Moor, the castle was starved into surrender by Parliamentary forces. The castle, like many in England, was then slighted to prevent its future military use.</item>
     </string-array>
+
+    <string-array name="skipton_history">
+        <item>The castle was created by the Normans shortly after William’s “Harrying of the North” to crack down on dissent against his rule. It occupies a key route through the Pennines.</item>
+        <item>The castle was frequently involved in the Anglo-Scottish wars during the reigns of Edward I and Edward II. Edward II granted the castle to Piers Gaveson early in his rule. Upon Gaveson’s death the castle passed into the Clifford family.</item>
+        <item>The Clifford family were supporters of the Lancastrian cause during the Wars of the Roses. Many of the Clifford’s died fighting during these wars. The Yorkist King Edward took the castle from the Clifford’s although they were reinstated by Henry VII.</item>
+        <item>The castle was garrisoned by Royalist’s prior to the English Civil War, and held out for many years before finally surrendering to Parliament in December 1645. The castle was slighted by Parliament following the end of the war.</item>
+    </string-array>
 </resources>

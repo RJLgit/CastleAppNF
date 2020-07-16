@@ -65,6 +65,7 @@ public class DummyData {
         Castles brougham;
         Castles aydon;
         Castles helmsley;
+        Castles skipton;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -123,6 +124,7 @@ public class DummyData {
         brougham = new Castles("Brougham Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.brougham_history), R.raw.music_three, -2.7187, 54.6541, "https://www.english-heritage.org.uk/visit/places/brougham-castle/", "https://www.english-heritage.org.uk/visit/places/brougham-castle/prices-and-opening-times/");
         aydon = new Castles("Aydon Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.aydon_history), R.raw.music_four, -1.9994, 54.9914, "https://www.english-heritage.org.uk/visit/places/aydon-castle/", "https://www.english-heritage.org.uk/visit/places/aydon-castle/prices-and-opening-times/");
         helmsley = new Castles("Helmsley Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.helmsley_history), R.raw.music_one, -1.0642, 54.2446, "https://www.english-heritage.org.uk/visit/places/helmsley-castle/", "https://www.english-heritage.org.uk/visit/places/helmsley-castle/prices-and-opening-times/");
+        skipton = new Castles("Skipton Castle", "Skipton Castle", 5, context.getResources().getStringArray(R.array.skipton_history), R.raw.music_two, -2.0153, 53.9639, "https://www.skiptoncastle.co.uk/", "https://www.skiptoncastle.co.uk/admission.asp?page=8");
 
 
         result.add(alnwick);
@@ -182,6 +184,7 @@ public class DummyData {
         result.add(brougham);
         result.add(aydon);
         result.add(helmsley);
+        result.add(skipton);
 
         return result;
     }
