@@ -490,4 +490,11 @@
         <item>The Clifford family were supporters of the Lancastrian cause during the Wars of the Roses. Many of the Clifford’s died fighting during these wars. The Yorkist King Edward took the castle from the Clifford’s although they were reinstated by Henry VII.</item>
         <item>The castle was garrisoned by Royalist’s prior to the English Civil War, and held out for many years before finally surrendering to Parliament in December 1645. The castle was slighted by Parliament following the end of the war.</item>
     </string-array>
+
+    <string-array name="scarborough_history">
+        <item>Due to its strong defensive position, the late Roman empire built a watchtower with a defensive wall on the site.</item>
+        <item>Henry II started to construct a fortress on the site in 1159, and the castle was upgraded significantly by King John and Henry III in the early 13th century.</item>
+        <item>Piers Gaveston, a favourite of Edward II was captured at Scarborough before his execution by the Earl of Warwick.</item>
+        <item>During the Civil War the castle was garrisoned by Parliament, but the garrison leader soon defected to the Royalist cause. The importance of the port to both sides soon lead to a parliamentarian attack on the town and the castle, with it eventually being taken in 1645.</item>
+    </string-array>
 </resources>
