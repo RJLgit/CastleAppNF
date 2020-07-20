@@ -497,4 +497,11 @@
         <item>Piers Gaveston, a favourite of Edward II was captured at Scarborough before his execution by the Earl of Warwick.</item>
         <item>During the Civil War the castle was garrisoned by Parliament, but the garrison leader soon defected to the Royalist cause. The importance of the port to both sides soon lead to a parliamentarian attack on the town and the castle, with it eventually being taken in 1645.</item>
     </string-array>
+
+    <string-array name="pickering_history">
+        <item>Pickering castle was built by William the Conqueror as part of a network of castles to secure the north after the “Harrying of the North” in 1069/70.</item>
+        <item>The original wooden structure was replaced with stone by Henry II. He also added a major tower called the Coleman Tower. The castle was further extended by Henry III to secure the North after the First Barons’ War.</item>
+        <item>The castle was in the possession of the Earl of Lancaster by the time of the reign of Edward II. The Earl was partially responsible for the downfall of Piers Gaveston, the favourite of Edward. He later entered a rebellion against Edward II in 1321, but was defeated and executed for treason with Edward seizing his lands.</item>
+        <item>The Earldom of Lancaster was returned the castle after the accession of Edward III. However, the castle was in a state of decline by the 15th century and took no active role in the Wars of the Roses, despite its association with the House of Lancaster.</item>
+    </string-array>
 </resources>
