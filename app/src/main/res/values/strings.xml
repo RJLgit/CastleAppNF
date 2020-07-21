@@ -504,4 +504,11 @@
         <item>The castle was in the possession of the Earl of Lancaster by the time of the reign of Edward II. The Earl was partially responsible for the downfall of Piers Gaveston, the favourite of Edward. He later entered a rebellion against Edward II in 1321, but was defeated and executed for treason with Edward seizing his lands.</item>
         <item>The Earldom of Lancaster was returned the castle after the accession of Edward III. However, the castle was in a state of decline by the 15th century and took no active role in the Wars of the Roses, despite its association with the House of Lancaster.</item>
     </string-array>
+
+    <string-array name="bolton_history">
+        <item>The castle was originally constructed in the late 14th century by the Scrope family, with the castle intended to be primarily a residence.</item>
+        <item>The family was persecuted, with the head of the family being executed by Henry IV, as they had links to Richard II (they were in his court). The family further suffered when it backed the Percy rebellion against Henry, and the result was Henry executed the new head of the family too.</item>
+        <item>The Scrope family later supported a rebellion against Henry VIII’s church reforms, and tried to hide one of the leaders of the rebellion, the Abbot of Jervaulx, at Bolton castle. However, the Abbot was later captured and executed by the King’s men.</item>
+        <item>Mary Queen of Scots was held as a prisoner at Bolton castle for around 6 months in 1568.</item>
+    </string-array>
 </resources>

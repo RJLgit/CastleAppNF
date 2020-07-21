@@ -68,6 +68,7 @@ public class DummyData {
         Castles skipton;
         Castles scarborough;
         Castles pickering;
+        Castles bolton;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -129,6 +130,7 @@ public class DummyData {
         skipton = new Castles("Skipton Castle", "Skipton Castle", 5, context.getResources().getStringArray(R.array.skipton_history), R.raw.music_two, -2.0153, 53.9639, "https://www.skiptoncastle.co.uk/", "https://www.skiptoncastle.co.uk/admission.asp?page=8");
         scarborough = new Castles("Scarborough Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.scarborough_history), R.raw.music_three, -0.3877, 54.2877, "https://www.english-heritage.org.uk/visit/places/scarborough-castle/history/", "https://www.english-heritage.org.uk/visit/places/scarborough-castle/prices-and-opening-times/");
         pickering = new Castles("Pickering Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.pickering_history), R.raw.music_four, -0.7773, 54.2493, "https://www.english-heritage.org.uk/visit/places/pickering-castle/", "https://www.english-heritage.org.uk/visit/places/pickering-castle/prices-and-opening-times/");
+        bolton = new Castles("Bolton Castle", "Bolton Castle", 5, context.getResources().getStringArray(R.array.bolton_history), R.raw.music_one, -1.9495, 54.3221, "https://www.boltoncastle.co.uk/", "https://www.boltoncastle.co.uk/what-to-do-yorkshire/#opening_times");
 
 
         result.add(alnwick);
@@ -191,6 +193,7 @@ public class DummyData {
         result.add(skipton);
         result.add(scarborough);
         result.add(pickering);
+        result.add(bolton);
 
         return result;
     }
