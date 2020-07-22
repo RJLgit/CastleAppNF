@@ -511,4 +511,11 @@
         <item>The Scrope family later supported a rebellion against Henry VIII’s church reforms, and tried to hide one of the leaders of the rebellion, the Abbot of Jervaulx, at Bolton castle. However, the Abbot was later captured and executed by the King’s men.</item>
         <item>Mary Queen of Scots was held as a prisoner at Bolton castle for around 6 months in 1568.</item>
     </string-array>
+
+    <string-array name="tynemouth_history">
+        <item>The castle structure is combined with the ruins of the Benedictine priory where early kings of Northumbria were buried.</item>
+        <item>The priory was founded in the early 7th century, and St Oswin, the King of Deira, was buried here after his murder by the ruler of Bernicia. </item>
+        <item>The priory was plundered by the Danes at the turn of the 8th century, and it was this raid which lead to increased defences at the priory. The castle held out against the Danes 30 years later, although in 865, 870 and 875 the Church and Monastery were plundered by the Danes.</item>
+        <item>Malcolm III of Scotland invaded England in 1093, but was killed at Alnwick by the Earl of Northumberland. Malcolm was buried at the priory before his body was later moved back to Scotland.</item>
+    </string-array>
 </resources>
