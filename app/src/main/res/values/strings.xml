@@ -520,6 +520,13 @@
         <item>The priory was plundered by the Danes at the turn of the 8th century, and it was this raid which lead to increased defences at the priory. The castle held out against the Danes 30 years later, although in 865, 870 and 875 the Church and Monastery were plundered by the Danes.</item>
         <item>Malcolm III of Scotland invaded England in 1093, but was killed at Alnwick by the Earl of Northumberland. Malcolm was buried at the priory before his body was later moved back to Scotland.</item>
     </string-array>
+
+    <string-array name="piel_history">
+        <item>The castle was built by the Abbot at Furness Abbey in the early 14th century.</item>
+        <item>The castle was intended to guard trade at the local harbour, and to protect against Scottish raids, which were a frequent occurrence in this time period. In fact, the Abbot decided to the build the castle after the incursions into northern England by Robert the Bruce.</item>
+        <item>The castle was used as the base of operations for Lambert Simnel, who was a Yorkist pretender attempting to overthrow the Tudor dynasty in 1487. Simnel was defeated at the Battle of Stoke Field to end the rebellion.</item>
+        <item>Furness was the first major monastery to be dissolved in the UK by Henry VIII. The castle was taken into royal ownership, but was neglected and allowed to degrade.</item>
+    </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="normal_map">Normal Map</string>
     <string name="hybrid_map">Hybrid Map</string>

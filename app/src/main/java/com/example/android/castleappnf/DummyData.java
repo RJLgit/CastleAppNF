@@ -70,6 +70,7 @@ public class DummyData {
         Castles pickering;
         Castles bolton;
         Castles tynemouth;
+        Castles piel;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -133,6 +134,7 @@ public class DummyData {
         pickering = new Castles("Pickering Castle", "English Heritage", 2, context.getResources().getStringArray(R.array.pickering_history), R.raw.music_four, -0.7773, 54.2493, "https://www.english-heritage.org.uk/visit/places/pickering-castle/", "https://www.english-heritage.org.uk/visit/places/pickering-castle/prices-and-opening-times/");
         bolton = new Castles("Bolton Castle", "Bolton Castle", 5, context.getResources().getStringArray(R.array.bolton_history), R.raw.music_one, -1.9495, 54.3221, "https://www.boltoncastle.co.uk/", "https://www.boltoncastle.co.uk/what-to-do-yorkshire/#opening_times");
         tynemouth = new Castles("Tynemouth Castle", "English Heritage", 4, context.getResources().getStringArray(R.array.tynemouth_history), R.raw.music_two, -1.4179, 55.0177, "https://www.english-heritage.org.uk/visit/places/tynemouth-priory-and-castle/", "https://www.english-heritage.org.uk/visit/places/tynemouth-priory-and-castle/prices-and-opening-times/");
+        piel = new Castles("Piel Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.piel_history), R.raw.music_three, -3.1734, 54.0622, "https://www.english-heritage.org.uk/visit/places/piel-castle/", "https://www.english-heritage.org.uk/visit/places/piel-castle/opening-times/");
 
 
         result.add(alnwick);
@@ -197,6 +199,7 @@ public class DummyData {
         result.add(pickering);
         result.add(bolton);
         result.add(tynemouth);
+        result.add(piel);
 
         return result;
     }
