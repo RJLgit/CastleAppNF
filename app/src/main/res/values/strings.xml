@@ -520,4 +520,5 @@
         <item>The priory was plundered by the Danes at the turn of the 8th century, and it was this raid which lead to increased defences at the priory. The castle held out against the Danes 30 years later, although in 865, 870 and 875 the Church and Monastery were plundered by the Danes.</item>
         <item>Malcolm III of Scotland invaded England in 1093, but was killed at Alnwick by the Earl of Northumberland. Malcolm was buried at the priory before his body was later moved back to Scotland.</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 </resources>
