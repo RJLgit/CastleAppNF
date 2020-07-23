@@ -65,6 +65,8 @@
     <string name="settings_distance_title">Distance</string>
     <string name="settings_sort_title">Sort by</string>
     <string name="settings_filter_title">Filter by</string>
+    <string name="main_button_text">See castles in list</string>
+    <string name="castle_map_button_text">See castles on map</string>
 
     <!--Settings strings-->
     <string-array name="distance_array">
