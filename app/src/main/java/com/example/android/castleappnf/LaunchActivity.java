@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class LaunchActivity extends AppCompatActivity {
     private Button mainButton;
+    private Button mapButton;
 
 
     @Override
@@ -25,6 +26,16 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mapButton = findViewById(R.id.map_button);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LaunchActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Toast.makeText(this, BuildConfig.GOOGLE_MAPS_API_KEY, Toast.LENGTH_SHORT).show();
     }
 }
