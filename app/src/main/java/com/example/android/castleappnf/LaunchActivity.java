@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class LaunchActivity extends AppCompatActivity {
     private Button mainButton;
@@ -24,5 +25,6 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Toast.makeText(this, BuildConfig.GOOGLE_MAPS_API_KEY, Toast.LENGTH_SHORT).show();
     }
 }
