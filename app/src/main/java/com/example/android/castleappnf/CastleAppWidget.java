@@ -19,7 +19,7 @@ public class CastleAppWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.castle_app_widget);
         views.setTextViewText(R.id.appwidget_text, context.getString(R.string.appwidget_text));
         //Pending intent which loads mainactivity when widget clicked
-        Intent mainActIntent = new Intent(context, MainActivity.class);
+        Intent mainActIntent = new Intent(context, LaunchActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, mainActIntent, 0);
         views.setOnClickPendingIntent(R.id.widget_container, pendingIntent);
         // Instruct the widget manager to update the widget
