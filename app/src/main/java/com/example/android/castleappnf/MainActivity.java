@@ -291,6 +291,8 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setSubtitle(getString(R.string.toolbar_subtitle_text));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Context context = this;
         //Fused location client is created
@@ -456,7 +458,19 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
             return true;
         }
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Load Launch Activity if the user clicks back on the phone
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, LaunchActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     //This method is called when the shared preferences are changed. Each time they are changed then it recreates the adapter and sets it to the recyclerview with different sharedpreference variables.
