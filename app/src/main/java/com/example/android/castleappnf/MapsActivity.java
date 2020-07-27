@@ -85,7 +85,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onMarkerClick(final Marker marker) {
         marker.showInfoWindow();
-        Snackbar snackBar = Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_LONG);
+        final Snackbar snackBar = Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_INDEFINITE);
         snackBar.setAction("See details", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
