@@ -1,12 +1,20 @@
 package com.example.android.castleappnf;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +35,7 @@ import java.util.ArrayList;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
+    private static final int REQUEST_LOCATION_PERMISSION = 12;
     private GoogleMap mMap;
     private Toolbar toolbar;
     private CoordinatorLayout coordinatorLayout;
@@ -66,12 +75,74 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        enableMyLocation();
+
         // Move camera to the UK
         LatLng uk = new LatLng(53.9600, -1.0873);
         float zoom = 5;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 5));
         populateMap();
         mMap.setOnMarkerClickListener(this);
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                new AlertDialog.Builder(this).setTitle(getString(R.string.permission_rationale_title))
+                        .setMessage(getString(R.string.permission_rationale_message))
+                        .setPositiveButton(getString(R.string.ok_alert_button), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                ActivityCompat.requestPermissions(MapsActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        REQUEST_LOCATION_PERMISSION);
+
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.cancel_alert_button), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .create().show();
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        REQUEST_LOCATION_PERMISSION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_LOCATION_PERMISSION:
+                if (grantResults.length > 0
+                        && grantResults[0]
+                        == PackageManager.PERMISSION_GRANTED) {
+                    enableMyLocation();
+                    break;
+                } else {
+                    //Forces app to be closed if permission not granted.
+                    final AlertDialog.Builder pBuilder = new AlertDialog.Builder(this);
+                    pBuilder.setMessage(getString(R.string.no_location_permission_message))
+                            .setCancelable(false)
+                            .setNeutralButton(getString(R.string.close_app_alert_option), new DialogInterface.OnClickListener() {
+                                public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                                    finishAffinity();
+                                    System.exit(0);
+                                }
+                            });
+                    final AlertDialog pAlert = pBuilder.create();
+                    pAlert.show();
+                }
+        }
     }
 
     private void populateMap() {
