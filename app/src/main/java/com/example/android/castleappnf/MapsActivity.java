@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,6 +32,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -41,6 +45,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Toolbar toolbar;
     private CoordinatorLayout coordinatorLayout;
     ArrayList<Castles> myCastles;
+    boolean locationPermissionGranted;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Location lastKnownLocation;
+    private static final String TAG = "MapsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +86,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         enableMyLocation();
 
-        // Move camera to the UK
-        LatLng uk = new LatLng(53.9600, -1.0873);
-        float zoom = 5;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 5));
         populateMap();
         mMap.setOnMarkerClickListener(this);
     }
@@ -91,6 +95,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            locationPermissionGranted = true;
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            try {
+                Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
+                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        if (task.isSuccessful()) {
+                            // Set the map's camera position to the current location of the device.
+                            Log.d(TAG, "onComplete: success");
+                            lastKnownLocation = task.getResult();
+                            if (lastKnownLocation != null) {
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(lastKnownLocation.getLatitude(),
+                                                lastKnownLocation.getLongitude()), 8));
+                            }
+                        } else {
+                            LatLng uk = new LatLng(53.9600, -1.0873);
+                            float zoom = 5;
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, zoom));
+                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        }
+                    }
+                });
+            } catch (SecurityException e) {
+                Log.e("Exception: %s", e.getMessage(), e);
+            }
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
