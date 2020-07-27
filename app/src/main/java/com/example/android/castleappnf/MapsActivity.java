@@ -83,14 +83,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) {
+    public boolean onMarkerClick(final Marker marker) {
         marker.showInfoWindow();
         Snackbar snackBar = Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_LONG);
         snackBar.setAction("See details", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Castles clicked = myCastles.get(0);
+                for (Castles c : myCastles) {
+                    if (c.getName().equals(marker.getTitle())) {
+                        clicked = c;
+                    }
+                }
+
                 Intent intent = new Intent(MapsActivity.this, DetailsActivity.class);
-                intent.putExtra("Castle", myCastles.get(1));
+                intent.putExtra("Castle", clicked);
                 startActivity(intent);
             }
         });
