@@ -2,31 +2,39 @@ package com.example.android.castleappnf;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private Toolbar toolbar;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        coordinatorLayout = findViewById(R.id.cordlay);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setSubtitle("Map of castles");
@@ -58,6 +66,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         float zoom = 5;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 5));
         populateMap();
+        mMap.setOnMarkerClickListener(this);
     }
 
     private void populateMap() {
@@ -67,6 +76,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.addMarker(new MarkerOptions().position(pos)
             .title(c.getName()));
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.showInfoWindow();
+        Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_LONG)
+                .show();
+        return true;
     }
 
     @Override
