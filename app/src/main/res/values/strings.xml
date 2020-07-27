@@ -527,6 +527,13 @@
         <item>The castle was used as the base of operations for Lambert Simnel, who was a Yorkist pretender attempting to overthrow the Tudor dynasty in 1487. Simnel was defeated at the Battle of Stoke Field to end the rebellion.</item>
         <item>Furness was the first major monastery to be dissolved in the UK by Henry VIII. The castle was taken into royal ownership, but was neglected and allowed to degrade.</item>
     </string-array>
+
+    <string-array name="dalton_history">
+        <item>The castle was constructed in response to Scottish raids in 1316 and 1322, where Robert the Bruce was trying to get King Edward II to recognise the independence of Scotland.</item>
+        <item>The castle was built to help manage the income from the lands of Furness Abbey after these raids had damaged the finances of the Abbey.</item>
+        <item>Dalton Castle was forfeited to the crown when England separated from the Roman Catholic church.</item>
+        <item>The castle was used as a prison up until the late 18th century.</item>
+    </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="normal_map">Normal Map</string>
     <string name="hybrid_map">Hybrid Map</string>
