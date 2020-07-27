@@ -5,10 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,11 +30,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private Toolbar toolbar;
     private CoordinatorLayout coordinatorLayout;
+    ArrayList<Castles> myCastles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        myCastles = DummyData.generateAndReturnDataAZ(this);
 
         coordinatorLayout = findViewById(R.id.cordlay);
 
@@ -70,7 +75,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void populateMap() {
-        ArrayList<Castles> myCastles = DummyData.generateAndReturnDataAZ(this);
         for (Castles c : myCastles) {
             LatLng pos = new LatLng(c.getLat(), c.getLongdi());
             mMap.addMarker(new MarkerOptions().position(pos)
@@ -81,8 +85,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onMarkerClick(Marker marker) {
         marker.showInfoWindow();
-        Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_LONG)
-                .show();
+        Snackbar snackBar = Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_LONG);
+        snackBar.setAction("See details", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, DetailsActivity.class);
+                intent.putExtra("Castle", myCastles.get(1));
+                startActivity(intent);
+            }
+        });
+        snackBar.show();
         return true;
     }
 
