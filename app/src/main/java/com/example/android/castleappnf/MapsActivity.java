@@ -16,6 +16,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -55,6 +57,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng uk = new LatLng(53.9600, -1.0873);
         float zoom = 5;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 5));
+        populateMap();
+    }
+
+    private void populateMap() {
+        ArrayList<Castles> myCastles = DummyData.generateAndReturnDataAZ(this);
+        for (Castles c : myCastles) {
+            LatLng pos = new LatLng(c.getLat(), c.getLongdi());
+            mMap.addMarker(new MarkerOptions().position(pos)
+            .title(c.getName()));
+        }
     }
 
     @Override
