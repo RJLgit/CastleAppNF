@@ -78,7 +78,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         for (Castles c : myCastles) {
             LatLng pos = new LatLng(c.getLat(), c.getLongdi());
             mMap.addMarker(new MarkerOptions().position(pos)
-            .title(c.getName()));
+            .title(c.getName()).snippet("Operated by: " + c.getOperator()));
         }
     }
 
