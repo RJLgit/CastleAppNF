@@ -36,6 +36,5 @@ public class LaunchActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, BuildConfig.GOOGLE_MAPS_API_KEY, Toast.LENGTH_SHORT).show();
     }
 }
