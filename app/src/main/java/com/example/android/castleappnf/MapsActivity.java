@@ -136,7 +136,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
         == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
-            Log.d(TAG, "enableMyLocation: ");
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             locationPermissionGranted = true;
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -146,6 +145,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
+
                             // Set the map's camera position to the current location of the device.
                             Log.d(TAG, "onComplete: success");
                             lastKnownLocation = task.getResult();
