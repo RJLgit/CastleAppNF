@@ -136,6 +136,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
         == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
+            Log.d(TAG, "enableMyLocation: ");
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             locationPermissionGranted = true;
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -148,16 +149,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             // Set the map's camera position to the current location of the device.
                             Log.d(TAG, "onComplete: success");
                             lastKnownLocation = task.getResult();
-                            if (lastKnownLocation != null) {
+                            if (lastKnownLocation == null) {
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(53.9600,
                                                 -1.0873), 8));
+                                Log.d(TAG, "onComplete: last location null");
                             } else {
+                                Log.d(TAG, "onComplete: location not null" + lastKnownLocation);
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(lastKnownLocation.getLatitude(),
                                                 lastKnownLocation.getLongitude()), 8));
                             }
                         } else {
+                            Log.d(TAG, "onComplete: task not success");
                             LatLng uk = new LatLng(53.9600, -1.0873);
                             float zoom = 5;
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, zoom));
@@ -200,11 +204,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d(TAG, "onRequestPermissionsResult: general");
         switch (requestCode) {
             case REQUEST_LOCATION_PERMISSION:
                 if (grantResults.length > 0
                         && grantResults[0]
                         == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: ");
                     enableMyLocation();
                     break;
                 } else {
