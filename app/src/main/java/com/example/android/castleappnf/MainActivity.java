@@ -44,6 +44,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.maps.GeoApiContext;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity implements CastleAdapter.OnRecycl
     //UI elements shown when connection status changes
     TextView bottStatus;
     BottomNavigationView bottNav;
+
 
     //Firebase and storage variables
     private StorageReference mStorageRef;
