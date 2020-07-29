@@ -64,7 +64,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         coordinatorLayout = findViewById(R.id.cordlay);
 
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setSubtitle("Map of castles");
+        toolbar.setSubtitle("Click a castle to see more details");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
