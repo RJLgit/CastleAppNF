@@ -417,13 +417,6 @@ public class DetailsActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    //Load Main Activity if the user clicks back on the phone
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
