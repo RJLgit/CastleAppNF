@@ -242,6 +242,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onMarkerClick(final Marker marker) {
         marker.showInfoWindow();
         final Snackbar snackBar = Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_INDEFINITE);
+        snackBar.setActionTextColor(getResources().getColor(R.color.colorAction));
         snackBar.setAction("See details", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
