@@ -67,6 +67,16 @@
     <string name="settings_filter_title">Filter by</string>
     <string name="main_button_text">See castles in list</string>
     <string name="castle_map_button_text">See castles on map</string>
+    
+    <!--Strings for Maps activity-->
+    <string name="title_activity_maps">Map</string>
+    <string name="normal_map">Normal Map</string>
+    <string name="hybrid_map">Hybrid Map</string>
+    <string name="satellite_map">Satellite Map</string>
+    <string name="terrain_map">Terrain Map</string>
+    <string name="maps_activity_toolbar_subtitle">Click a castle to see more details</string>
+    <string name="maps_marker_snippet">\"Operated by: %1$s\"</string>
+    <string name="snackbar_action_text">See details</string>
 
     <!--Settings strings-->
     <string-array name="distance_array">
@@ -541,9 +551,6 @@
         <item>The Wharton family occupied the castle, but likely abandoned it and moved to Wharton Hall at some point in the 17th century.</item>
         <item>Throughout the 14th, 15th and 16th century, there were frequent Scottish raids in the lawless border region, and such Pele towers were common.</item>
     </string-array>
-    <string name="title_activity_maps">Map</string>
-    <string name="normal_map">Normal Map</string>
-    <string name="hybrid_map">Hybrid Map</string>
-    <string name="satellite_map">Satellite Map</string>
-    <string name="terrain_map">Terrain Map</string>
+
+
 </resources>
