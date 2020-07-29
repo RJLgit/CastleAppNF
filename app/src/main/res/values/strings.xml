@@ -67,7 +67,7 @@
     <string name="settings_filter_title">Filter by</string>
     <string name="main_button_text">See castles in list</string>
     <string name="castle_map_button_text">See castles on map</string>
-    
+
     <!--Strings for Maps activity-->
     <string name="title_activity_maps">Map</string>
     <string name="normal_map">Normal Map</string>
@@ -546,10 +546,17 @@
     </string-array>
 
     <string-array name="lammerside_history">
-        <item>This castle was formed into a Pele tower in the 14th century to give protection against Scottish raiders.</item>
-        <item>The remaining ruin is part of the original main tower of the building, there are also earthwork remains around this central stone ruin.</item>
-        <item>The Wharton family occupied the castle, but likely abandoned it and moved to Wharton Hall at some point in the 17th century.</item>
-        <item>Throughout the 14th, 15th and 16th century, there were frequent Scottish raids in the lawless border region, and such Pele towers were common.</item>
+    <item>This castle was formed into a Pele tower in the 14th century to give protection against Scottish raiders.</item>
+    <item>The remaining ruin is part of the original main tower of the building, there are also earthwork remains around this central stone ruin.</item>
+    <item>The Wharton family occupied the castle, but likely abandoned it and moved to Wharton Hall at some point in the 17th century.</item>
+    <item>Throughout the 14th, 15th and 16th century, there were frequent Scottish raids in the lawless border region, and such Pele towers were common.</item>
+</string-array>
+
+    <string-array name="arnside_history">
+        <item>This Pele tower was build in the second half of the 15th century, as was common in the region to defend against border raiders.</item>
+        <item>The tower was originally 5 storeys high, reaching a total height of about 50 feet.</item>
+        <item>The castle was damaged in a fire In 1602, but continued to be used after this.</item>
+        <item>However, in 1884, a severe storm caused severe damage to the south wall, with the castle essentially now being split into two.</item>
     </string-array>
 
 

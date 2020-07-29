@@ -73,6 +73,7 @@ public class DummyData {
         Castles piel;
         Castles dalton;
         Castles lammerside;
+        Castles arnside;
 
         warkworth = new Castles("Warkworth Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.wark_history), R.raw.music_one, -1.6118, 55.3452, "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/", "https://www.english-heritage.org.uk/visit/places/warkworth-castle-and-hermitage/prices-and-opening-times/");
         dunstan = new Castles("Dunstanburgh Castle", "English Heritage", 3, context.getResources().getStringArray(R.array.dunstan_history), R.raw.music_two, -1.5950, 55.4894, "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/", "https://www.english-heritage.org.uk/visit/places/dunstanburgh-castle/prices-and-opening-times/");
@@ -139,6 +140,7 @@ public class DummyData {
         piel = new Castles("Piel Castle", "English Heritage", 5, context.getResources().getStringArray(R.array.piel_history), R.raw.music_three, -3.1734, 54.0622, "https://www.english-heritage.org.uk/visit/places/piel-castle/", "https://www.english-heritage.org.uk/visit/places/piel-castle/opening-times/");
         dalton = new Castles("Dalton Castle", "National Trust", 3, context.getResources().getStringArray(R.array.dalton_history), R.raw.music_four, -3.1865, 54.1556, "https://www.nationaltrust.org.uk/dalton-castle", "https://www.nationaltrust.org.uk/dalton-castle#Opening%20times");
         lammerside = new Castles("Lammerside Castle", "Visit Cumbria", 1, context.getResources().getStringArray(R.array.lammerside_history), R.raw.music_one, -2.3522, 54.4379, "https://www.visitcumbria.com/evnp/lammerside-castle/", "https://www.visitcumbria.com/evnp/lammerside-castle/");
+        arnside = new Castles("Arnside Tower", "Visit Cumbria", 1, context.getResources().getStringArray(R.array.arnside_history), R.raw.music_two, -2.8308, 54.1844, "https://www.visitcumbria.com/sl/arnside-tower/", "https://www.visitcumbria.com/sl/arnside-tower/");
 
 
         result.add(alnwick);
@@ -206,6 +208,7 @@ public class DummyData {
         result.add(piel);
         result.add(dalton);
         result.add(lammerside);
+        result.add(arnside);
 
         return result;
     }
