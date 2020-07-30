@@ -559,5 +559,12 @@
         <item>However, in 1884, a severe storm caused severe damage to the south wall, with the castle essentially now being split into two.</item>
     </string-array>
 
+    <string-array name="preston_history">
+        <item>The tower was built between 1392 and 1399.</item>
+        <item>It is a Pele tower that was common during border conflict between Scotland and England.</item>
+        <item>By 1415, Preston tower was one of 78 Pele Towers in Northumberland.</item>
+        <item>Sir Guiscard Harbottle was an owner of the tower in 1513, however, he was killed in the battle of Flodden fighting against James IV of Scotland. The English, however, won the battle.</item>
+    </string-array>
+
 
 </resources>
